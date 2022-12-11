@@ -4,7 +4,7 @@ A mobile game where you can play a collection of board games like chess, domino,
 
 ## FAQ
 
-#### How may hours the current state of the prototype took?
+#### How may hours the game took?
 
 500 Hours.
 

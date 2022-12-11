@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game Assets/Lobby_Scene.unity
+    guid: 43869fa3922a09743bb3e2a19df1a643
+  - enabled: 1
+    path: Assets/Game Assets/Game.unity
+    guid: c850ee8c3b14cc8459e7e186857cf567
+  m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 4a71dc47c8a1df140a956332a953e5b2, type: 2}

@@ -6,9 +6,6 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using Photon.Pun;
-using Facebook.Unity;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 
 public class User_Settings : MonoBehaviour
 {
@@ -429,58 +426,7 @@ public class User_Settings : MonoBehaviour
 
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnUpdateDisplay, OnUpdateDisplayFail);
     }
-    public void Log_In_WithFacebook()
-    {
-        FB.LogInWithReadPermissions(
-        new List<string>
-        {
-            "public_profile", "email",
-        },
-        Res => {
-            Log_In_Wtih_Facebook();
-        }
-        );
-    }
-    void Log_In_Wtih_Facebook()
-    {
-        GetPlayerCombinedInfoRequestParams v = new GetPlayerCombinedInfoRequestParams()
-        {
-            GetUserAccountInfo = true
-        };
 
-        LoginWithFacebookRequest req = new LoginWithFacebookRequest()
-        { TitleId = this.TitleID, AccessToken = AccessToken.CurrentAccessToken.TokenString, CreateAccount = true, InfoRequestParameters = v};
-
-        Debug_Error.text = "Starting to send";
-
-        PlayFabClientAPI.LoginWithFacebook(req, FB_Auth_Success, FB_Auth_Fail);
-
-        Debug_Error.text = "Sent";
-
-    }
-    private void FB_Auth_Success(PlayFab.ClientModels.LoginResult result)
-    {
-        result.InfoResultPayload.AccountInfo.Username = result.InfoResultPayload.AccountInfo.FacebookInfo.FullName;
-
-        if (result.NewlyCreated)
-        {
-            OnRegisterSucess();
-            OnLogin_Sucess(result);
-        }
-        else
-        {
-            OnLogin_Sucess(result);
-        }
-
-        Debug_Error.text = result.InfoResultPayload.PlayerProfile.ContactEmailAddresses.ToString();
-
-    }
-    private void FB_Auth_Fail(PlayFabError Error)
-    {
-        Debug_Error.text = Error.ErrorMessage;
-    }
-    
-    
     public void Login_With_Google()
     {
         Debug_Error.text = "Starting ";

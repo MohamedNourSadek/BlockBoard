@@ -62,7 +62,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     [SerializeField] Text Room_BetText;
     [SerializeField] Text Room_Current_Bet;
     [SerializeField] Button Change_Bet_Button;
-    [SerializeField] Crypto_Payment crypto_payment;
 
     PhotonView view;
 
@@ -247,7 +246,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void Show_PaymentPage()
     {
         Payment_Page.SetActive(true);
-        crypto_payment.Back_To_Main();
 
         Leader_Boards.SetActive(false);
         Settings.SetActive(false);

@@ -90,3 +90,6 @@ Assets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset.meta
 
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
+/Board Game/Logs/*
+*.log
+Board Game/UserSettings/Layouts/default-2023.dwlt

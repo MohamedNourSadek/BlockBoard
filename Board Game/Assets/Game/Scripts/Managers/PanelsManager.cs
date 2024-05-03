@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PanelsManager : Manager
 {
-    public Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
+    [NonSerialized] public Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
 
     public T GetPanel<T>() where T : Panel
     {

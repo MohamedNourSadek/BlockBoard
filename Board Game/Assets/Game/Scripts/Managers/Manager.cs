@@ -2,18 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-public class Manager : MonoBehaviour
+public class Manager : SerializedMonoBehaviour
 {
+    public bool IsManagerStatic = false;
+
     public static Dictionary<Type, Manager> Managers = new Dictionary<Type, Manager>();
 
 
     public virtual void Awake()
     {
-        if(!Managers.ContainsKey(GetType()))
+        if (!Managers.ContainsKey(GetType()))
+        {
             Managers.Add(GetType(), this);
+
+            if (IsManagerStatic)
+            {
+                this.transform.parent = null;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
         else
-            Debug.LogWarning("There are more than one " + GetType() + " in the scene");
+        {
+            Debug.LogWarning("There are more than one " + GetType() + " in the scene and therefore new one is destroyed");
+            Destroy(gameObject);
+        }
     }
 
 

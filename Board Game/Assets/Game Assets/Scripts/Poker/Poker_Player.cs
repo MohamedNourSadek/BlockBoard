@@ -7,7 +7,6 @@ using Photon.Pun;
 public enum ScreenPosition { Left, Right, Down, Up}
 public class Poker_Player : MonoBehaviour
 {
-
     [Header("Hand Positioning")]
     [SerializeField] Camera_Controller camera_Controller;
     [SerializeField] float Z_Depth;
@@ -41,7 +40,7 @@ public class Poker_Player : MonoBehaviour
     [SerializeField] Poker_Organizer organizer;
     [SerializeField] Text Turn_Text;
     [SerializeField] Text_Comments_Generator text_comm;
-    [SerializeField] Button_Sound sounds;
+    [SerializeField] ButtonSound sounds;
     [SerializeField] Button Raise_Button;
     [SerializeField] Button Check_Button;
     [SerializeField] GameObject Current_Bet_Obj;
@@ -439,7 +438,7 @@ public class Poker_Player : MonoBehaviour
 
     [PunRPC] void Check_Sync(int player, int amount)
     {
-        sounds.Play_OnPress();
+        Manager.GetManager<SoundManager>().PlayButtonClick();
 
         Player_Dependent_Text("Check!", player);
 
@@ -693,15 +692,15 @@ public class Poker_Player : MonoBehaviour
 
         yield return new WaitForSeconds(ShowCards_Delay);
         ReOrganize_cards(new List<bool>() { false, !Show_p1, true, true }, new List<bool>() { true, Show_p1, false, false });
-        organizer.sounds.Play_OnPress();
+        Manager.GetManager<SoundManager>().PlayButtonClick();
 
         yield return new WaitForSeconds(ShowCards_Delay);
         ReOrganize_cards(new List<bool>() { false, !Show_p1, !Show_p2, true }, new List<bool>() { true, Show_p1, Show_p2, false });
-        organizer.sounds.Play_OnPress();
+        Manager.GetManager<SoundManager>().PlayButtonClick();
 
         yield return new WaitForSeconds(ShowCards_Delay);
         ReOrganize_cards(new List<bool>() { false, !Show_p1, !Show_p2, !Show_p3 }, new List<bool>() { true, Show_p1, Show_p2, Show_p3 });
-        organizer.sounds.Play_OnPress();
+        Manager.GetManager<SoundManager>().PlayButtonClick();
 
 
         //Calculating the winner

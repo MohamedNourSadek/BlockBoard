@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "V:\\Projects\\BlockBoard\\Board Game\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|v:\\projects\\blockboard\\board game\\assets\\game assets\\scripts\\poker\\poker_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\poker\\poker_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\poker\\poker_organizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\poker\\poker_organizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|v:\\projects\\blockboard\\board game\\assets\\game\\scripts\\ui\\button\\advancedbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\button\\advancedbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\general\\buttonsound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\general\\buttonsound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\chess\\chess_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\chess\\chess_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\domino\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\domino\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\server\\connect_toserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\server\\connect_toserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\general\\tutorialmessages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\general\\tutorialmessages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\ui\\main menu panels\\main menu\\gameitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\main menu panels\\main menu\\gameitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\ui\\main menu panels\\main menu\\mainmenupanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\main menu panels\\main menu\\mainmenupanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\ui\\panel\\panel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\panel\\panel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,16 +59,8 @@
       "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\managers\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|v:\\projects\\blockboard\\board game\\assets\\game\\scripts\\managers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\managers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\managers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\ui\\main menu panels\\main menu\\gameitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\main menu panels\\main menu\\gameitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\ui\\main menu panels\\main menu\\mainmenupanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game\\scripts\\ui\\main menu panels\\main menu\\mainmenupanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game\\scripts\\scriptable obejcts\\gamedataitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|v:\\projects\\blockboard\\board game\\assets\\googleplaygames\\editor\\gpgsandroidsetupui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\googleplaygames\\editor\\gpgsandroidsetupui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|V:\\Projects\\BlockBoard\\Board Game\\assets\\game assets\\scripts\\server\\connect_toserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FE5E82E-09AF-E610-2354-3DA6F20A8A30}|Assembly-CSharp.csproj|solutionrelative:assets\\game assets\\scripts\\server\\connect_toserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|v:\\projects\\blockboard\\board game\\assets\\game assets\\scripts\\general\\crypto_payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,51 +94,164 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "GameItem.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\GameItem.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\GameItem.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\GameItem.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\GameItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAswB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T10:11:00.764Z",
               "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "MainMenuPanel.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\MainMenuPanel.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\MainMenuPanel.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\MainMenuPanel.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\Main Menu Panels\\Main Menu\\MainMenuPanel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T10:11:34.31Z",
               "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "DataManager.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\DataManager.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Managers\\DataManager.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\DataManager.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\Managers\\DataManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T10:13:22.088Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Connect_ToServer.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
+              "ViewState": "AQIAADoBAAAAAAAAAAAAAEMBAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-20T05:34:22.654Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdvancedButton.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Button\\AdvancedButton.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\Button\\AdvancedButton.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Button\\AdvancedButton.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\Button\\AdvancedButton.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:27:26.277Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Chess_player.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Chess\\Chess_player.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Chess\\Chess_player.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Chess\\Chess_player.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Chess\\Chess_player.cs",
+              "ViewState": "AQIAALYCAAAAAAAAAAAuwMACAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:19:14.416Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Player.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Domino\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Domino\\Player.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Domino\\Player.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Domino\\Player.cs",
+              "ViewState": "AQIAAJIAAAAAAAAAAAAuwJwAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:19:00.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Poker_Organizer.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Poker\\Poker_Organizer.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Poker\\Poker_Organizer.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Poker\\Poker_Organizer.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Poker\\Poker_Organizer.cs",
+              "ViewState": "AQIAANgBAAAAAAAAAAAqwOEBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:18:15.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Poker_Player.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Poker\\Poker_Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Poker\\Poker_Player.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Poker\\Poker_Player.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Poker\\Poker_Player.cs",
+              "ViewState": "AQIAAKUBAAAAAAAAAAAiwLkBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:18:05.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SoundManager.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\SoundManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Managers\\SoundManager.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\SoundManager.cs",
+              "RelativeToolTip": "Assets\\Game\\Scripts\\Managers\\SoundManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:14:37.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ButtonSound.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\ButtonSound.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\General\\ButtonSound.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\ButtonSound.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\General\\ButtonSound.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:12:40.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TutorialMessages.cs",
+              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\TutorialMessages.cs",
+              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\General\\TutorialMessages.cs",
+              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\TutorialMessages.cs",
+              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\General\\TutorialMessages.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAA3wFMAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T12:06:04.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "GameDataItem.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Scriptable Obejcts\\GameDataItem.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Scriptable Obejcts\\GameDataItem.cs",
@@ -114,51 +259,47 @@
               "RelativeToolTip": "Assets\\Game\\Scripts\\Scriptable Obejcts\\GameDataItem.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T10:14:35.976Z",
-              "IsPinned": true
+              "WhenOpened": "2024-05-03T10:14:35.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "Manager.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\Manager.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Managers\\Manager.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\Manager.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\Managers\\Manager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAuAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAzwAYAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T09:15:48.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T09:15:48.226Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "PanelsManager.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\PanelsManager.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\Managers\\PanelsManager.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\Managers\\PanelsManager.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\Managers\\PanelsManager.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAuwAcAAAA2AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T09:15:38.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T09:15:38.847Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "Panel.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Panel\\Panel.cs",
               "RelativeDocumentMoniker": "Assets\\Game\\Scripts\\UI\\Panel\\Panel.cs",
               "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game\\Scripts\\UI\\Panel\\Panel.cs",
               "RelativeToolTip": "Assets\\Game\\Scripts\\UI\\Panel\\Panel.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAcwAgAAABAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAiwBgAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T07:16:02.088Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T07:16:02.088Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 16,
               "Title": "User_Settings.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\User_Settings.cs",
               "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\General\\User_Settings.cs",
@@ -170,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
               "Title": "GPGSAndroidSetupUI.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\GooglePlayGames\\Editor\\GPGSAndroidSetupUI.cs",
               "RelativeDocumentMoniker": "Assets\\GooglePlayGames\\Editor\\GPGSAndroidSetupUI.cs",
@@ -182,19 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Connect_ToServer.cs",
-              "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
-              "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
-              "ToolTip": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
-              "RelativeToolTip": "Assets\\Game Assets\\Scripts\\Server\\Connect_ToServer.cs",
-              "ViewState": "AQIAAO4AAAAAAAAAAAAMwPgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T05:34:22.654Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "Crypto_Payment.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\Crypto_Payment.cs",
               "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\General\\Crypto_Payment.cs",
@@ -206,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "AppManager.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\Game Assets\\Scripts\\General\\AppManager.cs",
               "RelativeDocumentMoniker": "Assets\\Game Assets\\Scripts\\General\\AppManager.cs",
@@ -218,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "ResourceRequestResult.cs",
               "DocumentMoniker": "V:\\Projects\\BlockBoard\\Board Game\\Assets\\MoralisWeb3ApiSdk\\Example\\Scripts\\ResourceRequestResult.cs",
               "RelativeDocumentMoniker": "Assets\\MoralisWeb3ApiSdk\\Example\\Scripts\\ResourceRequestResult.cs",

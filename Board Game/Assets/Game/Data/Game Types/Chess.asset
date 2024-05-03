@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Chess
   m_EditorClassIdentifier: 
   GameType: 1
-  GameIcon: {fileID: 21300000, guid: cf8f12f1bcfbc0f46bd8cdbe82402a31, type: 3}
+  GameIcon: {fileID: 21300000, guid: ac6d6d2b6778ecd42908d1a7b13ef866, type: 3}

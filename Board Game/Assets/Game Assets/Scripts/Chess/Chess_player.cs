@@ -59,7 +59,7 @@ public class Chess_player : MonoBehaviour
     //internal variables
     [System.NonSerialized] public bool GameIsOn = true;
     Chess_piece Currently_Selected;
-    Button_Sound sounds;
+    ButtonSound sounds;
      bool Master_Turn;
     public float Timer;
     public float Guest_Timer;
@@ -72,7 +72,7 @@ public class Chess_player : MonoBehaviour
 
     private void Start()
     {
-        sounds = GetComponent<Button_Sound>();
+        sounds = GetComponent<ButtonSound>();
         Timer = Max_Time;
         Guest_Timer = Max_Time;
         Master_Turn = true;
@@ -702,7 +702,7 @@ public class Chess_player : MonoBehaviour
         if (SwitchTurn)
         {
             HighLight_PossibleMoves(null,organizer.master_client);
-            sounds.Play_OnPress();
+            Manager.GetManager<SoundManager>().PlayButtonClick();
 
             if (organizer.master_client)
             {

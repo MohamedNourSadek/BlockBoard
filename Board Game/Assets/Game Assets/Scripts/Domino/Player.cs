@@ -77,11 +77,11 @@ public class Player : MonoBehaviour
     float Timer;
     bool Played_Locally;
     bool master_client;
-    Button_Sound mybutton_Sound;
+    ButtonSound mybutton_Sound;
     
     private void Awake()
     {
-        mybutton_Sound = GetComponent<Button_Sound>();
+        mybutton_Sound = GetComponent<ButtonSound>();
         
         UpdateMaster_Client();
 
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
                 view.RPC("Right", RpcTarget.AllBuffered, IsMaster);
         }
 
-        mybutton_Sound.Play_OnPress();
+        Manager.GetManager<SoundManager>().PlayButtonClick();
     }
     [PunRPC] void Center(bool IsMaster)
     {

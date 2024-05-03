@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Poker
   m_EditorClassIdentifier: 
   GameType: 2
-  GameIcon: {fileID: 21300000, guid: cf8f12f1bcfbc0f46bd8cdbe82402a31, type: 3}
+  GameIcon: {fileID: 21300000, guid: 2dc84c54afd7c2c4ba40c8977437eda4, type: 3}

@@ -7,8 +7,28 @@ using UnityEngine.UI;
 
 public class GameItem : MonoBehaviour
 {
+    public Button MyButton;
     public TextMeshProUGUI GameNameText;
     public Image GameIcon;
+    
+    public GameType GameType;
+
+
+    private void Awake()
+    {
+        MyButton.onClick.AddListener(OnButtonPressed);
+    }
+    public void Init(GameType gameType, GameDataItem gameData)
+    {
+        GameNameText.text = gameData.GameType.ToString();
+        GameIcon.sprite = gameData.GameIcon;
+        GameType = gameType;
+    }
+
+    public void OnButtonPressed()
+    {
+
+    }
 
 }
 

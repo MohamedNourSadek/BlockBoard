@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d138e8b23e11e4aa92368aa7df725d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyButton: {fileID: 7886413094206676405}
   GameNameText: {fileID: 172302372561316615}
   GameIcon: {fileID: 3907021081023128385}
+  GameType: 0
 --- !u!1 &4103884785352905297
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,8 +65,7 @@ GameObject:
   - component: {fileID: 6021562694458058122}
   - component: {fileID: 6076779362804698083}
   - component: {fileID: 3907021081023128385}
-  - component: {fileID: 7783521935961340038}
-  - component: {fileID: 5481724057324166804}
+  - component: {fileID: 7886413094206676405}
   m_Layer: 5
   m_Name: Game Item Icon
   m_TagString: Untagged
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7783521935961340038
+--- !u!114 &7886413094206676405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4103884785352905297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 98439f0c854a261409f2f3860341d90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -151,8 +152,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.5566038, g: 0.5539783, b: 0.5539783, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -172,51 +173,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3907021081023128385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Connect_ToServer, Assembly-CSharp
-        m_MethodName: Show_Domino_Lobby
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Button_Sound, Assembly-CSharp
-        m_MethodName: Play_OnPress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5481724057324166804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4103884785352905297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: 866b96c580f5f4246a2381a7fee91d7b, type: 3}
-  - {fileID: 8300000, guid: f12a0f11fb817d84397dbbc74eb4be61, type: 3}
-  - {fileID: 8300000, guid: bc89b2b8d3cd3644aa9b0b426ed93a58, type: 3}
-  - {fileID: 8300000, guid: 28f9735a866ad5b40a11cee36e49578f, type: 3}
-  - {fileID: 8300000, guid: 2468d2fc3bee09d458fbc6c1c9b1c5f0, type: 3}
-  Fx_Mixer: {fileID: 24100000, guid: bb3d0ffe8ded14e4786a4cf9dd5b002e, type: 2}
-  volume: 1
+      m_Calls: []
 --- !u!1 &5852103899172757589
 GameObject:
   m_ObjectHideFlags: 0

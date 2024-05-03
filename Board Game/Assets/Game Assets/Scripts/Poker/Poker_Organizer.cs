@@ -14,7 +14,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
     [SerializeField] Poker_Player player;
     [SerializeField] public List<Play_Card> Community_cards = new List<Play_Card>();
     [SerializeField] Text_Comments_Generator text_comm;
-    [SerializeField] public Button_Sound sounds;
+    [SerializeField] public ButtonSound sounds;
     [SerializeField] GameObject EndGame_Menu;
     [SerializeField] Text EndGame_Text;
 
@@ -436,7 +436,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
                     p.mycards.Add(cards[j]);
                     cards.Remove(cards[j]);
                     player.ReOrganize_cards(new List<bool>() { false, true, true, true }, new List<bool>() { false, false, false, false });
-                    sounds.Play_OnPress();
+                    Manager.GetManager<SoundManager>().PlayButtonClick();
                     yield return new WaitForSeconds(Delay_To_SendCards);
                 }
             }
@@ -452,7 +452,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
                     myPlayer.mycards.Add(cards[j]);
                     cards.Remove(cards[j]);
                     player.ReOrganize_cards(new List<bool>() { false, true, true, true }, new List<bool>() { false, false, false, false });
-                    sounds.Play_OnPress();
+                    Manager.GetManager<SoundManager>().PlayButtonClick();
                     yield return new WaitForSeconds(Delay_To_SendCards);
                 }
             }
@@ -477,8 +477,8 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         for (int i = 0; i < Community_cards.Count; i++)
         {
             yield return new WaitForSeconds(Delay_To_SendCards);
-            
-            sounds.Play_OnPress();
+
+            Manager.GetManager<SoundManager>().PlayButtonClick();
 
             Community_cards[i].transform.position = Community_Cards_Position.position + (Community_Cards_Position.right * i * Spacing);
 

@@ -19,18 +19,11 @@ public class TutorialMessages : MonoBehaviour
      
     private void Start()
     {
-        string tutorial = "";
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
 
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
-            tutorial = Domino_tut;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
-            tutorial = Chess_tut;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
-            tutorial = Poker_tut;
-
-        if(GetHelp_Avaialbe(tutorial))
+        if (tutorialManagers.IsTutorialAvailable(Cross_Scene_Data.currentGame))
         {
-            TutorialMessages.SetHelp_Avaiable(tutorial,false);
+            tutorialManagers.SetTutorialState(Cross_Scene_Data.currentGame, false);
 
             HelpMessages[currentMessage].SetActive(true);
 
@@ -70,20 +63,7 @@ public class TutorialMessages : MonoBehaviour
         Show_Next_Message();
     }
 
-    public static bool GetHelp_Avaialbe(string tutorial)
-    {
-        int HelpData = PlayerPrefs.GetInt(tutorial);
-        if (HelpData == 0)
-            return true;
-        else
-            return false;
-    }
-    public static void SetHelp_Avaiable(string tutorial, bool state)
-    {
-        if(state)
-            PlayerPrefs.SetInt(tutorial, 0);
-        else
-            PlayerPrefs.SetInt(tutorial, 1);
-    }
+
+
 }
 

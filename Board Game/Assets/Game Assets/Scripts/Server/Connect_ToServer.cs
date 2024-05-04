@@ -94,11 +94,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
 
         string Game = "";
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
             Game = "Domino";
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
             Game = "Chess";
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
             Game = "Poker";
 
         PhotonNetwork.GameVersion = Cross_Scene_Data.Game_Version + Game;
@@ -283,9 +283,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void Show_Domino_Lobby()
     {
         Cross_Scene_Data.where = WhereTo.Lobby;
-        Cross_Scene_Data.currentGame = CurrentGame.Domino;
+        Cross_Scene_Data.currentGame = GameType.Domino;
 
-        if (TutorialMessages.GetHelp_Avaialbe(TutorialMessages.Domino_tut))
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
+
+        if (tutorialManagers.IsTutorialAvailable(Cross_Scene_Data.currentGame))
         {
             Game_Selection_Menu.SetActive(false);
             PlayTutorial.SetActive(true);
@@ -298,9 +300,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void Show_Chess_Lobby()
     {
         Cross_Scene_Data.where = WhereTo.Lobby;
-        Cross_Scene_Data.currentGame = CurrentGame.Chess;
+        Cross_Scene_Data.currentGame = GameType.Chess;
 
-        if (TutorialMessages.GetHelp_Avaialbe(TutorialMessages.Chess_tut))
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
+
+        if (tutorialManagers.IsTutorialAvailable(Cross_Scene_Data.currentGame))
         {
             Game_Selection_Menu.SetActive(false);
             PlayTutorial.SetActive(true);
@@ -313,9 +317,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void Show_Poker_Lobby()
     {
         Cross_Scene_Data.where = WhereTo.Lobby;
-        Cross_Scene_Data.currentGame = CurrentGame.Poker;
+        Cross_Scene_Data.currentGame = GameType.Poker;
 
-        if (TutorialMessages.GetHelp_Avaialbe(TutorialMessages.Poker_tut))
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
+
+        if (tutorialManagers.IsTutorialAvailable(Cross_Scene_Data.currentGame))
         {
             Game_Selection_Menu.SetActive(false);
             PlayTutorial.SetActive(true);
@@ -333,12 +339,14 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     {
         PlayTutorial.SetActive(false);
 
-        if(Cross_Scene_Data.currentGame == CurrentGame.Domino)
-            TutorialMessages.SetHelp_Avaiable(TutorialMessages.Domino_tut, false);
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
-            TutorialMessages.SetHelp_Avaiable(TutorialMessages.Chess_tut, false);
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
-            TutorialMessages.SetHelp_Avaiable(TutorialMessages.Poker_tut, false);
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
+
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
+            tutorialManagers.SetTutorialState(GameType.Domino, false);
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
+            tutorialManagers.SetTutorialState(GameType.Chess, false);
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
+            tutorialManagers.SetTutorialState(GameType.Poker, false);
 
         SelectPage();
     }
@@ -371,7 +379,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         RoomOptions roomOp = new RoomOptions();
 
         byte MaxPlayers = 2;
-        if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        if (Cross_Scene_Data.currentGame == GameType.Poker)
             MaxPlayers = 4;
 
         roomOp.MaxPlayers = MaxPlayers;
@@ -422,7 +430,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         roomOp.IsOpen = true;
         roomOp.MaxPlayers = 2;
         
-        if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        if (Cross_Scene_Data.currentGame == GameType.Poker)
             roomOp.MaxPlayers = 4;
 
         Cross_Scene_Data.UseNewMaxScore = true;
@@ -732,7 +740,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         }
 
         //Room state based on players count
-        if(Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        if(Cross_Scene_Data.currentGame == GameType.Poker)
         {
             if (PhotonNetwork.PlayerList.Length == 4)
             {
@@ -765,7 +773,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
                 Player4_Banner.SetActive(false);
             }
         }
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino || Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        if (Cross_Scene_Data.currentGame == GameType.Domino || Cross_Scene_Data.currentGame == GameType.Chess)
         {
             Player3_Banner.SetActive(false);
             Player4_Banner.SetActive(false);

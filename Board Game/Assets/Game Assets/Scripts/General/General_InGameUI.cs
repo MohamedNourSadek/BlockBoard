@@ -44,11 +44,11 @@ public class General_InGameUI : MonoBehaviour
         else
             view = GetComponent<PhotonView>();
 
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
             Rules = Domino_Rules;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
             Rules = Chess_Rules;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
             Rules = Poker_Rules;
 
         if(Menu_settings.Get_Camera_Snaaping() == 0)

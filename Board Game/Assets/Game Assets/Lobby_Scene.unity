@@ -754,9 +754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &18416702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,9 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &71663125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2071,9 +2065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &97906129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,9 +2566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!1 &136367462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,9 +3756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &232873370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3929,9 +3914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &256280416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4117,6 +4099,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259868019}
   m_CullTransparentMesh: 1
+--- !u!4 &262337605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 4760299418753658406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &269754016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,9 +4157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &269754019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5060,9 +5045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &317628367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5221,9 +5203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &326835635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5841,9 +5820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &332625236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6239,9 +6215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &345114277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6558,9 +6531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &364504869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6719,9 +6689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &378892938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6880,9 +6847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &379270043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8593,9 +8557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &530821433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9254,9 +9215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &571434825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9415,9 +9373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &572172456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9839,9 +9794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &582917892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10158,9 +10110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &591867528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10378,6 +10327,7 @@ Transform:
   - {fileID: 282390515}
   - {fileID: 1506814036}
   - {fileID: 1546154095}
+  - {fileID: 262337605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &601704499 stripped
@@ -10833,9 +10783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &639472948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11152,9 +11099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &647028028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11313,9 +11257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &647042886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13181,9 +13122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &802578761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13923,9 +13861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &844945364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14163,9 +14098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &875774637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14324,9 +14256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &879994351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14877,9 +14806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &929887188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15038,9 +14964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &944347916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15578,9 +15501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &963096062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16253,9 +16173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &990515331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16942,9 +16859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1037807928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17103,9 +17017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1047518484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17751,9 +17662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1127791498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17912,9 +17820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1129293639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18112,9 +18017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1131459517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18500,9 +18402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1142363049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18806,9 +18705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1150170557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19084,9 +18980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1158601630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19245,9 +19138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1159858295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19993,9 +19883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1193354424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20310,9 +20197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1219269291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21405,9 +21289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1282212996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21894,9 +21775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1302484403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22482,9 +22360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1331371539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23059,9 +22934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1394267784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23271,9 +23143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1404346039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23432,9 +23301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1410243587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23751,9 +23617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1425886588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25045,9 +24908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1483860469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25462,9 +25322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1499245842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25680,9 +25537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1506226056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25847,9 +25701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1511807695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26910,9 +26761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1591595122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27385,9 +27233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1599138533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27740,9 +27585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1629247769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28035,9 +27877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1651460152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29301,9 +29140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1706600636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29774,9 +29610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1710509003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30318,9 +30151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1741898921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30846,9 +30676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1763193662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31007,9 +30834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1764309581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31471,9 +31295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1789205299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32084,9 +31905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1829038147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33329,9 +33147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1907918926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33490,9 +33305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1913214842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33832,9 +33644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1932732475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34072,9 +33881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &1942679666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35322,9 +35128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2007337432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35483,9 +35286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2007500677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35735,9 +35535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2026529094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35896,9 +35693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2026649661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36057,9 +35851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2027659743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36315,9 +36106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2036818388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36792,9 +36580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2063649845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37224,9 +37009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2078910779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37622,9 +37404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2100021838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37783,9 +37562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2101748713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38023,9 +37799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2105271248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38674,9 +38447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2133225622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38835,9 +38605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2136075858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39036,9 +38803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &2145527419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41077,9 +40841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!1 &4300912134889159174
 GameObject:
   m_ObjectHideFlags: 0
@@ -41274,9 +41035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!224 &4300912135791644296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41321,6 +41079,80 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1001 &4760299418753658406
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 598881045}
+    m_Modifications:
+    - target: {fileID: 709268864954689524, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 709268864954689524, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+    - target: {fileID: 4315163199797392227, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_Name
+      value: Tutorials Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802320319563591820, guid: 88d70de14a42370468f67d7f97d2b3ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88d70de14a42370468f67d7f97d2b3ad, type: 3}
 --- !u!1 &4839142572257650605
 GameObject:
   m_ObjectHideFlags: 0
@@ -41675,9 +41507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609914da0dff4f044b3ba29247e2d275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
-  FxMixer: {fileID: 0}
-  volume: 1
 --- !u!114 &6148082248263391471
 MonoBehaviour:
   m_ObjectHideFlags: 0

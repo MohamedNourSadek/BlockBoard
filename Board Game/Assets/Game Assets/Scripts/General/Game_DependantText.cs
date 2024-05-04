@@ -14,11 +14,11 @@ public class Game_DependantText : MonoBehaviour
     {
         mytext = GetComponent<Text>();
 
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
             mytext.text = DominoText;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
             mytext.text = ChessText;
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
             mytext.text = PokerText;
     }
 }

@@ -10,19 +10,19 @@ public class Game_DependantObject : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
         {
             DominoObject.SetActive(true);
             ChessObject.SetActive(false);
             PokerObject.SetActive(false);
         }
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
         {
             ChessObject.SetActive(true);
             DominoObject.SetActive(false);
             PokerObject.SetActive(false);
         }
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
         {
             PokerObject.SetActive(true);
             ChessObject.SetActive(false);

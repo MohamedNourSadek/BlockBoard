@@ -19,19 +19,19 @@ public class Game_DependantCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Cross_Scene_Data.currentGame == CurrentGame.Domino)
+        if (Cross_Scene_Data.currentGame == GameType.Domino)
         {
             Camera.main.transform.position = DominoCamera_Transform.transform.position;
             Camera.main.transform.rotation = DominoCamera_Transform.transform.rotation;
             Camera.main.fieldOfView = Domino_POV;
         }
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Chess)
+        else if (Cross_Scene_Data.currentGame == GameType.Chess)
         {
             Camera.main.transform.position = ChessCamera_Transform.transform.position;
             Camera.main.transform.rotation = ChessCamera_Transform.transform.rotation;
             Camera.main.fieldOfView = Chess_POV;
         }
-        else if (Cross_Scene_Data.currentGame == CurrentGame.Poker)
+        else if (Cross_Scene_Data.currentGame == GameType.Poker)
         {
             Camera.main.transform.position = PokerCamera_Transform.transform.position;
             Camera.main.transform.rotation = PokerCamera_Transform.transform.rotation;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum CurrentGame { Domino, Chess, Poker }
 public enum identity { master, Guest, Guest2, Guest3 }
 
 public class Cross_Scene_Data : MonoBehaviour
@@ -22,7 +21,7 @@ public class Cross_Scene_Data : MonoBehaviour
     public static float chess_bonus = 0;
     public static float chess_difficulty = 50f;
     public static float BetAmount = 100f;
-    public static CurrentGame currentGame;
+    public static GameType currentGame;
     public static bool PlayingPublic;
     public static Dictionary<Player_Info, int> players = new Dictionary<Player_Info, int>();
     public static bool Camera_Snap = true;

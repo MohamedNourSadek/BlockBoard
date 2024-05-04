@@ -574,9 +574,9 @@ public class User_Settings : MonoBehaviour
 
         PhotonNetwork.SetPlayerCustomProperties(hs);
 
-        UpdateLeadBoard(CurrentGame.Chess);
-        UpdateLeadBoard(CurrentGame.Domino);
-        UpdateLeadBoard(CurrentGame.Poker);
+        UpdateLeadBoard(GameType.Chess);
+        UpdateLeadBoard(GameType.Domino);
+        UpdateLeadBoard(GameType.Poker);
 
         if (DataRecieved != null)
             DataRecieved.Invoke();
@@ -588,22 +588,22 @@ public class User_Settings : MonoBehaviour
     //Update Credit
     
     //LeaderBoards
-    public void UpdateLeadBoard(CurrentGame game)
+    public void UpdateLeadBoard(GameType game)
     {
         string Leaderboard_Name = "";
         int Score = 0;
 
-        if (game == CurrentGame.Domino)
+        if (game == GameType.Domino)
         {
             Leaderboard_Name = "Domino_LeaderBoard";
             Score = Games_Stats[0].Game_Skill;
         }
-        else if (game == CurrentGame.Chess)
+        else if (game == GameType.Chess)
         {
             Leaderboard_Name = "Chess_LeaderBoard";
             Score = Games_Stats[1].Game_Skill;
         }
-        else if (game == CurrentGame.Poker)
+        else if (game == GameType.Poker)
         {
             Leaderboard_Name = "Poker_LeaderBoard";
             Score = Games_Stats[2].Game_Skill;
@@ -635,18 +635,18 @@ public class User_Settings : MonoBehaviour
         LeaderBoards_stats.SetActive(false);
         GetLeaderBoard(Cross_Scene_Data.currentGame);
     }
-    public void GetLeaderBoard(CurrentGame game)
+    public void GetLeaderBoard(GameType game)
     {
         string Leaderboard_Name = "";
-        if (game == CurrentGame.Domino)
+        if (game == GameType.Domino)
         {
             Leaderboard_Name = "Domino_LeaderBoard";
         }
-        else if (game == CurrentGame.Chess)
+        else if (game == GameType.Chess)
         {
             Leaderboard_Name = "Chess_LeaderBoard";
         }
-        else if (game == CurrentGame.Poker)
+        else if (game == GameType.Poker)
         {
             Leaderboard_Name = "Poker_LeaderBoard";
         }

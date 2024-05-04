@@ -21,9 +21,9 @@ public class TutorialMessages : MonoBehaviour
     {
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
 
-        if (tutorialManagers.IsTutorialAvailable(Cross_Scene_Data.currentGame))
+        if (tutorialManagers.IsTutorialAvailable(Manager.GameManager.CurrentGame))
         {
-            tutorialManagers.SetTutorialState(Cross_Scene_Data.currentGame, false);
+            tutorialManagers.SetTutorialState(Manager.GameManager.CurrentGame, false);
 
             HelpMessages[currentMessage].SetActive(true);
 

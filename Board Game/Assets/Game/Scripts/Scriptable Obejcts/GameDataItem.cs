@@ -14,5 +14,6 @@ public enum GameType
 {
     Domino,
     Chess,
-    Poker
+    Poker,
+    None
 }

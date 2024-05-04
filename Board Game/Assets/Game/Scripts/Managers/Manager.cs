@@ -6,10 +6,10 @@ using Sirenix.OdinInspector;
 
 public class Manager : SerializedMonoBehaviour
 {
-    public bool IsManagerStatic = false;
-
     public static Dictionary<Type, Manager> Managers = new Dictionary<Type, Manager>();
-
+    public static GameManager GameManager;
+    
+    public bool IsManagerStatic = false;
 
     public virtual void Awake()
     {

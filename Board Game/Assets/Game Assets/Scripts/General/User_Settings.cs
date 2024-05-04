@@ -16,7 +16,7 @@ public class User_Settings : MonoBehaviour
     [SerializeField] GameObject SignUp_Screen;
     [SerializeField] GameObject Reset_Password_Screen;
     [SerializeField] GameObject UserStats;
-    [SerializeField] Connect_ToServer Manager;
+    [SerializeField] Connect_ToServer Connect_ToServer;
     [SerializeField] public bool Logged_IN;
 
     [Header("UI Reference")]
@@ -196,7 +196,7 @@ public class User_Settings : MonoBehaviour
         }
         else
         {
-            Manager.SelectPage();
+            Connect_ToServer.SelectPage();
         }
     }
     string Encrypt(string pass)
@@ -417,7 +417,7 @@ public class User_Settings : MonoBehaviour
 
         Cross_Scene_Data.mystats = Games_Stats;
 
-        Manager.SelectPage();
+        Connect_ToServer.SelectPage();
 
         var request = new UpdateUserTitleDisplayNameRequest
         {
@@ -633,7 +633,7 @@ public class User_Settings : MonoBehaviour
     public void ShowLeaderBoard_MainScreen()
     {
         LeaderBoards_stats.SetActive(false);
-        GetLeaderBoard(Cross_Scene_Data.currentGame);
+        GetLeaderBoard(Manager.GameManager.CurrentGame);
     }
     public void GetLeaderBoard(GameType game)
     {

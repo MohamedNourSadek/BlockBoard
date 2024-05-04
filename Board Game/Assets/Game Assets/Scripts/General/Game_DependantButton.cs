@@ -14,9 +14,9 @@ public class Game_DependantButton : MonoBehaviour
     {
         mybutton = GetComponent<Button>();
 
-        if (Cross_Scene_Data.currentGame == GameType.Domino)
+        if (Manager.GameManager.CurrentGame == GameType.Domino)
             mybutton.interactable = DominoIsInteractable;
-        else if (Cross_Scene_Data.currentGame == GameType.Chess)
+        else if (Manager.GameManager.CurrentGame == GameType.Chess)
             mybutton.interactable = ChessIsInteractable;
     }
 }

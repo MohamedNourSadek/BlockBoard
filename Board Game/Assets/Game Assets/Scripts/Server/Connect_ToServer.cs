@@ -581,10 +581,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         view.RPC("Start_Game_Sync", RpcTarget.All);
     }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
     public void OnJoin_Input_Change(string value)
     {
         if (value.Length < 4)

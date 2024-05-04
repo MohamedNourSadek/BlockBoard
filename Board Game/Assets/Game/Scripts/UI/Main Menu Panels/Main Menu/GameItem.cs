@@ -29,7 +29,9 @@ public class GameItem : MonoBehaviour
     {
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
 
-        if (tutorialManagers.IsTutorialAvailable(Manager.GameManager.CurrentGame))
+        Manager.GameManager.CurrentGame = GameType;
+
+        if (tutorialManagers.IsTutorialAvailable(GameType))
         {
             string title = Manager.GameManager.CurrentGame.ToString();
             string message = "Do you want to start the tutorial?";

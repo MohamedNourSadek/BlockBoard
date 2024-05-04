@@ -85,7 +85,8 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         create.onValueChanged.AddListener(OnHost_Input_Change);
         view = GetComponent<PhotonView>();
         Room_BetSlider.onValueChanged.AddListener(OnRoomBetSlider_Change);
-        user_settings.Remember_User();
+        
+        //user_settings.Remember_User();
     }
 
     public void Connect_to_PhotonServer()

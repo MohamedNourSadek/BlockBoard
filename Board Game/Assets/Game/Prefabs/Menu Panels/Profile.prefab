@@ -3215,7 +3215,7 @@ GameObject:
   - component: {fileID: 7977790752327984601}
   - component: {fileID: 8211774673118133693}
   m_Layer: 5
-  m_Name: 'Authentication '
+  m_Name: Profile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

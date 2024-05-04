@@ -15,7 +15,6 @@ public class TutorialsManager : Manager
         else
             return false;
     }
-
     public void SetTutorialState(GameType game, bool state)
     {
         string keyName = Manager.GetManager<TutorialsManager>().GetTutorialKey(game);
@@ -25,11 +24,9 @@ public class TutorialsManager : Manager
         else
             PlayerPrefs.SetInt(keyName, 1);
     }
-
     private string GetTutorialKey(GameType game)
     {
-        return game.ToString() + "Tutorial";
+        return game.ToString() + DataManager.TutorialSaveKey;
     }   
-
 }
 

@@ -58,7 +58,6 @@ public class User_Settings : MonoBehaviour
 
     [System.NonSerialized] public static string Player_Name = "";
     [System.NonSerialized] public static string Email = "";
-
     public static string Payment_InProgress = "Payment_In_Progress";
     private string SavedEmail = "Saved_Email";
     private string SavedPass = "Saved_Pass";
@@ -303,48 +302,6 @@ public class User_Settings : MonoBehaviour
     }
 
 
-    //Change Wallet Address
-    public void Change_Address()
-    {
-        if(WalletAddress.gameObject.activeSelf)
-        {
-            WalletAddress.gameObject.SetActive(false);
-            WalletAddress_Input.gameObject.SetActive(true);
-            WalletAddress_Input.text = WalletAddress.text;
-            Address_Button_Text.text = "Confirm";
-        }
-        else
-        {
-            WalletAddress.text = WalletAddress_Input.text;
-            WalletAddress.gameObject.SetActive(true);
-            WalletAddress_Input.gameObject.SetActive(false);
-            Address_Button_Text.text = "Change";
-
-            Send_Address_Data();
-        }
-    }
-    public void Send_Address_Data()
-    {
-        Dictionary<string, string> Data_To_Send = new Dictionary<string, string>();
-
-        Data_To_Send.Add(Saved_Address, WalletAddress.text);
-
-        var request = new UpdateUserDataRequest
-        {
-            Data = Data_To_Send,
-        };
-
-        PlayFabClientAPI.UpdateUserData(request, OnAddress_Send, OnAddress_Fail);
-    }
-
-    private void OnAddress_Send(UpdateUserDataResult obj)
-    {
-    }
-    private void OnAddress_Fail(PlayFabError obj)
-    {
-        Send_Address_Data();
-    }
-
     //SignUp
     public void SignUp()
     {
@@ -426,42 +383,6 @@ public class User_Settings : MonoBehaviour
 
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnUpdateDisplay, OnUpdateDisplayFail);
     }
-
-    public void Login_With_Google()
-    {
-        Debug_Error.text = "Starting ";
-
-        try
-        {
-            Social.localUser.Authenticate((bool success) => {
-
-                if (success)
-                {
-                    Debug_Error.text = "Google Signed In";
-                }
-                else
-                {
-                    Debug_Error.text = "Google Failed to Authorize your login";
-                }
-
-            });
-
-        }
-        catch (Exception e)
-        {
-            Debug_Error.text = e.Message;
-
-            Debug.Log(e.Message);
-        }
-
-    }
-
-    private void Google_Auth_Fail(PlayFabError obj)
-    {
-        Debug_Error.text = obj.ErrorMessage;
-        Debug.Log(obj.ErrorMessage);
-    }
-
 
 
     //Reset Password
@@ -585,8 +506,7 @@ public class User_Settings : MonoBehaviour
     {
     }
 
-    //Update Credit
-    
+
     //LeaderBoards
     public void UpdateLeadBoard(GameType game)
     {
@@ -698,7 +618,6 @@ public class User_Settings : MonoBehaviour
 
 
     [SerializeField] string Address;
-
     private void Update()
     {
         if(Input.GetKeyDown("x"))
@@ -718,12 +637,10 @@ public class User_Settings : MonoBehaviour
             }
         }
     }
-
     private void OnSucess(ExecuteCloudScriptResult obj)
     {
         Debug.Log(obj.FunctionResult.ToString());
     }
-
     private void OnError(PlayFabError obj)
     {
         Debug.Log(obj.ErrorMessage);

@@ -44,19 +44,15 @@ public class GameItem : MonoBehaviour
 
         }
     }
-
     public void OnOpenTutorialYes()
     {
 
     }
-
     public void OnOpenTutorialNo()
     {
         Panel.GetPanel<MessagePanel>().Hide();
         Panel.GetPanel<MainMenuPanel>().Show();
     }
-
-
 }
 
 

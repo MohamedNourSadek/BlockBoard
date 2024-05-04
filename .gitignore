@@ -94,3 +94,4 @@ Assets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset.meta
 *.log
 Board Game/UserSettings/Layouts/default-2023.dwlt
 /Board Game/UserSettings
+/Board Game/.vs

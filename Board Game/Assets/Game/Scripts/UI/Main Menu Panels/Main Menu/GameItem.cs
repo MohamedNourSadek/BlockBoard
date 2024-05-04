@@ -27,8 +27,33 @@ public class GameItem : MonoBehaviour
 
     public void OnButtonPressed()
     {
+        var tutorialManagers = Manager.GetManager<TutorialsManager>();
+
+        if (tutorialManagers.IsTutorialAvailable(Manager.GameManager.CurrentGame))
+        {
+            string title = Manager.GameManager.CurrentGame.ToString();
+            string message = "Do you want to start the tutorial?";
+
+            Panel.GetPanel<MainMenuPanel>().Hide();
+            Panel.GetPanel<MessagePanel>().Show(title, message, OnOpenTutorialYes , OnOpenTutorialNo);
+        }
+        else
+        {
+
+        }
+    }
+
+    public void OnOpenTutorialYes()
+    {
 
     }
+
+    public void OnOpenTutorialNo()
+    {
+        Panel.GetPanel<MessagePanel>().Hide();
+        Panel.GetPanel<MainMenuPanel>().Show();
+    }
+
 
 }
 

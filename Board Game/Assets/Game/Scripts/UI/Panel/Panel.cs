@@ -1,16 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Panel : MonoBehaviour
 {
+    [NonSerialized] public static Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
+
     public virtual void Awake()
     {
-        var panelsManager = Manager.GetManager<PanelsManager>();
-
-        if(!panelsManager.Panels.ContainsKey(GetType()))
-            panelsManager.Panels.Add(GetType(), this);
-
+        AddToPanelList();
     }
 
     public virtual void Start()
@@ -20,10 +19,25 @@ public class Panel : MonoBehaviour
 
     public void OnDestroy()
     {
-        var panelsManager = Manager.GetManager<PanelsManager>();
+        RemoveFromPanelList();
+    }
 
-        if(panelsManager && panelsManager.Panels.ContainsKey(GetType()))
-            panelsManager.Panels.Remove(GetType());
+    public static T GetPanel<T>() where T : Panel
+    {
+        if (Panels.ContainsKey(typeof(T)))
+            return Panels[typeof(T)] as T;
+        else
+            return null;
+    }
+    public void AddToPanelList()
+    {
+        if (!Panels.ContainsKey(this.GetType()))
+            Panels.Add(this.GetType(), this);
+    }
+    public void RemoveFromPanelList()
+    {
+        if (Panels.ContainsKey(this.GetType()))
+            Panels.Remove(this.GetType());
     }
 
     public virtual void Show()

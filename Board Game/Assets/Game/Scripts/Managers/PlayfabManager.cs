@@ -47,9 +47,11 @@ public class PlayfabManager : Manager
         profile.NiceName = result.InfoResultPayload.AccountInfo.Username;
         GetManager<PhotonManager>().SetPlayerNickName(profile.NiceName);
         IsLoggedIn = true;
+
+        DebugManager.Debug("Login Success");
     }
     private void OnLoginFailure(PlayFabError error)
     {
-
+        DebugManager.Debug("Login Fail");
     }
 }

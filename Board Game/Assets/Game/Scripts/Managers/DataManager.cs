@@ -13,5 +13,6 @@ public class DataManager : Manager
     public static string TutorialSaveKey = "Tutorial";
 
     public static string PlayerProfileKey = "PlayerProfile";
+
 }
 

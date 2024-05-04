@@ -7,8 +7,10 @@ using Sirenix.OdinInspector;
 public class Manager : SerializedMonoBehaviour
 {
     public static Dictionary<Type, Manager> Managers = new Dictionary<Type, Manager>();
-    public static GameManager GameManager;
     
+    public static GameManager GameManager;
+    public static DebugManager DebugManager;
+
     public bool IsManagerStatic = false;
 
     public virtual void Awake()

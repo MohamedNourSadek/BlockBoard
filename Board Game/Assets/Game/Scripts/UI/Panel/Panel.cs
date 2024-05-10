@@ -6,11 +6,18 @@ using UnityEngine;
 public class Panel : MonoBehaviour
 {
     [NonSerialized] public static Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
-    [NonSerialized] public Dictionary<Type, Panel> SubPanels = new Dictionary<Type, Panel>();
+    
+    private Dictionary<Type, Panel> SubPanels = new Dictionary<Type, Panel>();
 
     public virtual void Awake()
     {
         AddToPanelList();
+
+        foreach (var panel in GetComponentsInChildren<Panel>())
+        {
+            if(SubPanels.ContainsKey(panel.GetType()))
+                SubPanels[panel.GetType()] = panel;
+        }
     }
 
     public virtual void Start()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Panel : MonoBehaviour
 {
     [NonSerialized] public static Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
+    [NonSerialized] public Dictionary<Type, Panel> SubPanels = new Dictionary<Type, Panel>();
 
     public virtual void Awake()
     {
@@ -44,6 +45,19 @@ public class Panel : MonoBehaviour
     {
         AnimatePanel(true);
         RefreshUI();
+    }
+    public virtual void Show<T>() where T : Panel
+    {
+        Show();
+
+        if(SubPanels.ContainsKey(typeof(T)))
+        {
+            SubPanels[typeof(T)].Show();
+        }
+        else
+        {
+            Debug.LogError("Panel not found in SubPanels list");
+        }
     }
     public virtual void Hide()
     {

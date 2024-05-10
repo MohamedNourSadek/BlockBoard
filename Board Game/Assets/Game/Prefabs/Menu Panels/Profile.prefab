@@ -88,6 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81418422322653534}
+  - component: {fileID: 389242537122062271}
   m_Layer: 5
   m_Name: Chess Stats
   m_TagString: Untagged
@@ -124,6 +125,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &389242537122062271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63483236703402551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c175d57c621a89458d051d7c94ff8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &75626555243598279
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,6 +6128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4829302101294310457}
+  - component: {fileID: 5563607480990688941}
   m_Layer: 5
   m_Name: User Stats
   m_TagString: Untagged
@@ -6157,6 +6171,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5563607480990688941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913160740294116092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67d41f582b02f74c9df286d58a8719f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3951463598637117898
 GameObject:
   m_ObjectHideFlags: 0
@@ -7570,13 +7596,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1052945739328052757}
+  - component: {fileID: 2219126076131492644}
   m_Layer: 5
-  m_Name: Log in Screen
+  m_Name: Log in Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1052945739328052757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7607,6 +7634,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2219126076131492644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210270797504218796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a236b871ddee2a4ab11db3b0528805b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5212170054940677552
 GameObject:
   m_ObjectHideFlags: 0
@@ -7998,8 +8037,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6781163990696421263}
+  - component: {fileID: 1892726878178421039}
   m_Layer: 5
-  m_Name: Main Screen
+  m_Name: Profile Not Logged In Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8031,6 +8071,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1892726878178421039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482711231616179093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec3c63f4a80ecf48bc09f56606768d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5768928829428669744
 GameObject:
   m_ObjectHideFlags: 0
@@ -8422,6 +8474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662504833625036709}
+  - component: {fileID: 2264116678575120652}
   m_Layer: 5
   m_Name: Reset Password
   m_TagString: Untagged
@@ -8455,6 +8508,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2264116678575120652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876703371914966729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c098a6bc7a346a44782d8dacbb534243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5990868162223633278
 GameObject:
   m_ObjectHideFlags: 0
@@ -10718,6 +10783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6848052722359407767}
+  - component: {fileID: 6147633804066404146}
   m_Layer: 5
   m_Name: Sign Up Screen
   m_TagString: Untagged
@@ -10757,6 +10823,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6147633804066404146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025270213601559534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f71091277777784da34bca74a09b762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8103468959067021321
 GameObject:
   m_ObjectHideFlags: 0

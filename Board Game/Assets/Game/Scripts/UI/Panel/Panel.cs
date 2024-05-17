@@ -12,12 +12,7 @@ public class Panel : MonoBehaviour
     public virtual void Awake()
     {
         AddToPanelList();
-
-        foreach (var panel in GetComponentsInChildren<Panel>())
-        {
-            if(SubPanels.ContainsKey(panel.GetType()))
-                SubPanels[panel.GetType()] = panel;
-        }
+        GetChildPanels();
     }
 
     public virtual void Start()
@@ -42,6 +37,16 @@ public class Panel : MonoBehaviour
         if (!Panels.ContainsKey(this.GetType()))
             Panels.Add(this.GetType(), this);
     }
+    public void GetChildPanels()
+    {
+        foreach (var panel in GetComponentsInChildren<Panel>())
+        {
+            if (SubPanels.ContainsKey(panel.GetType()))
+                SubPanels[panel.GetType()] = panel;
+            else 
+                SubPanels.Add(panel.GetType(), panel);
+        }
+    }
     public void RemoveFromPanelList()
     {
         if (Panels.ContainsKey(this.GetType()))
@@ -55,7 +60,8 @@ public class Panel : MonoBehaviour
     }
     public virtual void Show<T>() where T : Panel
     {
-        Show();
+        if (SubPanels.Count == 0)
+            GetChildPanels();
 
         if(SubPanels.ContainsKey(typeof(T)))
         {

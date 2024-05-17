@@ -7,4 +7,5 @@ public class ProfileNoLoginPanel : Panel
 {
     public Button LoginButton;
     public Button SignUpButton;
+    public Button BackButton;
 }

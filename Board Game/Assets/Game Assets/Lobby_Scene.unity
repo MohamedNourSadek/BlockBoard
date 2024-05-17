@@ -37700,21 +37700,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1318114829}
     m_Modifications:
-    - target: {fileID: 736408601051450654, guid: d24d139d427b5ac4d954f48979ebdbff,
+    - target: {fileID: 389242537122062271, guid: d24d139d427b5ac4d954f48979ebdbff,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: Back
       value: 
-      objectReference: {fileID: 1667732151}
+      objectReference: {fileID: 0}
     - target: {fileID: 2178522160905735457, guid: d24d139d427b5ac4d954f48979ebdbff,
         type: 3}
       propertyPath: m_Name
       value: Profile
       objectReference: {fileID: 0}
-    - target: {fileID: 2991148174641487340, guid: d24d139d427b5ac4d954f48979ebdbff,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1667732151}
     - target: {fileID: 5393418003186247902, guid: d24d139d427b5ac4d954f48979ebdbff,
         type: 3}
       propertyPath: m_Pivot.x

@@ -41,7 +41,7 @@ public class ChessMatch_Settings : MonoBehaviour
         time_text.text = value.ToString();
         Cross_Scene_Data.chess_Time = value;
     }
-    public static float GetTime()
+    public float GetTime()
     {
         float time = PlayerPrefs.GetFloat(time_String);
 
@@ -62,7 +62,7 @@ public class ChessMatch_Settings : MonoBehaviour
         bonus_text.text = value.ToString();
         Cross_Scene_Data.chess_bonus = value;
     }
-    public static float GetBonus()
+    public float GetBonus()
     {
         float bonus = PlayerPrefs.GetFloat(bonus_String);
             return bonus;
@@ -78,7 +78,7 @@ public class ChessMatch_Settings : MonoBehaviour
         Difficulty_text.text = value.ToString();
         Cross_Scene_Data.chess_difficulty = value;
     }
-    public static float GetDiff()
+    public float GetDiff()
     {
         float diff = PlayerPrefs.GetFloat(diff_string);
         if (diff == 0)

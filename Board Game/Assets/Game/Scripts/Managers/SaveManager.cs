@@ -12,6 +12,11 @@ public class SaveManager : Manager
     public static string SfxVolumeKey = "SfxVolume";
     public static string MusicVolumeKey = "MusicVolume";
     public static string CameraSnappingKey = "CameraSnapping";
+    public static string ChessDefaultTimeKey = "chessTime";
+    public static string ChessDefaultBonusKey = "chessBonus";
+    public static string ChessDefaultDifficultyKey = "difficultyBonus";
+
+
     public static void SetString(string key, string value)
     {
         PlayerPrefs.SetString(key, value);

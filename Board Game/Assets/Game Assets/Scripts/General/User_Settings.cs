@@ -138,6 +138,7 @@ public class User_Settings : MonoBehaviour
 
     void OnSignIn_Email_Error(string input)
     {
+        /*
         if (input.Length >= 5)
         {
             SignIn_Email_Error.text = "";
@@ -149,10 +150,11 @@ public class User_Settings : MonoBehaviour
         {
             SignIn_Email_Error.text = "Your email should be 5 letters or more";
             Sign_In.interactable = false;
-        }
+        }*/
     }
     void OnSignIn_Password_Error(string input)
     {
+        /*
         if (input.Length >= 4)
         {
             SignIn_Pass_Error.text = "";
@@ -165,6 +167,7 @@ public class User_Settings : MonoBehaviour
             SignIn_Pass_Error.text = "Your password should be 4 letters or more";
             Sign_In.interactable = false;
         }
+        */
     }
     void OnReset_Password_Email_Error(string input)
     {

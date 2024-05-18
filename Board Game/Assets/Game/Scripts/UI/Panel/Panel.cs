@@ -14,12 +14,10 @@ public class Panel : MonoBehaviour
         AddToPanelList();
         GetChildPanels();
     }
-
     public virtual void Start()
     {
         RefreshUI();
     }
-
     public void OnDestroy()
     {
         RemoveFromPanelList();
@@ -39,7 +37,7 @@ public class Panel : MonoBehaviour
     }
     public void GetChildPanels()
     {
-        foreach (var panel in GetComponentsInChildren<Panel>())
+        foreach (var panel in GetComponentsInChildren<Panel>(true))
         {
             if (SubPanels.ContainsKey(panel.GetType()))
                 SubPanels[panel.GetType()] = panel;
@@ -74,6 +72,10 @@ public class Panel : MonoBehaviour
     }
     public virtual void Hide()
     {
+        foreach (var panel in SubPanels)
+            if(panel.Value != this)
+                panel.Value.Hide();
+
         AnimatePanel(false);
     }
     public virtual void AnimatePanel(bool show)

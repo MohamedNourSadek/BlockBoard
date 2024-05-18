@@ -5,16 +5,24 @@ using UnityEngine.UI;
 
 public class Connection_Animation : MonoBehaviour
 {
-    [SerializeField] Text myText;
-    [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] float Speed = 10;
+    [SerializeField] private List<string> keys = new List<string>();
+    [SerializeField] private float speed = 0.2f;
 
-    int currentKey = 0;
+    private Text myText;
+    private int currentKey = 0;
 
+    private void Awake()
+    {
+        myText = GetComponent<Text>();
+    }
     private void OnEnable()
     {
         StopAllCoroutines();
         StartCoroutine(Animation());
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     IEnumerator Animation()
@@ -27,7 +35,7 @@ public class Connection_Animation : MonoBehaviour
                 currentKey = 0;
 
             myText.text = keys[currentKey];
-            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime / Speed);
+            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime / speed);
         }
     }
 }

@@ -55,3 +55,4 @@ MonoBehaviour:
     SerializationNodes: []
   IsManagerStatic: 1
   TitleID: B583A
+  IsLoggedIn: 0

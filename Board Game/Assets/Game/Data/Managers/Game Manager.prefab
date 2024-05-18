@@ -56,3 +56,4 @@ MonoBehaviour:
   IsManagerStatic: 1
   GameVersion: 2.0
   CurrentGame: 3
+  GameMode: 0

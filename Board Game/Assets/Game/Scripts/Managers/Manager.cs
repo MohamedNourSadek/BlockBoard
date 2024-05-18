@@ -10,24 +10,11 @@ public class Manager : SerializedMonoBehaviour
     
     public static GameManager GameManager;
 
-    public bool IsManagerStatic = false;
-
     public virtual void Awake()
     {
         if (!Managers.ContainsKey(GetType()))
         {
             Managers.Add(GetType(), this);
-
-            if (IsManagerStatic)
-            {
-                this.transform.parent = null;
-                DontDestroyOnLoad(gameObject);
-            }
-        }
-        else
-        {
-            DebugManager.Instance.LogWarning("There are more than one " + GetType() + " in the scene and therefore new one is destroyed");
-            Destroy(gameObject);
         }
     }
 

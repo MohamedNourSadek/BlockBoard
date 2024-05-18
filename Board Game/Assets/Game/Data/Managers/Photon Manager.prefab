@@ -53,4 +53,4 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  IsManagerStatic: 0
+  IsManagerStatic: 1

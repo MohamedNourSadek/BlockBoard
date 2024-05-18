@@ -54,3 +54,4 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   IsManagerStatic: 1
+  IsDebugEnabled: 1

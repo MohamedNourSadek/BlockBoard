@@ -52,5 +52,38 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: PlayerProfile
+      Entry: 7
+      Data: 0|PlayerProfile, Assembly-CSharp
+    - Name: NickName
+      Entry: 1
+      Data: --
+    - Name: Email
+      Entry: 1
+      Data: --
+    - Name: Skill
+      Entry: 6
+      Data: 
+    - Name: GamesPlayed
+      Entry: 6
+      Data: 
+    - Name: GamesWon
+      Entry: 6
+      Data: 
+    - Name: GamesDraw
+      Entry: 6
+      Data: 
+    - Name: GamesLost
+      Entry: 6
+      Data: 
+    - Name: AvgOpponentSkill
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnProfileDataReceived
+      Entry: 6
+      Data: 
   IsManagerStatic: 1

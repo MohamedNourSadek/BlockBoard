@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OfflineRoomPanel : Panel
@@ -40,11 +41,13 @@ public class OfflineRoomPanel : Panel
 
     public void OnStartPressed()
     {
-
+        Manager.GameManager.GameMode = GameMode.Offline;
+        SceneManager.LoadScene("Game");
     }
     public void OnBackPressed()
     {
         Hide();
+        Manager.GameManager.GameMode = GameMode.None;
         Panel.GetPanel<ModeSelectionPanel>().Show();
     }
 

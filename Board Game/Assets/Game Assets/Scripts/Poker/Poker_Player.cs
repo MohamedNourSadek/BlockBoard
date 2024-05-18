@@ -286,7 +286,7 @@ public class Poker_Player : MonoBehaviour
 
         foreach(var p in Global_players)
         {
-            if (p.player_role == Turn && !Cross_Scene_Data.AI)
+            if (p.player_role == Turn && !(Manager.GameManager.GameMode == GameMode.Offline))
                 p.MyTimer.gameObject.SetActive(true);
             else
                 p.MyTimer.gameObject.SetActive(false);
@@ -390,7 +390,7 @@ public class Poker_Player : MonoBehaviour
 
 
 
-        if (Cross_Scene_Data.AI && Turn != identity.master)
+        if ((Manager.GameManager.GameMode == GameMode.Offline) && Turn != identity.master)
         {
             StartCoroutine(AI_Play());
         }
@@ -402,7 +402,7 @@ public class Poker_Player : MonoBehaviour
     {
         AllUi.SetActive(false);
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Check_Sync((int)Turn, Global_players[0].Potential_Bet);
         else
             view.RPC("Check_Sync", RpcTarget.AllBuffered, (int)Turn, Global_players[0].Potential_Bet);
@@ -412,7 +412,7 @@ public class Poker_Player : MonoBehaviour
     {
         AllUi.SetActive(false);
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Fold_Sync((int)Turn);
         else
             view.RPC("Fold_Sync", RpcTarget.AllBuffered, (int)Turn);
@@ -423,7 +423,7 @@ public class Poker_Player : MonoBehaviour
     {
         AllUi.SetActive(false);
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Raise_Sync((int)Turn,(int)BetSlider.value);
         else
             view.RPC("Raise_Sync", RpcTarget.AllBuffered, (int)Turn, (int)BetSlider.value);
@@ -455,9 +455,9 @@ public class Poker_Player : MonoBehaviour
         PlayersInRound.Remove(player);
         PlayersInRound.Add(player);
 
-        if (organizer.client == identity.master && !Cross_Scene_Data.AI)
+        if (organizer.client == identity.master && !(Manager.GameManager.GameMode == GameMode.Offline))
             view.RPC("Switch_Turn_Sync", RpcTarget.AllBuffered);
-        else if (Cross_Scene_Data.AI)
+        else if ((Manager.GameManager.GameMode == GameMode.Offline))
             Switch_Turn_Sync();
     }
     [PunRPC] void Fold_Sync(int player)
@@ -466,9 +466,9 @@ public class Poker_Player : MonoBehaviour
 
         Player_Dependent_Text("Fold!", player);
 
-        if (organizer.client == identity.master && !Cross_Scene_Data.AI)
+        if (organizer.client == identity.master && !(Manager.GameManager.GameMode == GameMode.Offline))
             view.RPC("Switch_Turn_Sync", RpcTarget.AllBuffered);
-        else if (Cross_Scene_Data.AI)
+        else if ((Manager.GameManager.GameMode == GameMode.Offline))
             Switch_Turn_Sync();
     }
 
@@ -489,9 +489,9 @@ public class Poker_Player : MonoBehaviour
         PlayersInRound.Remove(player);
         PlayersInRound.Add(player);
 
-        if (organizer.client == identity.master && !Cross_Scene_Data.AI)
+        if (organizer.client == identity.master && !(Manager.GameManager.GameMode == GameMode.Offline))
             view.RPC("Switch_Turn_Sync", RpcTarget.AllBuffered);
-        else if (Cross_Scene_Data.AI)
+        else if ((Manager.GameManager.GameMode == GameMode.Offline))
             Switch_Turn_Sync();
     }
 
@@ -782,7 +782,7 @@ public class Poker_Player : MonoBehaviour
                 PlayerName = "You have";
             else
             {
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                 {
                     if (winners[0] == identity.Guest)
                         PlayerName = "Player 2 has";
@@ -832,7 +832,7 @@ public class Poker_Player : MonoBehaviour
         End_Round_Pannel.SetActive(true);
         float Timer = NextRound_Delay;
 
-        if (Cross_Scene_Data.In_Poker_Game && !Cross_Scene_Data.AI)
+        if (Cross_Scene_Data.In_Poker_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (!(organizer.my_WinState == MyWin_State.Lost))
                 organizer.Handle_Data(organizer.Data_Result);
@@ -1648,7 +1648,7 @@ public class Poker_Player : MonoBehaviour
     {
         if (Timer <= 0)
         {
-            if (!Cross_Scene_Data.AI)
+            if (!(Manager.GameManager.GameMode == GameMode.Offline))
             {
                 Timer = Round_Timer;
 

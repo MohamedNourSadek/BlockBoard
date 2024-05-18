@@ -27,7 +27,7 @@ public class TutorialMessages : MonoBehaviour
 
             HelpMessages[currentMessage].SetActive(true);
 
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Time.timeScale = 0;
 
             GameUI.SetActive(false);

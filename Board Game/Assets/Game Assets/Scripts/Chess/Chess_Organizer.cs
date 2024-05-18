@@ -21,7 +21,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
     {
         Time.timeScale = 1f;
 
-        if(!Cross_Scene_Data.AI)
+        if(!(Manager.GameManager.GameMode == GameMode.Offline))
         {
             view = GetComponent<PhotonView>();
 
@@ -44,7 +44,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         }
 
 
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
             Get_Player();
     }
 
@@ -164,7 +164,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
     public void UpdateMaster_Client()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             master_client = true;
         }
@@ -199,7 +199,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
         myplayer.GameIsOn = false;
 
-        if (Cross_Scene_Data.In_Chess_Game && !Cross_Scene_Data.AI)
+        if (Cross_Scene_Data.In_Chess_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);
@@ -224,7 +224,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
         my_WinState = MyWin_State.Won;
 
-        if (Cross_Scene_Data.In_Chess_Game && !Cross_Scene_Data.AI)
+        if (Cross_Scene_Data.In_Chess_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if(!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);

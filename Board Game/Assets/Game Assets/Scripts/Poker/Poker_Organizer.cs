@@ -41,7 +41,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
         Initialize_Players();
 
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
         {
             view = GetComponent<PhotonView>();
 
@@ -181,7 +181,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
             while(RandomPlayer_ind == RandomPlayer2_ind)
             {
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                 { 
                     RandomPlayer_ind = UnityEngine.Random.Range(0, 4);
                     RandomPlayer2_ind = UnityEngine.Random.Range(0, 4);
@@ -195,7 +195,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
             Shuffle_Hand(RandomSeq,RandomPlayer_ind,RandomPlayer2_ind);
 
-            if (!Cross_Scene_Data.AI)
+            if (!(Manager.GameManager.GameMode == GameMode.Offline))
                 view.RPC("Shuffle_Hand", RpcTarget.OthersBuffered, RandomSeq, RandomPlayer_ind, RandomPlayer2_ind);
         }
 
@@ -233,7 +233,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
         player.PlayersInRound.Clear();
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             player.PlayersInRound.Add(0);
             player.PlayersInRound.Add(1);
@@ -299,7 +299,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
     }
     void UpdateMaster_Client()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             client = identity.master;
         }
@@ -362,7 +362,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
         my_WinState = MyWin_State.Lost;
 
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
             Get_Player();
     }
     [PunRPC] void Change_Bet(float bet)
@@ -385,7 +385,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
             Player2_Name = "You";
 
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             if ((identity)P1 == identity.Guest)
                 Player1_Name = "Player 2";
@@ -427,7 +427,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
 
         //adding two cards for each player
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             foreach (var p in player.Global_players)
             {
@@ -519,7 +519,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
             my_WinState = MyWin_State.Won;
 
-            if (Cross_Scene_Data.In_Poker_Game && !Cross_Scene_Data.AI)
+            if (Cross_Scene_Data.In_Poker_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
             {
                 if (!(my_WinState == MyWin_State.Lost))
                     Handle_Data(Data_Result);

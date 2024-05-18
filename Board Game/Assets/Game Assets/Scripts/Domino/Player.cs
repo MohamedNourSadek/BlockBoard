@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 
         Timer = Max_Time;
         
-        if(!Cross_Scene_Data.AI)
+        if(!(Manager.GameManager.GameMode == GameMode.Offline))
             view = GetComponent<PhotonView>();
 
         if (Cross_Scene_Data.Master_Won_LastRound)
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         else
             Master_Turn = true;
 
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (master_client)
                 view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
 
         bool IsMaster = false;
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (Master_Turn)
                 IsMaster = true;
@@ -134,21 +134,21 @@ public class Player : MonoBehaviour
 
         if (ground_side == (int)Ground_Side.Center)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Center(IsMaster);
             else
                 view.RPC("Center", RpcTarget.AllBuffered, IsMaster);
         }
         else if (ground_side == (int)Ground_Side.Left)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Left(IsMaster);
             else
                 view.RPC("Left", RpcTarget.AllBuffered, IsMaster);
         }
         else if (ground_side == (int)Ground_Side.Right)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Right(IsMaster);
             else
                 view.RPC("Right", RpcTarget.AllBuffered, IsMaster);
@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
 
         if (master_client)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Switch_Turn_trigger();
             else
                 view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
     {
         bool IsMaster = master_client;
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Change_Selected(i, IsMaster);
         else
             view.RPC("Change_Selected", RpcTarget.AllBuffered, i, IsMaster);
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
     }
     void Change_Selection_Directly(int Selected, bool IsMaster)
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Change_Selected_Directly(Selected, IsMaster);
         else
             view.RPC("Change_Selected_Directly", RpcTarget.AllBuffered, Selected, IsMaster);
@@ -504,7 +504,7 @@ public class Player : MonoBehaviour
         }
         else if (Master_Turn && Stuck(true) && organizer.Cards.Count == 0)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
             {
                 Switch_Turn_trigger();
 
@@ -520,7 +520,7 @@ public class Player : MonoBehaviour
         }
         else if (!Master_Turn && Stuck(false) && organizer.Cards.Count == 0)
         {
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
             {
                 Switch_Turn_trigger();
             }
@@ -536,7 +536,7 @@ public class Player : MonoBehaviour
         {
             if (Master_Turn)
             {
-                bool Master_Client = Cross_Scene_Data.AI ? true : master_client;
+                bool Master_Client = (Manager.GameManager.GameMode == GameMode.Offline) ? true : master_client;
 
                 if (Master_Client && Stuck(true) && ground.Center_Card)
                 {
@@ -558,7 +558,7 @@ public class Player : MonoBehaviour
 
                         while (Borrowing && BorrowMaxtime >= 0f)
                         {
-                            if(!Cross_Scene_Data.AI || Cross_Scene_Data.AI && Game_Is_On)
+                            if(!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && Game_Is_On)
                                 BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
 
                             BorrowingTimer.value = BorrowMaxtime;
@@ -567,7 +567,7 @@ public class Player : MonoBehaviour
 
                         if(BorrowMaxtime < 0f)
                         {
-                            if(Cross_Scene_Data.AI)
+                            if((Manager.GameManager.GameMode == GameMode.Offline))
                             {
                                 yield return new WaitForSecondsRealtime(borrow_Delay);
                                 Remove_AnExtraTile(0);
@@ -579,7 +579,7 @@ public class Player : MonoBehaviour
                             }
                         }
 
-                        if (Cross_Scene_Data.AI)
+                        if ((Manager.GameManager.GameMode == GameMode.Offline))
                         {
                             Borrow(true);
                         }
@@ -597,7 +597,7 @@ public class Player : MonoBehaviour
 
                     if (Stuck(true) && organizer.Cards.Count == 0)
                     {
-                        if (!Cross_Scene_Data.AI)
+                        if (!(Manager.GameManager.GameMode == GameMode.Offline))
                             view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
                         else
                             Switch_Turn_trigger();
@@ -617,11 +617,11 @@ public class Player : MonoBehaviour
             }
             else
             {
-                bool Master_Client = Cross_Scene_Data.AI ? false : master_client;
+                bool Master_Client = (Manager.GameManager.GameMode == GameMode.Offline) ? false : master_client;
 
                 if (!Master_Client && Stuck(false) && ground.Center_Card)
                 {
-                    if (organizer.Cards.Count > 0 && !Cross_Scene_Data.AI)
+                    if (organizer.Cards.Count > 0 && !(Manager.GameManager.GameMode == GameMode.Offline))
                     {
                         BorrwoingANim.Play(borrowing_Anim.name);
                         BorrowingTimer.gameObject.SetActive(true);
@@ -634,16 +634,16 @@ public class Player : MonoBehaviour
                     {
                         Borrowing = true;
 
-                        if (Cross_Scene_Data.AI)
+                        if ((Manager.GameManager.GameMode == GameMode.Offline))
                             yield return new WaitForSecondsRealtime(borrow_Delay);
                         else
                             yield return null;
 
-                        if (!Cross_Scene_Data.AI)
+                        if (!(Manager.GameManager.GameMode == GameMode.Offline))
                         {
                             while (Borrowing && BorrowMaxtime >= 0f)
                             {
-                                if (!Cross_Scene_Data.AI || Cross_Scene_Data.AI && Game_Is_On)
+                                if (!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && Game_Is_On)
                                     BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
 
                                 BorrowingTimer.value = BorrowMaxtime;
@@ -661,7 +661,7 @@ public class Player : MonoBehaviour
                             Remove_AnExtraTile(0);
                         }
 
-                        if (Cross_Scene_Data.AI)
+                        if ((Manager.GameManager.GameMode == GameMode.Offline))
                         {
                             Borrow(false);
                         }
@@ -674,7 +674,7 @@ public class Player : MonoBehaviour
                         ReOrganize_Cards_InHand();
                     }
 
-                    if (!Cross_Scene_Data.AI)
+                    if (!(Manager.GameManager.GameMode == GameMode.Offline))
                     {
                         BorrwoingANim.Play(borrowingOut_Anim.name);
                         BorrowingTimer.gameObject.SetActive(false);
@@ -682,7 +682,7 @@ public class Player : MonoBehaviour
 
                     if (Stuck(false) && organizer.Cards.Count == 0)
                     {
-                        if (!Cross_Scene_Data.AI)
+                        if (!(Manager.GameManager.GameMode == GameMode.Offline))
                             view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
                         else
                             Switch_Turn_trigger();
@@ -702,7 +702,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (!yourTurn && Cross_Scene_Data.AI)
+        if (!yourTurn && (Manager.GameManager.GameMode == GameMode.Offline))
             StartCoroutine(Ai_Play());
 
         ReOrganize_Cards_InHand();
@@ -770,7 +770,7 @@ public class Player : MonoBehaviour
 
     void UpdateMaster_Client()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             master_client = true;
         }
@@ -845,7 +845,7 @@ public class Player : MonoBehaviour
 
                         if (Borrowing)
                         {
-                            if (Cross_Scene_Data.AI)
+                            if ((Manager.GameManager.GameMode == GameMode.Offline))
                                 Remove_AnExtraTile(i);
                             else
                                 view.RPC("Remove_AnExtraTile", RpcTarget.All, i);
@@ -881,7 +881,7 @@ public class Player : MonoBehaviour
 
             if (master_client)
             {
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                     Switch_Turn_trigger();
                 else
                     view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);

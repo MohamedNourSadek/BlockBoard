@@ -562,7 +562,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void Start_offline_game()
     {
         SceneManager.LoadScene("Game");
-        Cross_Scene_Data.AI = true;
+        Manager.GameManager.GameMode = GameMode.Offline;
     }
     public void Start_Game()
     {
@@ -637,7 +637,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     [PunRPC] void Start_Game_Sync()
     {
         PhotonNetwork.LoadLevel("Game");
-        Cross_Scene_Data.AI = false;
+        Manager.GameManager.GameMode = GameMode.Online;
     }
     
     void Update_Players()

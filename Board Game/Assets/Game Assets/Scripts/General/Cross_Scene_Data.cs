@@ -14,7 +14,6 @@ public class Cross_Scene_Data : MonoBehaviour
     public static bool Master_Won_LastRound;
     public static WhereTo where = WhereTo.GameSelection;
     public static bool UseNewMaxScore;
-    public static bool AI;
     public static string Game_Version = "0.31";
     public static float AI_MaxScore = 100;
     public static float chess_Time = 10;

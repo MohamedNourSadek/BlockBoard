@@ -87,7 +87,7 @@ public class Chess_player : MonoBehaviour
         _CurrentView_3d = !data;
         ToggleView();
 
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
         {
             view = GetComponent<PhotonView>();
         }
@@ -182,7 +182,7 @@ public class Chess_player : MonoBehaviour
                     string newRockPosition = Convert_Num_Text(newPosition_vec + Delta_newposition);
 
 
-                    if (Cross_Scene_Data.AI)
+                    if ((Manager.GameManager.GameMode == GameMode.Offline))
                         Move_Piece(Convert_Object_ToPieceName(myRock), newRockPosition, "", false, false, 0);
                     else
                         view.RPC("Move_Piece", RpcTarget.AllBuffered, Convert_Object_ToPieceName(myRock), newRockPosition, "", false, false, 0);
@@ -199,7 +199,7 @@ public class Chess_player : MonoBehaviour
                 }
                 if (promote)
                 {
-                    if(Cross_Scene_Data.AI && !Master_Turn)
+                    if((Manager.GameManager.GameMode == GameMode.Offline) && !Master_Turn)
                     {
                         promote_To = Chess_Piece_Type.Queen;
                     }
@@ -218,7 +218,7 @@ public class Chess_player : MonoBehaviour
                 Chess_Piece_Type promotionType = promote_To;
 
                 //Move Piece
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                 {
                     if(Myturn())
                     {
@@ -252,7 +252,7 @@ public class Chess_player : MonoBehaviour
             {
                 Chess_piece piece = _Ojbect.GetComponent<Chess_piece>();
 
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                 {
                     if(Master_Turn)
                         UpdateSelectedPiece(piece);
@@ -280,7 +280,7 @@ public class Chess_player : MonoBehaviour
 
             if (organizer.master_client)
             {
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                 {
                     if (Timer <= 0)
                         EndGame(!organizer.master_client, false,true);
@@ -515,7 +515,7 @@ public class Chess_player : MonoBehaviour
             if (IsAKingChecked(organizer.master_client))
             {
                 //handel checkmate
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                     EndGame(!organizer.master_client, false, false);
                 else
                     view.RPC("EndGame", RpcTarget.AllBuffered, !organizer.master_client, false, false);
@@ -523,13 +523,13 @@ public class Chess_player : MonoBehaviour
             else
             {   
                 //handel stalemate
-                if (Cross_Scene_Data.AI)
+                if ((Manager.GameManager.GameMode == GameMode.Offline))
                     EndGame(!organizer.master_client, true, false);
                 else
                     view.RPC("EndGame", RpcTarget.AllBuffered, !organizer.master_client, true, false);
             }
         }
-        else if(Enemy_EnemyKingIsStuck && Cross_Scene_Data.AI && !Myturn())
+        else if(Enemy_EnemyKingIsStuck && (Manager.GameManager.GameMode == GameMode.Offline) && !Myturn())
         {
             if (IsAKingChecked(!organizer.master_client))
                 //handel checkmate
@@ -540,7 +540,7 @@ public class Chess_player : MonoBehaviour
         }
         else
         {
-            if(!Myturn() && Cross_Scene_Data.AI)
+            if(!Myturn() && (Manager.GameManager.GameMode == GameMode.Offline))
                 StartCoroutine(playRandomAI());
         }
 
@@ -712,7 +712,7 @@ public class Chess_player : MonoBehaviour
                     Guest_Timer = Mathf.Clamp(Timer + bonus, 0f, Max_Time);
             }
 
-            if (Cross_Scene_Data.AI)
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
                 Switch_Turn(Timer,Guest_Timer);
             else
             {

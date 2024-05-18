@@ -31,7 +31,7 @@ public class Organizer : MonoBehaviourPunCallbacks
     {
         Time.timeScale = 1f;
 
-        if (Cross_Scene_Data.AI)
+        if (Manager.GameManager.GameMode == GameMode.Offline)
         {
             ChangeMaxScore((int)Cross_Scene_Data.AI_MaxScore);
         }
@@ -53,11 +53,11 @@ public class Organizer : MonoBehaviourPunCallbacks
             string RandomSeq = Generate_Random(Cards.Count);
             Shuffle_Hand(RandomSeq);
             
-            if(!Cross_Scene_Data.AI)
+            if(!(Manager.GameManager.GameMode == GameMode.Offline))
                 view.RPC("Shuffle_Hand", RpcTarget.OthersBuffered, RandomSeq);
         }
 
-        if(!Cross_Scene_Data.AI)
+        if(!(Manager.GameManager.GameMode == GameMode.Offline))
             Get_Player();
     }
 
@@ -314,7 +314,7 @@ public class Organizer : MonoBehaviourPunCallbacks
             return;
         }
 
-        if (!Cross_Scene_Data.AI && Cross_Scene_Data.In_Domino_Game )
+        if (!(Manager.GameManager.GameMode == GameMode.Offline) && Cross_Scene_Data.In_Domino_Game )
         {
             if(!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);
@@ -332,7 +332,7 @@ public class Organizer : MonoBehaviourPunCallbacks
     }
     void UpdateMaster_Client()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             master_client = true;
         }

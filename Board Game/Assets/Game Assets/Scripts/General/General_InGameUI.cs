@@ -39,7 +39,7 @@ public class General_InGameUI : MonoBehaviour
 
     private void Awake()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Messages_Icon.SetActive(false);
         else
             view = GetComponent<PhotonView>();
@@ -73,7 +73,7 @@ public class General_InGameUI : MonoBehaviour
         Menu_Layer1.SetActive(state);
         Game_UI.SetActive(!state);
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (state)
                 Time.timeScale = 0f;
@@ -102,7 +102,7 @@ public class General_InGameUI : MonoBehaviour
         Cross_Scene_Data.In_Chess_Game = false;
         Cross_Scene_Data.In_Poker_Game = false;
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             SceneManager.LoadScene("Lobby_Scene");
         }
@@ -119,7 +119,7 @@ public class General_InGameUI : MonoBehaviour
         Game_UI.SetActive(!state);
         Slide_rules(0);
 
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (state)
                 Time.timeScale = 0f;
@@ -160,7 +160,7 @@ public class General_InGameUI : MonoBehaviour
 
     public void Rematch()
     {
-        if (Cross_Scene_Data.AI)
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
             Rematch_Sync();
 
         else
@@ -168,7 +168,7 @@ public class General_InGameUI : MonoBehaviour
     }
     [PunRPC] void Rematch_Sync()
     {
-        if (!Cross_Scene_Data.AI)
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
         {
             PhotonNetwork.LoadLevel("Game");
         }

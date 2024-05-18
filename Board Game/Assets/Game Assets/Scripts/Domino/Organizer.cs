@@ -33,7 +33,7 @@ public class Organizer : MonoBehaviourPunCallbacks
 
         if (Manager.GameManager.GameMode == GameMode.Offline)
         {
-            ChangeMaxScore((int)Cross_Scene_Data.AI_MaxScore);
+            ChangeMaxScore((int)Cross_Scene_Data.DominoWinScore);
         }
         else
         {
@@ -41,7 +41,7 @@ public class Organizer : MonoBehaviourPunCallbacks
 
             if (PhotonNetwork.IsMasterClient && Cross_Scene_Data.UseNewMaxScore)
             {
-                view.RPC("ChangeMaxScore", RpcTarget.AllBuffered, (int)Cross_Scene_Data.AI_MaxScore);
+                view.RPC("ChangeMaxScore", RpcTarget.AllBuffered, (int)Cross_Scene_Data.DominoWinScore);
             }
         }
 

@@ -13,7 +13,7 @@ public class MatchSettings : MonoBehaviour
     private void Awake()
     {
         MaxScore.value = GetMaxScore();
-        Cross_Scene_Data.AI_MaxScore = GetMaxScore();
+        Cross_Scene_Data.DominoWinScore = GetMaxScore();
 
         maxScore_text.text = GetMaxScore().ToString();
         MaxScore.onValueChanged.AddListener(OnMaxScore_Change);
@@ -24,7 +24,7 @@ public class MatchSettings : MonoBehaviour
     {
         SetMaxScore(value);
         maxScore_text.text = value.ToString();
-        Cross_Scene_Data.AI_MaxScore = value;
+        Cross_Scene_Data.DominoWinScore = value;
     }
     public static float GetMaxScore()
     {

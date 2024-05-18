@@ -13,4 +13,22 @@ public class GameStatsPanel : Panel
     public TMP_Text AvgOpponentSkill;
 
     public Button Back;
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        Back.onClick.AddListener(OnBackPressed);
+    }
+
+    public void Show(GameType gameType)
+    {
+        Title.text = gameType.ToString();
+    }
+
+    public void OnBackPressed()
+    {
+        Hide();
+        Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+    }
 }

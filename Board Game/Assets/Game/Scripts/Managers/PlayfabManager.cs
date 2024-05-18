@@ -105,6 +105,7 @@ public class PlayfabManager : Manager
         profile.GamesWon = new Dictionary<GameType, int>();
         profile.GamesDraw = new Dictionary<GameType, int>();
         profile.GamesLost = new Dictionary<GameType, int>();
+        profile.AvgOpponentSkill = new Dictionary<GameType, int>();
 
         foreach (var game in Enum.GetValues(typeof(GameType)))
         {
@@ -114,6 +115,7 @@ public class PlayfabManager : Manager
                 profile.GamesPlayed.Add((GameType)game, 0);
                 profile.GamesWon.Add((GameType)game, 0);
                 profile.GamesDraw.Add((GameType)game, 0);
+                profile.AvgOpponentSkill.Add((GameType)game, 0);
                 profile.GamesLost.Add((GameType)game, 0);
             }
         }

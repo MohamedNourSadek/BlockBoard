@@ -13,6 +13,7 @@ public class GameStatsPanel : Panel
     public TMP_Text AvgOpponentSkill;
 
     public Button Back;
+    private GameType gameType;
 
     public override void Awake()
     {
@@ -23,7 +24,21 @@ public class GameStatsPanel : Panel
 
     public void Show(GameType gameType)
     {
+        this.gameType = gameType;
+        base.Show();
+    }
+
+    public override void RefreshUI()
+    {
+        base.RefreshUI();
+
+        PlayerProfile profile = Manager.GetManager<ProfileManager>().GetPlayerProfile();
+        
         Title.text = gameType.ToString();
+        SkillLevel.text = profile.Skill[gameType].ToString();
+        GamesPlayed.text = profile.GamesPlayed[gameType].ToString();
+        Stats.text = "(" + profile.GamesWon[gameType].ToString() + ", " + profile.GamesDraw[gameType] + ", " + profile.GamesLost[gameType] + ")";
+        AvgOpponentSkill.text = profile.AvgOpponentSkill[gameType].ToString();
     }
 
     public void OnBackPressed()

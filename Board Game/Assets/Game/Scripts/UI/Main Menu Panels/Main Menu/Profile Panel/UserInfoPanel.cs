@@ -63,19 +63,16 @@ public class UserInfoPanel : Panel
     private void OnChessPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();
         Panel.GetPanel<GameStatsPanel>().Show(GameType.Chess);
     }
     private void OnDominoPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();
         Panel.GetPanel<GameStatsPanel>().Show(GameType.Domino);
     }
     private void OnPokerPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();
         Panel.GetPanel<GameStatsPanel>().Show(GameType.Poker);
     }
 }

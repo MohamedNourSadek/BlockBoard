@@ -33,4 +33,5 @@ public class PlayerProfile
     public Dictionary<GameType, int> GamesWon;
     public Dictionary<GameType, int> GamesDraw;
     public Dictionary<GameType, int> GamesLost;
+    public Dictionary<GameType, int> AvgOpponentSkill;
 }

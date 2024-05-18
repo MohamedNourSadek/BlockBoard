@@ -18,7 +18,7 @@ public class Panel : MonoBehaviour
     {
         RefreshUI();
     }
-    public void OnDestroy()
+    public virtual void OnDestroy()
     {
         RemoveFromPanelList();
     }
@@ -67,7 +67,7 @@ public class Panel : MonoBehaviour
         }
         else
         {
-            DebugManager.LogError("Panel not found in SubPanels list");
+            DebugManager.Instance.LogError("Panel not found in SubPanels list");
         }
     }
     public virtual void Hide()

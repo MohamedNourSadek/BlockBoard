@@ -6,6 +6,7 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 using UnityEngine.Events;
+using Newtonsoft.Json;
 
 public class PlayfabManager : Manager
 {
@@ -15,7 +16,7 @@ public class PlayfabManager : Manager
     private UnityAction<bool, object> LoginCallBack;
     private UnityAction<bool, object> SignUpCallBack;
     private UnityAction<bool, object> ResetCallBack;
-
+    
     public override void Awake()
     {
         base.Awake();
@@ -72,7 +73,13 @@ public class PlayfabManager : Manager
     }
     public void SaveUserData()
     {
-        DebugManager.LogError("Need to Update This");
+        Dictionary<string, string> data = new Dictionary<string, string>();
+
+        string userProfile = JsonConvert.SerializeObject(GetManager<ProfileManager>().GetPlayerProfile());
+        data.Add(SaveManager.PlayerProfileKey, userProfile);
+
+        var request = new UpdateUserDataRequest { Data = data };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSent, OnDataSendError);
     }
     public void CancelLogin()
     {
@@ -86,28 +93,37 @@ public class PlayfabManager : Manager
 
 
     #region Private Functions
-    private void SetPlayerFirstTimeData(LoginResult result)
+    private void SetPlayerFirstTimeData(string userName)
     {
         PlayerProfile profile = new PlayerProfile();
 
-        profile.Email = result.InfoResultPayload.AccountInfo.PrivateInfo.Email;
-        profile.NickName = result.InfoResultPayload.AccountInfo.Username;
+        profile.Email = SaveManager.GetString(SaveManager.EmailSaveKey);
+        profile.NickName = userName;
 
-        foreach(GameType game in Enum.GetValues(typeof(GameType)))
+        profile.Skill = new Dictionary<GameType, int>();
+        profile.GamesPlayed = new Dictionary<GameType, int>();
+        profile.GamesWon = new Dictionary<GameType, int>();
+        profile.GamesDraw = new Dictionary<GameType, int>();
+        profile.GamesLost = new Dictionary<GameType, int>();
+
+        foreach (var game in Enum.GetValues(typeof(GameType)))
         {
-            profile.Skill.Add(game, 0);
-            profile.GamesPlayed.Add(game, 0);
-            profile.GamesWon.Add(game, 0);
-            profile.GamesDraw.Add(game, 0);
-            profile.GamesLost.Add(game, 0);
+            if((GameType)game != GameType.None)
+            {
+                profile.Skill.Add((GameType)game, 0);
+                profile.GamesPlayed.Add((GameType)game, 0);
+                profile.GamesWon.Add((GameType)game, 0);
+                profile.GamesDraw.Add((GameType)game, 0);
+                profile.GamesLost.Add((GameType)game, 0);
+            }
         }
 
-        DebugManager.Log("Creating Data for a newly created account");
+        GetManager<ProfileManager>().SetPlayerProfile(profile);
+
+        DebugManager.Instance.Log("Creating Data for a newly created account");
 
         SaveUserData();
     }
-
-
     #endregion
 
     #region Callbacks
@@ -116,30 +132,31 @@ public class PlayfabManager : Manager
         SignUpCallBack?.Invoke(true, result);
         SignUpCallBack = null;
 
+        SetPlayerFirstTimeData(result.Username);
         ApplyAutomaticLogin();
 
-        DebugManager.Log("Sign up success");
+        DebugManager.Instance.Log("Sign up success");
     }
     private void OnSignUpFail(PlayFabError error)
     {
         SignUpCallBack?.Invoke(false, error);
         SignUpCallBack = null;
 
-        DebugManager.Log("Sign up Failed");
+        DebugManager.Instance.Log("Sign up Failed");
     }
     private void OnResetSuccess(SendAccountRecoveryEmailResult result)
     {
         ResetCallBack?.Invoke(true, result);
         ResetCallBack = null;
 
-        DebugManager.Log("Password reset email sent");
+        DebugManager.Instance.Log("Password reset email sent");
     }
     private void OnResetFail(PlayFabError error)
     {
         ResetCallBack?.Invoke(false, error);
         ResetCallBack = null;
 
-        DebugManager.Log("Password reset failed");
+        DebugManager.Instance.Log("Password reset failed");
     }
     private void OnLoginSuccess(PlayFab.ClientModels.LoginResult result)
     {
@@ -148,38 +165,38 @@ public class PlayfabManager : Manager
         LoginCallBack = null;
 
         if(result.NewlyCreated)
-            SetPlayerFirstTimeData(result);
+            SetPlayerFirstTimeData(result.InfoResultPayload.AccountInfo.Username);
         else
             GetUserData();
 
-        DebugManager.Log("Login Success");
+        DebugManager.Instance.Log("Login Success");
     }
     private void OnLoginFailure(PlayFabError error)
     {
         LoginCallBack?.Invoke(false, error);
         LoginCallBack = null;
 
-        DebugManager.Log("Login Fail");
+        DebugManager.Instance.Log("Login Fail");
     }
     private void OnDataRecieveError(PlayFabError error)
     {
         Logout();
-        DebugManager.Log("Data recieved Fail");
+        DebugManager.Instance.Log("Data recieved Fail");
     }
     private void OnDataRecieved(GetUserDataResult result)
     {
-        DebugManager.Log("Data recieve Success");
+        DebugManager.Instance.Log("Data recieve Success");
 
         if(result.Data.ContainsKey(SaveManager.PlayerProfileKey))
         {
             PlayerProfile playerProfile = new PlayerProfile();
-            string userData = result.Data["PlayerProfileKey"].Value;
-            playerProfile = JsonUtility.FromJson<PlayerProfile>(userData);
+            string userData = result.Data[SaveManager.PlayerProfileKey].Value;
+            playerProfile = JsonConvert.DeserializeObject<PlayerProfile>(userData);
 
             GetManager<ProfileManager>().SetPlayerProfile(playerProfile);
         }
 
-        DebugManager.LogError("Need to update this");
+        DebugManager.Instance.LogWarning("Need to update this");
 
         /*
         ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
@@ -205,6 +222,14 @@ public class PlayfabManager : Manager
         GetManager<PhotonManager>().SetPlayerNickName(profile.NiceName);
         */
     }
-
+    private void OnDataSent(UpdateUserDataResult result)
+    {
+        DebugManager.Instance.Log("Data send Success");
+    }   
+    private void OnDataSendError(PlayFabError error)
+    {
+        DebugManager.Instance.LogError("Data send Fail, Sending Agin");
+        SaveUserData();
+    }
     #endregion
 }

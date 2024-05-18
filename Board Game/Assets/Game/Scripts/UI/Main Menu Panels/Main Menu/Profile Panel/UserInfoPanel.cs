@@ -25,44 +25,54 @@ public class UserInfoPanel : Panel
         ChessButton.onClick.AddListener(OnChessPressed);
         DominoButton.onClick.AddListener(OnDominoPressed);
         PokerButton.onClick.AddListener(OnPokerPressed);
+
+        Manager.GetManager<ProfileManager>().OnProfileDataReceived += OnProfileDataReceived;
     }
 
-    public void Show(string userName, string userEmail)
+    public override void OnDestroy()
     {
-        UserName.text = userName;
-        UserEmail.text = userEmail;
+        base.OnDestroy();
         
-        base.Show();
+        Manager.GetManager<ProfileManager>().OnProfileDataReceived -= OnProfileDataReceived;
     }
 
-    public void OnLogoutPressed()
+    public override void Show()
+    {
+        base.Show();
+        OnProfileDataReceived();
+    }
+
+    private void OnProfileDataReceived()
+    {
+        PlayerProfile profile = Manager.GetManager<ProfileManager>().GetPlayerProfile();
+
+        UserName.text = profile.NickName;
+        UserEmail.text = profile.Email;
+    }
+    private void OnLogoutPressed()
     {
         Manager.GetManager<PlayfabManager>().Logout();
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<LoginPanel>();
     }
-
-    public void OnBackPressed()
+    private void OnBackPressed()
     {
         Panel.GetPanel<ProfilePanel>().Hide();
         Panel.GetPanel<MainMenuPanel>().Show();
     }
-
-    public void OnChessPressed()
+    private void OnChessPressed()
     {
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();
         Panel.GetPanel<GameStatsPanel>().Show(GameType.Chess);
     }
-
-    public void OnDominoPressed()
+    private void OnDominoPressed()
     {
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();
         Panel.GetPanel<GameStatsPanel>().Show(GameType.Domino);
     }
-
-    public void OnPokerPressed()
+    private void OnPokerPressed()
     {
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<GameStatsPanel>();

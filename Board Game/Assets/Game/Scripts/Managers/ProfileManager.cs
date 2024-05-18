@@ -2,19 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProfileManager : Manager
 {
-    private PlayerProfile PlayerProfile = new PlayerProfile();
-    
+    [SerializeField] private PlayerProfile PlayerProfile = new PlayerProfile();
 
-    public PlayerProfile GetPlayerProfile()
+    public UnityAction OnProfileDataReceived;
+
+    public  PlayerProfile GetPlayerProfile() 
     {
         return PlayerProfile;
     }
+
     public void SetPlayerProfile(PlayerProfile profile)
     {
         PlayerProfile = profile;
+
+        OnProfileDataReceived?.Invoke();
     }
 }
 

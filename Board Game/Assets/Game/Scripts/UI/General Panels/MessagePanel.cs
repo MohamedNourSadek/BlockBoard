@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,47 +10,76 @@ public class MessagePanel : Panel
 {
     public TextMeshProUGUI Title;
     public TextMeshProUGUI Message;
-    public Button OkButton;
-    public Button CancelButton;
+    public Button FirstButton;
+    public Button SecondButton;
+    public TMP_Text FirstButtonText;
+    public TMP_Text SecondButtonText;
 
-    public Action OnOkPressed;
-    public Action OnCancelPressed;
+    public Action OnFirstButton;
+    public Action OnSecondButton;
 
 
     public override void Awake()
     {
         base.Awake();
 
-        OkButton.onClick.AddListener(OnOkButtonPressed);
-        CancelButton.onClick.AddListener(OnCancelButtonPressed);
+        FirstButton.onClick.AddListener(OnFirstButtonPressed);
+        SecondButton.onClick.AddListener(OnSecondButtonPressed);
     }
 
-    public void Show(string title, string message, Action onOkPressed = null, Action onCancelPressed = null)
+    public void Show(string title, string message, ButtonTypes firstButtonType = ButtonTypes.Yes, ButtonTypes secondButtonType = ButtonTypes.No, Action firstButtonCallback = null, Action secondButtonCallback = null)
     {
         Title.text = title;
         Message.text = message;
 
-        OnOkPressed = onOkPressed;
-        OnCancelPressed = onCancelPressed;
+        if(firstButtonType != ButtonTypes.None)
+        {
+            FirstButton.gameObject.SetActive(true);
+            FirstButtonText.text = firstButtonType.ToString();
+            OnFirstButton = firstButtonCallback;
+        }
+        else
+        {
+            FirstButton.gameObject.SetActive(false);
+            OnFirstButton = null;
+        }
+
+        if (secondButtonType != ButtonTypes.None)
+        {
+            SecondButton.gameObject.SetActive(true);
+            SecondButtonText.text = secondButtonType.ToString();
+            OnSecondButton = secondButtonCallback;
+        }
+        else
+        {
+            SecondButton.gameObject.SetActive(false);
+            OnSecondButton = null;
+        }
 
         base.Show();
     }
+
     public override void Hide()
     {
         base.Hide();
 
-        OnOkPressed = null;
-        OnCancelPressed = null;
+        OnFirstButton = null;
+        OnSecondButton = null;
     }
     
-    public void OnOkButtonPressed()
+    public void OnFirstButtonPressed()
     {
-        OnOkPressed?.Invoke();
+        OnFirstButton?.Invoke();
         Hide();
     }
-    public void OnCancelButtonPressed()
+    public void OnSecondButtonPressed()
     {
-        OnCancelPressed?.Invoke();
+        OnSecondButton?.Invoke();
         Hide();
     }
+}
+
+public enum ButtonTypes
+{
+    Ok, Yes, No, Cancel, None
 }

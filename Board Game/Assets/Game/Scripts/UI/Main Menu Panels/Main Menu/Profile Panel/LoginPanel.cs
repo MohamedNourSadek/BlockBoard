@@ -1,3 +1,4 @@
+using PlayFab;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -39,11 +40,35 @@ public class LoginPanel : Panel
     public void OnLoginPressed()
     {
         Hide();
+
+        Manager.GetManager<PlayfabManager>().Login(EmailInputField.text, PasswordInputField.text, LoginCallBack);
         Panel.GetPanel<WaitingPanel>().Show(OnLoginCanceled);
+    }
+
+    public void LoginCallBack(bool state, object result)
+    {
+        Panel.GetPanel<WaitingPanel>().Hide();
+
+        if (state)
+        {
+            Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show(
+                "Login Failed", ((PlayFabError)result).ErrorMessage, ButtonTypes.Ok, ButtonTypes.None, LoginErrorCallback);
+        }
     }
 
     public void OnLoginCanceled()
     {
+        Manager.GetManager<PlayfabManager>().CancelLogin(); 
+        Show();
+    }
+
+    public void LoginErrorCallback()
+    {
+        Panel.GetPanel<MessagePanel>().Hide();
         Show();
     }
 

@@ -389,22 +389,7 @@ public class User_Settings : MonoBehaviour
 
 
     //Reset Password
-    public void Reset_Password()
-    {
 
-        var ResetRequest = new SendAccountRecoveryEmailRequest { Email = Reset_Password_Email.text, TitleId = TitleID};
-
-        PlayFabClientAPI.SendAccountRecoveryEmail(ResetRequest, OnResetSucess, OnResetFail);
-
-    }
-    private void OnResetSucess(SendAccountRecoveryEmailResult resut)
-    {
-        Reset_Error.text = "Email sent";
-    }
-    private void OnResetFail(PlayFabError error)
-    {
-        Reset_Error.text = error.ErrorMessage;
-    }
 
 
     // Data Sending and recieval

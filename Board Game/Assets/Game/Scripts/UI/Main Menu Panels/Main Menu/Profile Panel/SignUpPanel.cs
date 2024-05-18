@@ -29,7 +29,6 @@ public class SignUpPanel : Panel
         UsernameInput.onValueChanged.AddListener(OnUsernameChanged);
         PasswordInput.onValueChanged.AddListener(OnPasswordChanged);
     }
-
     public override void RefreshUI()
     {
         base.RefreshUI();
@@ -39,24 +38,22 @@ public class SignUpPanel : Panel
         OnPasswordChanged(PasswordInput.text);
     }
 
-    public void OnSignUpPressed()
+
+    private void OnSignUpPressed()
     {
         Hide();
         Panel.GetPanel<WaitingPanel>().Show(OnSignUpCanceled);
     }
-    
-    public void OnSignUpCanceled()
+    private void OnSignUpCanceled()
     {
         Show();
     }
-
-    public void OnBackPressed()
+    private void OnBackPressed()
     {
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<ProfileNoLoginPanel>();
     }
-
-    public void OnUsernameChanged(string value)
+    private void OnUsernameChanged(string value)
     {
         var usernameCorrection = InputCorrectionManager.GetCorrectionMessage(UsernameInput.text, InputType.Username);
         var emailCorrection = InputCorrectionManager.GetCorrectionMessage(EmailInput.text, InputType.Email);
@@ -65,8 +62,7 @@ public class SignUpPanel : Panel
         UsernameErrorText.text = usernameCorrection.CorrectionMessage;
         SignUpButton.interactable = usernameCorrection.IsInputCorrect && emailCorrection.IsInputCorrect && passwordCorrection.IsInputCorrect;
     }
-
-    public void OnEmailChanged(string value)
+    private void OnEmailChanged(string value)
     {
         var usernameCorrection = InputCorrectionManager.GetCorrectionMessage(UsernameInput.text, InputType.Username);
         var emailCorrection = InputCorrectionManager.GetCorrectionMessage(EmailInput.text, InputType.Email);
@@ -75,9 +71,7 @@ public class SignUpPanel : Panel
         EmailErrorText.text = emailCorrection.CorrectionMessage;
         SignUpButton.interactable = usernameCorrection.IsInputCorrect && emailCorrection.IsInputCorrect && passwordCorrection.IsInputCorrect ;
     }
-
-
-    public void OnPasswordChanged(string value)
+    private void OnPasswordChanged(string value)
     {
         var usernameCorrection = InputCorrectionManager.GetCorrectionMessage(UsernameInput.text, InputType.Username);
         var emailCorrection = InputCorrectionManager.GetCorrectionMessage(EmailInput.text, InputType.Email);

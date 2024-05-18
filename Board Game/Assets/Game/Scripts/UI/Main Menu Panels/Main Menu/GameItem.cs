@@ -37,7 +37,7 @@ public class GameItem : MonoBehaviour
             string message = "Do you want to start the tutorial?";
 
             Panel.GetPanel<MainMenuPanel>().Hide();
-            Panel.GetPanel<MessagePanel>().Show(title, message, OnOpenTutorialYes , OnOpenTutorialNo);
+            Panel.GetPanel<MessagePanel>().Show(title, message, ButtonTypes.Yes, ButtonTypes.No, OnOpenTutorialYes , OnOpenTutorialNo);
         }
         else
         {

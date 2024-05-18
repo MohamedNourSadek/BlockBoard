@@ -1,7 +1,9 @@
+using PlayFab;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ResetPasswordPanel : Panel
@@ -30,13 +32,24 @@ public class ResetPasswordPanel : Panel
     public void OnResetPasswordPressed()
     {
         Hide();
-        Panel.GetPanel<WaitingPanel>().Show(OnLoginCanceled);
+        Manager.GetManager<PlayfabManager>().ResetPassword(EmailInputField.text, OnResetCallBack);
     }
 
-    public void OnLoginCanceled()
+    public void OnResetCallBack(bool state, object callbackInfo)
     {
-        Show();
+        if(state)
+        {
+            Panel.GetPanel<MessagePanel>().Show(
+                "Reset Password", "An email has been sent to your email address with instructions on how to reset your password.",
+                ButtonTypes.Ok, ButtonTypes.None, Show);
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show("Reset Password", ((PlayFabError)callbackInfo).ErrorMessage,
+                ButtonTypes.Ok, ButtonTypes.None, Show);
+        }
     }
+
     public void OnCancelPressed()
     {
         Hide();

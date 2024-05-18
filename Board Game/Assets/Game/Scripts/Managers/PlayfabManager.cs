@@ -14,6 +14,7 @@ public class PlayfabManager : Manager
     [NonSerialized] public bool IsLoggedIn;
 
     private UnityAction<bool, object> LoginCallBack;
+    private UnityAction<bool, object> SignUpCallBack;
     private UnityAction<bool, object> ResetCallBack;
 
     public override void Awake()
@@ -22,7 +23,7 @@ public class PlayfabManager : Manager
         ApplyAutomaticLogin();
     }
 
-
+    #region Public Functions
     public void ApplyAutomaticLogin()
     {
         if (PlayerPrefs.GetString(DataManager.EmailSaveKey) != "")
@@ -46,9 +47,15 @@ public class PlayfabManager : Manager
         var loginRequest = new LoginWithEmailAddressRequest { Email = email, Password = password, InfoRequestParameters = requestParameters, TitleId = TitleID };
         PlayFabClientAPI.LoginWithEmailAddress(loginRequest, OnLoginSuccess, OnLoginFailure);
     }
-    public void CancelLogin()
+    public void SignUp(string username, string email, string password, UnityAction<bool, object> callBack = null)
     {
-        LoginCallBack = null;
+        SignUpCallBack = callBack;
+
+        PlayerPrefs.SetString(DataManager.EmailSaveKey, email);
+        PlayerPrefs.SetString(DataManager.PassSaveKey, password);
+
+        var registerRequest = new RegisterPlayFabUserRequest { Email = email, Password = password, Username = username, TitleId = TitleID };
+        PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnSignUpSuccess, OnSignUpFail);
     }
     public void ResetPassword(string email, UnityAction<bool, object> callBack = null)
     {
@@ -56,9 +63,39 @@ public class PlayfabManager : Manager
         var ResetRequest = new SendAccountRecoveryEmailRequest { Email = email, TitleId = TitleID};
         PlayFabClientAPI.SendAccountRecoveryEmail(ResetRequest, OnResetSuccess, OnResetFail);
     }
+    public void CancelLogin()
+    {
+        LoginCallBack = null;
+    }
+    public void CancelSignUp()
+    {
+        SignUpCallBack = null;
+    }
+    #endregion
 
 
+    #region Private Functions
+    private void SetPlayerFirstTimeData()
+    {
 
+    }
+    #endregion
+
+    #region Callbacks
+    private void OnSignUpSuccess(RegisterPlayFabUserResult result)
+    {
+        SignUpCallBack?.Invoke(true, result);
+        SignUpCallBack = null;
+
+        ApplyAutomaticLogin();
+
+        SetPlayerFirstTimeData();
+    }
+    private void OnSignUpFail(PlayFabError error)
+    {
+        SignUpCallBack?.Invoke(false, error);
+        SignUpCallBack = null;
+    }
     private void OnResetSuccess(SendAccountRecoveryEmailResult result)
     {
         ResetCallBack?.Invoke(true, result);
@@ -86,6 +123,5 @@ public class PlayfabManager : Manager
         LoginCallBack = null;
         DebugManager.Debug("Login Fail");
     }
-
-
+    #endregion
 }

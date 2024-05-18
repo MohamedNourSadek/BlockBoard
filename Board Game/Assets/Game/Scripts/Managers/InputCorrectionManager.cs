@@ -32,6 +32,11 @@ public class InputCorrectionManager : Manager
             correction.CorrectionMessage = "";
             correction.IsInputCorrect = true;
         }
+        else if(email.Length == 0)
+        {
+            correction.CorrectionMessage = "";
+            correction.IsInputCorrect = false;
+        }
         else
         {
             correction.CorrectionMessage = "Your email should be 5 letters or more";
@@ -49,6 +54,11 @@ public class InputCorrectionManager : Manager
             correction.CorrectionMessage = "";
             correction.IsInputCorrect = true;
         }
+        else if (username.Length == 0)
+        {
+            correction.CorrectionMessage = "";
+            correction.IsInputCorrect = false;
+        }
         else
         {
             correction.CorrectionMessage = "Your username should be 4 letters or more";
@@ -65,6 +75,11 @@ public class InputCorrectionManager : Manager
         {
             correction.CorrectionMessage = "";
             correction.IsInputCorrect = true;
+        }
+        else if (password.Length == 0)
+        {
+            correction.CorrectionMessage = "";
+            correction.IsInputCorrect = false;
         }
         else
         {

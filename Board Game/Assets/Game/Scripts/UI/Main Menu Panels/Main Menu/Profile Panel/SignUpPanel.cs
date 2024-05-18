@@ -1,3 +1,4 @@
+using PlayFab;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -42,10 +43,34 @@ public class SignUpPanel : Panel
     private void OnSignUpPressed()
     {
         Hide();
-        Panel.GetPanel<WaitingPanel>().Show(OnSignUpCanceled);
+
+        Manager.GetManager<PlayfabManager>().SignUp(UsernameInput.text, EmailInput.text, PasswordInput.text, SignUpCallback);
+        Panel.GetPanel<WaitingPanel>().Show(OnSignUpCancelled);
     }
-    private void OnSignUpCanceled()
+
+    public void SignUpCallback(bool state, object result)
     {
+        Panel.GetPanel<WaitingPanel>().Hide();
+
+        if (state)
+        {
+            Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show(
+                "Sign Up failed Failed", ((PlayFabError)result).ErrorMessage, ButtonTypes.Ok, ButtonTypes.None, SignUpErrorCallback);
+        }
+    }
+
+    public void OnSignUpCancelled()
+    {
+        Manager.GetManager<PlayfabManager>().CancelSignUp();
+        Show();
+    }
+    public void SignUpErrorCallback()
+    {
+        Panel.GetPanel<MessagePanel>().Hide();
         Show();
     }
     private void OnBackPressed()

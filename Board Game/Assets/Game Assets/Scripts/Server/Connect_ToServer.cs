@@ -76,10 +76,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         Cross_Scene_Data.Master_Won_LastRound = true;
         Cross_Scene_Data.Current_Master_score = 0;
         Cross_Scene_Data.Current_Guest_score = 0;
-        Cross_Scene_Data.Camera_Snap = PlayerPrefs.GetInt(Menu_settings.Camera_Snaaping) == 1 ? true : false;
-
-        Fx_Mixer.SetFloat("Volume", Menu_settings.Get_Fx_Volume());
-        Music_Mixer.SetFloat("Volume", Menu_settings.Get_Music_Volume());
 
         join.onValueChanged.AddListener(OnJoin_Input_Change);
         create.onValueChanged.AddListener(OnHost_Input_Change);

@@ -51,7 +51,7 @@ public class General_InGameUI : MonoBehaviour
         else if (Manager.GameManager.CurrentGame == GameType.Poker)
             Rules = Poker_Rules;
 
-        if(Menu_settings.Get_Camera_Snaaping() == 0)
+        if(Manager.GetManager<SettingsManager>().CameraSnap)
             Camera_Snap.image.sprite = Camera_Snap_Off;
         else
             Camera_Snap.image.sprite = Camera_Snap_On;
@@ -62,13 +62,8 @@ public class General_InGameUI : MonoBehaviour
 
     public void Toggle_Camera_Snapp()
     {
-        if (!settings.initialized)
-            settings.Start();
-
-        if (Cross_Scene_Data.Camera_Snap)
-            settings.Camer_Snap_Toggle.isOn = false;
-        else
-            settings.Camer_Snap_Toggle.isOn = true;
+        var settingsManager = Manager.GetManager<SettingsManager>();
+        settingsManager.ChangeCameraSnap(!settingsManager.CameraSnap);
     }
 
 

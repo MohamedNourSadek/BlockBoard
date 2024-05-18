@@ -337,14 +337,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         PlayTutorial.SetActive(false);
 
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
-
-        if (Manager.GameManager.CurrentGame == GameType.Domino)
-            tutorialManagers.SetTutorialState(GameType.Domino, false);
-        else if (Manager.GameManager.CurrentGame == GameType.Chess)
-            tutorialManagers.SetTutorialState(GameType.Chess, false);
-        else if (Manager.GameManager.CurrentGame == GameType.Poker)
-            tutorialManagers.SetTutorialState(GameType.Poker, false);
-
+        tutorialManagers.SetTutorialState(Manager.GameManager.CurrentGame, false);
         SelectPage();
     }
     public void Open_Room()

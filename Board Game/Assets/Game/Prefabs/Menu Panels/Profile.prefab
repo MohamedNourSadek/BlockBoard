@@ -130,6 +130,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c175d57c621a89458d051d7c94ff8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   Title: {fileID: 2298306538526735584}
   SkillLevel: {fileID: 2138824877190153127}
   GamesPlayed: {fileID: 4775752833326553423}
@@ -2647,6 +2656,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5422632a9b0153418af29168ee75e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
 --- !u!1 &2303704099843839254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4206,6 +4224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67d41f582b02f74c9df286d58a8719f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   UserName: {fileID: 2855897234613237281}
   UserEmail: {fileID: 7887593368464442833}
   LogoutButton: {fileID: 1979573969057369486}
@@ -6303,6 +6330,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a236b871ddee2a4ab11db3b0528805b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   LoginButton: {fileID: 5166558719098249469}
   CancelButton: {fileID: 1743425590482132322}
   ResetPasswordButton: {fileID: 2055935693751816224}
@@ -6804,6 +6840,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec3c63f4a80ecf48bc09f56606768d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   LoginButton: {fileID: 6096605351392068987}
   SignUpButton: {fileID: 4469268949918377654}
   BackButton: {fileID: 3359753648379817373}
@@ -7220,6 +7265,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c098a6bc7a346a44782d8dacbb534243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   EmailInputField: {fileID: 1937501388820584289}
   EmailErrorMessage: {fileID: 2991085278719582891}
   ResetButton: {fileID: 9034298617937952971}
@@ -9763,6 +9817,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f71091277777784da34bca74a09b762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   EmailInput: {fileID: 6469339056141715472}
   UsernameInput: {fileID: 2865099574735817041}
   PasswordInput: {fileID: 6366028037449983152}

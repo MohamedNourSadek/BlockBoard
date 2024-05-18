@@ -17,11 +17,18 @@ public class WaitingPanel : Panel
         base.Awake();
         CancelButton.onClick.AddListener(OnCancelPressed);
     }
-    public void Show(UnityAction onCancel)
+    public void Show(UnityAction onCancel = null, bool showCancel = false)
     {
-        Show();
+        base.Show();
+
+        if(showCancel)
+            CancelButton.gameObject.SetActive(true);
+        else
+            CancelButton.gameObject.SetActive(false);
+
         OnCancel = onCancel;
     }
+
     public void OnCancelPressed()
     {
         Hide();

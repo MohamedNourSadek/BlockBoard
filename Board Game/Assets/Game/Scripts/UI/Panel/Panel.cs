@@ -1,9 +1,10 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Panel : MonoBehaviour
+public class Panel : SerializedMonoBehaviour
 {
     [NonSerialized] public static Dictionary<Type, Panel> Panels = new Dictionary<Type, Panel>();
     

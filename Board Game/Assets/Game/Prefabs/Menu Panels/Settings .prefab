@@ -516,6 +516,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c08a640e2196884aa816fe47177b45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   GameVersion: {fileID: 5640300692566858570}
   SfxVolumeSlider: {fileID: 2746562236768923354}
   MusicVolumeSlider: {fileID: 9023634729312411600}

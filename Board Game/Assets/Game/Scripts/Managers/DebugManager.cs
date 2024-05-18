@@ -11,9 +11,20 @@ public class DebugManager : Manager
         base.Awake();
         DebugManager = this;
     }
-    public static void Debug(object message)
+    public static void Log(object message)
     {
         if(DebugManager.IsDebugEnabled)
             UnityEngine.Debug.Log(message);
     }
+    public static void LogWarning(object message)
+    {
+        if (DebugManager.IsDebugEnabled)
+            UnityEngine.Debug.LogWarning(message);
+    }
+    public static void LogError(object message)
+    {
+        if (DebugManager.IsDebugEnabled)
+            UnityEngine.Debug.LogError(message);
+    }
+
 }

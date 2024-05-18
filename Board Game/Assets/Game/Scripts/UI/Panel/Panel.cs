@@ -67,7 +67,7 @@ public class Panel : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Panel not found in SubPanels list");
+            DebugManager.LogError("Panel not found in SubPanels list");
         }
     }
     public virtual void Hide()

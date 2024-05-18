@@ -27,7 +27,7 @@ public class Manager : SerializedMonoBehaviour
         }
         else
         {
-            Debug.LogWarning("There are more than one " + GetType() + " in the scene and therefore new one is destroyed");
+            DebugManager.LogWarning("There are more than one " + GetType() + " in the scene and therefore new one is destroyed");
             Destroy(gameObject);
         }
     }

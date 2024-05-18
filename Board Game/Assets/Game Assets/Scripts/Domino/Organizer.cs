@@ -366,6 +366,6 @@ public class Organizer : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        Debug.Log(MaxScore);
+        DebugManager.Log(MaxScore);
     }
 }

@@ -37,6 +37,7 @@ public class UserInfoPanel : Panel
 
     public void OnLogoutPressed()
     {
+        Manager.GetManager<PlayfabManager>().Logout();
         Hide();
         Panel.GetPanel<ProfilePanel>().Show<LoginPanel>();
     }

@@ -627,11 +627,11 @@ public class User_Settings : MonoBehaviour
     }
     private void OnSucess(ExecuteCloudScriptResult obj)
     {
-        Debug.Log(obj.FunctionResult.ToString());
+        DebugManager.Log(obj.FunctionResult.ToString());
     }
     private void OnError(PlayFabError obj)
     {
-        Debug.Log(obj.ErrorMessage);
+        DebugManager.Log(obj.ErrorMessage);
     }
 }
 

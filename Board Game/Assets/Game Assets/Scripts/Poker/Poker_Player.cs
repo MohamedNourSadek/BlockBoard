@@ -762,7 +762,7 @@ public class Poker_Player : MonoBehaviour
                     winners.Add(p.Key);
                 }
 
-                Debug.Log((identity)p.Key + " has value " + p.Value.Value + ", Backup of " + p.Value.BackUp_Value);
+                DebugManager.Log((identity)p.Key + " has value " + p.Value.Value + ", Backup of " + p.Value.BackUp_Value);
             }
         }
         else if(PlayersInRound.Count == 1)
@@ -1554,7 +1554,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += 10f;
                 myValue.Value += (Is_Royal_Flush(test_cards).Value / 100f);
 
-                Debug.Log("It's a Royal Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Royal Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_Straight_Flush(test_cards).Is_True)
             {
@@ -1563,7 +1563,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_Straight_Flush(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_Straight_Flush(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Straight Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Straight Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Four_of_AKind(test_cards).Is_True)
             {
@@ -1572,7 +1572,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Four_of_AKind(test_cards).Value / 100f);
                 myValue.BackUp_Value = Four_of_AKind(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Four of A kind With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Four of A kind With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (IsFullHouse(test_cards).Is_True)
             {
@@ -1581,7 +1581,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (IsFullHouse(test_cards).Value / 100f);
                 myValue.BackUp_Value = IsFullHouse(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Full House With a Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Full House With a Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_Flush(test_cards).Is_True)
             {
@@ -1590,7 +1590,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_Flush(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_Flush(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Flush With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_Straight(test_cards).Is_True)
             {
@@ -1599,7 +1599,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_Straight(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_Straight(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Straight With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Straight With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_Three_OfAkind(test_cards).Is_True)
             {
@@ -1608,7 +1608,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_Three_OfAkind(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_Three_OfAkind(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Three of a kind with Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Three of a kind with Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_TwoPairs(test_cards).Is_True)
             {
@@ -1617,7 +1617,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_TwoPairs(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_TwoPairs(test_cards).BackUp_Value;
 
-                Debug.Log("It's a Two Pair With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a Two Pair With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else if (Is_One_Pair(test_cards).Is_True)
             {
@@ -1626,7 +1626,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Is_One_Pair(test_cards).Value / 100f);
                 myValue.BackUp_Value = Is_One_Pair(test_cards).BackUp_Value;
 
-                Debug.Log("It's a One pair With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a One pair With Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
             else
             {
@@ -1635,7 +1635,7 @@ public class Poker_Player : MonoBehaviour
                 myValue.Value += (Get_HighestCard(test_cards) / 100f);
                 myValue.BackUp_Value = 0;
 
-                Debug.Log("It's a high card with Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
+                DebugManager.Log("It's a high card with Value of " + myValue.Value + " , And Backup Of " + myValue.BackUp_Value);
             }
         }
 

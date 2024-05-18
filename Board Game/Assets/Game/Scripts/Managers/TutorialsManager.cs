@@ -6,9 +6,9 @@ public class TutorialsManager : Manager
 {
     public bool IsTutorialAvailable(GameType game)
     {
-        string keyName = GetTutorialKey(game);
+        string keyName = SaveManager.GetTutorialSaveKey(game);
 
-        int tutorialPlayed = PlayerPrefs.GetInt(keyName);
+        int tutorialPlayed = SaveManager.GetInt(keyName);
 
         if (tutorialPlayed == 0)
             return true;
@@ -17,16 +17,13 @@ public class TutorialsManager : Manager
     }
     public void SetTutorialState(GameType game, bool state)
     {
-        string keyName = Manager.GetManager<TutorialsManager>().GetTutorialKey(game);
+        string keyName = SaveManager.GetTutorialSaveKey(game);
 
         if (state)
-            PlayerPrefs.SetInt(keyName, 0);
+            SaveManager.SetInt(keyName, 0);
         else
-            PlayerPrefs.SetInt(keyName, 1);
+            SaveManager.SetInt(keyName, 1);
     }
-    private string GetTutorialKey(GameType game)
-    {
-        return game.ToString() + DataManager.TutorialSaveKey;
-    }   
+   
 }
 

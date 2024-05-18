@@ -950,7 +950,7 @@ public class Chess_player : MonoBehaviour
 
                     calc += " and total is : " + (m.gain - m.loss) + "\n";
                 }
-                Debug.Log(calc);
+                DebugManager.Log(calc);
 
 
                 HighLight_PossibleMoves(bestMove.piece, false);
@@ -1614,7 +1614,7 @@ public class Chess_player : MonoBehaviour
             foreach (Vector2 move in moves)
             {
                 if ((piece.piece_type == Chess_Piece_Type.Bishop) && (piece.color == Piece_Color.Black) && !master && check_KingChecks && (move == new Vector2(5,5)))
-                    Debug.Log("Break here");
+                    DebugManager.Log("Break here");
 
                 piece.currentposition = move;
 

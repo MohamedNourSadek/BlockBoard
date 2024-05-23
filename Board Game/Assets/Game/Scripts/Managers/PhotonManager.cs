@@ -182,8 +182,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(data);
     }
+    public void StartGame()
+    {
+        Cross_Scene_Data.where = WhereTo.Lobby;
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        view.RPC("StartGameSync", RpcTarget.All);
+    }
 
 
+    [PunRPC]
+    public void StartGameSync()
+    {
+        PhotonNetwork.LoadLevel("Game");
+    }
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         base.OnRoomPropertiesUpdate(propertiesThatChanged);

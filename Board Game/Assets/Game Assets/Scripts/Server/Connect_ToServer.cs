@@ -567,6 +567,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         view.RPC("Start_Game_Sync", RpcTarget.All);
     }
 
+
     public void OnJoin_Input_Change(string value)
     {
         if (value.Length < 4)

@@ -292,7 +292,7 @@ public class OnlineRoomPanel : Panel
     }
     private void OnStartPressed()
     {
-
+        PhotonManager.Instance.StartGame();
     }
     private void OnChangeBetPressed()
     {

@@ -65,6 +65,7 @@ MonoBehaviour:
   - Switch_Turn_Sync
   - Notify_State
   - Change_Bet_Constrains
+  - StartGameSync
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

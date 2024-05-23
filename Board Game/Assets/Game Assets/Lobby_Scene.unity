@@ -26787,7 +26787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -27404,34 +27404,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599138530}
   m_CullTransparentMesh: 1
---- !u!1 &1603694109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1906541351987672180, guid: 6a82cae2275e68244afafaaa47ac32cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 819499361457770404}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1603694111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603694109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1613131590
 GameObject:
   m_ObjectHideFlags: 0
@@ -28816,7 +28788,6 @@ MonoBehaviour:
   Room_BetText: {fileID: 222747883}
   Room_Current_Bet: {fileID: 1934191482}
   Change_Bet_Button: {fileID: 232873370}
-  PlayerReady_String: Ready_STR
 --- !u!114 &1667732152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39631,6 +39602,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Photon Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3092297516406602667, guid: 6a82cae2275e68244afafaaa47ac32cb,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5975247115218699969, guid: 6a82cae2275e68244afafaaa47ac32cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39681,20 +39657,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7108921632134810747, guid: 6a82cae2275e68244afafaaa47ac32cb,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 7108921632134810747, guid: 6a82cae2275e68244afafaaa47ac32cb,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1906541351987672180, guid: 6a82cae2275e68244afafaaa47ac32cb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1603694111}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a82cae2275e68244afafaaa47ac32cb, type: 3}
 --- !u!114 &1069155405014073257
 MonoBehaviour:

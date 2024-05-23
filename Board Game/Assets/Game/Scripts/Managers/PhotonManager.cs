@@ -15,8 +15,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public UnityAction<bool, object> OnRoomJoinCallback;
     public UnityAction OnPlayersNumberChange;
     public UnityAction OnPlayersPropertiesUpdated;
+    public UnityAction<ExitGames.Client.Photon.Hashtable> OnRoomInfoUpdated;
 
     public static string PlayerReadyKey = "ReadyState";
+    public static string PlayerBetKey = "BetAmount";
     private PhotonView view;
 
     public void Awake()
@@ -169,11 +171,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         return PhotonNetwork.IsMasterClient;
     }
-    
-    
-    
-    
-    
+    public void UpdateRoomBet(int betValue)
+    {
+        ExitGames.Client.Photon.Hashtable data = new ExitGames.Client.Photon.Hashtable();
+        data[PlayerBetKey] = betValue;
+
+        PhotonNetwork.CurrentRoom.SetCustomProperties(data);
+    }
+
+
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+        base.OnRoomPropertiesUpdate(propertiesThatChanged);
+        OnRoomInfoUpdated?.Invoke(propertiesThatChanged);
+    }
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);

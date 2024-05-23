@@ -27,6 +27,7 @@ public class PlayerProfile
 {
     public string NickName = "--";
     public string Email = "--";
+    public int Credit = 100;
 
     public Dictionary<GameType, int> Skill;
     public Dictionary<GameType, int> GamesPlayed;

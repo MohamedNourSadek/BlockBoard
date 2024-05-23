@@ -36,13 +36,18 @@ public class OnlineRoomPanel : Panel
 
         PhotonManager.Instance.OnPlayersNumberChange += RefreshUI;
         PhotonManager.Instance.OnPlayersPropertiesUpdated += RefreshUI;
+        PhotonManager.Instance.OnRoomInfoUpdated += OnRoomInfoUpdated;
     }
+
+
     public override void OnDestroy()
     {
         base.OnDestroy();
 
         PhotonManager.Instance.OnPlayersNumberChange -= RefreshUI;
         PhotonManager.Instance.OnPlayersPropertiesUpdated -= RefreshUI;
+        PhotonManager.Instance.OnRoomInfoUpdated -= OnRoomInfoUpdated;
+
     }
 
     public override void RefreshUI()
@@ -277,7 +282,6 @@ public class OnlineRoomPanel : Panel
     {
         ReadyButtonText.text = state ? "Unready" : "Ready";
     }
- 
     private void OnLeavePressed()
     {
         Hide();
@@ -290,10 +294,19 @@ public class OnlineRoomPanel : Panel
     }
     private void OnChangeBetPressed()
     {
-
+        PhotonManager.Instance.UpdateRoomBet((int)BetSlider.value);
     }
     private void OnBetChanged(float value)
     {
         BetText.text = value.ToString();
+    }
+
+    private void OnRoomInfoUpdated(ExitGames.Client.Photon.Hashtable data)
+    {
+        if (data.ContainsKey(PhotonManager.PlayerBetKey)) 
+        { 
+            int newBetAmount = ((int)data[PhotonManager.PlayerBetKey]);
+            BetSlider.value = newBetAmount;
+        }
     }
 }

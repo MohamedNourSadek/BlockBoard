@@ -60,7 +60,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
     private void OnDataRecieved(GetUserDataResult result)
     {
         Data_Result = result;
-        BetAmount = Int32.Parse(PhotonNetwork.CurrentRoom.CustomProperties[Connect_ToServer.RoomBet_String].ToString());
+        BetAmount = Int32.Parse(PhotonNetwork.CurrentRoom.CustomProperties[PhotonManager.PlayerBetKey].ToString());
 
         if (!Cross_Scene_Data.In_Chess_Game)
         {

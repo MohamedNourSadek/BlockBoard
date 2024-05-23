@@ -65,10 +65,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
 
     PhotonView view;
 
-    public string PlayerReady_String = "Ready_STR";
-    public static string RoomBet_String = "Room_Bet";
-
-
 
     void Start()
     {
@@ -157,7 +153,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     {
         if (propertiesThatChanged != null)
         {
-            string temp = propertiesThatChanged[RoomBet_String].ToString();
+            string temp = propertiesThatChanged[PhotonManager.PlayerReadyKey].ToString();
             Room_BetSlider.value = System.Int32.Parse(temp);
             Room_Current_Bet.text = Room_BetSlider.value.ToString();
 
@@ -351,7 +347,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
 
         ReadyButtonText.text = "Ready";
         ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-        hs[PlayerReady_String] = "false";
+        hs[PhotonManager.PlayerReadyKey] = "false";
         PhotonNetwork.SetPlayerCustomProperties(hs);
 
         Update_Players();
@@ -443,7 +439,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         if (ReadyButtonText.text == "Ready")
         {
             ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-            hs[PlayerReady_String] = "true";
+            hs[PhotonManager.PlayerReadyKey] = "true";
             PhotonNetwork.SetPlayerCustomProperties(hs);
 
             ReadyButtonText.text = "UnReady";
@@ -453,7 +449,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         else
         {
             ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-            hs[PlayerReady_String] = "false";
+            hs[PhotonManager.PlayerReadyKey] = "false";
             PhotonNetwork.SetPlayerCustomProperties(hs);
 
             ReadyButtonText.text = "Ready";
@@ -480,7 +476,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
                 if (Sender_Player == PhotonNetwork.LocalPlayer.ActorNumber.ToString())
                 {
                     ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-                    hs[PlayerReady_String] = "true";
+                    hs[PhotonManager.PlayerReadyKey] = "true";
                     PhotonNetwork.SetPlayerCustomProperties(hs);
                     ReadyButtonText.text = "UnReady";
                 }
@@ -493,7 +489,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
                 if (Sender_Player == PhotonNetwork.LocalPlayer.ActorNumber.ToString())
                 {
                     ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-                    hs[PlayerReady_String] = "false";
+                    hs[PhotonManager.PlayerReadyKey] = "false";
                     PhotonNetwork.SetPlayerCustomProperties(hs);
                     ReadyButtonText.text = "Ready";
                 }
@@ -515,7 +511,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
             view.RPC("Notify_State", RpcTarget.AllBuffered, player.ActorNumber.ToString(), "Ready", "false");
 
             ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-            hs[RoomBet_String] = Room_BetSlider.value.ToString();
+            hs[PhotonManager.PlayerReadyKey] = Room_BetSlider.value.ToString();
 
             PhotonNetwork.CurrentRoom.SetCustomProperties(hs);
         }
@@ -662,7 +658,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
             Domino_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[0].Game_Skill_Key],
             Chess_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[1].Game_Skill_Key],
             Poker_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[2].Game_Skill_Key],
-            IsPlayerReady = (string)masterPlayer.CustomProperties[PlayerReady_String] == "true" ? true : false
+            IsPlayerReady = (string)masterPlayer.CustomProperties[PhotonManager.PlayerReadyKey] == "true" ? true : false
         };
         Cross_Scene_Data.players.Add(master_Info, masterPlayer.ActorNumber);
         if (master_Info.IsPlayerReady)
@@ -681,7 +677,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
                 int domino_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[0].Game_Skill_Key];
                 int chess_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[1].Game_Skill_Key];
                 int poker_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[2].Game_Skill_Key];
-                bool isPlayerReady = (string)Guests[i].CustomProperties[PlayerReady_String] == "true" ? true : false;
+                bool isPlayerReady = (string)Guests[i].CustomProperties[PhotonManager.PlayerReadyKey] == "true" ? true : false;
 
                 Player_Info playerInfo = new Player_Info() 
                 { 

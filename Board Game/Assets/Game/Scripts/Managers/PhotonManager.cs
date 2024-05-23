@@ -28,6 +28,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Disconnect();
         PhotonNetwork.ConnectUsingSettings();
+
+        string gameName = Manager.GameManager.CurrentGame.ToString();
+        PhotonNetwork.GameVersion = Manager.GameManager.GameVersion + gameName;
     }
     public void SetPhotonOnlineSettings()
     {
@@ -41,9 +44,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if(profile != null)
         {
-            string gameName = Manager.GameManager.CurrentGame.ToString();
-            
-            PhotonNetwork.GameVersion = Manager.GameManager.GameVersion + gameName;
             PhotonNetwork.NickName = profile.NickName;
 
             ExitGames.Client.Photon.Hashtable data = new ExitGames.Client.Photon.Hashtable();

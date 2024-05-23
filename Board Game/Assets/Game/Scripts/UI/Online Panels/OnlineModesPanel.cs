@@ -31,10 +31,9 @@ public class OnlineModesPanel : Panel
         base.Show();
 
         Manager.GameManager.GameMode = GameMode.Online;
-
-        PhotonManager.Instance.SetPhotonOnlineSettings();
+        
+        PhotonManager.Instance.ConnectToPhoton();
         TitleText.text = Manager.GameManager.CurrentGame.ToString() + " Online";
-
     }
 
     private void OnPlayPublicPressed()

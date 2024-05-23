@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector.Editor.GettingStarted;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

@@ -300,3 +300,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a6cea99a36baa4c88ffba061035051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  PlayerHighlight: {fileID: 8132230565629380872}
+  PlayerName: {fileID: 2881121185035324028}

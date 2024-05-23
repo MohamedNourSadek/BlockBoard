@@ -66,7 +66,8 @@ public class HostLobbyPanel : Panel
 
         if (state)
         {
-            Debug.Log("Show Room");
+            Hide();
+            Panel.GetPanel<OnlineRoomPanel>().Show();
         }
         else
         {

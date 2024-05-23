@@ -52,8 +52,31 @@ public class HostLobbyPanel : Panel
 
     private void OnCreateRoomPressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<WaitingPanel>().Show(null, false);
+
+        PhotonManager.Instance.OnRoomJoinCallback += OnRoomJoinCallback;
+        PhotonManager.Instance.CreateRoom(RoomNameInput.text);
     }
+
+    private void OnRoomJoinCallback(bool state, object result)
+    {
+        PhotonManager.Instance.OnRoomJoinCallback -= OnRoomJoinCallback;
+        Panel.GetPanel<WaitingPanel>().Hide();
+
+        if (state)
+        {
+            Debug.Log("Show Room");
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show("Error", ((string)result) , ButtonTypes.Ok, ButtonTypes.None, () =>
+            {
+                Show();
+            });
+        }
+    }
+
 
     private void OnBackPressed()
     {

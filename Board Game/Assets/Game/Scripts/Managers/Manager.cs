@@ -9,7 +9,7 @@ public class Manager : SerializedMonoBehaviour
     public static Dictionary<Type, Manager> Managers = new Dictionary<Type, Manager>();
     
     public static GameManager GameManager;
-
+    
     public virtual void Awake()
     {
         if (!Managers.ContainsKey(GetType()))

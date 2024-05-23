@@ -206,29 +206,6 @@ public class PlayfabManager : Manager
 
         Debug.LogWarning("Need to update this");
 
-        /*
-        ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
-
-        foreach (var p in Games_Stats)
-        {
-            hs[p.Game_Skill_Key] = p.Game_Skill;
-            hs[p.Games_Played_Key] = p.Games_Played;
-            hs[p.Games_Won_Key] = p.Games_Won_Key;
-            hs[p.Games_Lost_Key] = p.Games_Lost;
-            hs[p.Games_Draw_Key] = p.Games_Draw;
-            hs[p.Avg_Op_Key] = p.Avg_Op;
-        }
-
-        hs[Credit_Saved] = Credit_Text.text;
-
-        PhotonNetwork.SetPlayerCustomProperties(hs);
-
-        UpdateLeadBoard(GameType.Chess);
-        UpdateLeadBoard(GameType.Domino);
-        UpdateLeadBoard(GameType.Poker);
-        
-        GetManager<PhotonManager>().SetPlayerNickName(profile.NiceName);
-        */
     }
     private void OnDataSent(UpdateUserDataResult result)
     {

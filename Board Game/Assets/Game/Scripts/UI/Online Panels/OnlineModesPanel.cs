@@ -26,6 +26,12 @@ public class OnlineModesPanel : Panel
 
     }
 
+    public override void Show()
+    {
+        base.Show();
+        PhotonManager.Instance.SetPhotonOnlineSettings();
+    }
+
     private void OnPlayPublicPressed()
     {
         throw new NotImplementedException();

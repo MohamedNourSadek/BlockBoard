@@ -121,7 +121,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         Open_Room();
         _Update_Bet_Constrains();
     }
-
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         StartCoroutine(Log_Temp_error(message, 3f));

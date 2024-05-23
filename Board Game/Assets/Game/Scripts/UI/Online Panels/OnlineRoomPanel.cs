@@ -37,6 +37,8 @@ public class OnlineRoomPanel : Panel
         PhotonManager.Instance.OnPlayersNumberChange += RefreshUI;
         PhotonManager.Instance.OnPlayersPropertiesUpdated += RefreshUI;
         PhotonManager.Instance.OnRoomInfoUpdated += OnRoomInfoUpdated;
+
+        OnChangeBetPressed();
     }
 
 

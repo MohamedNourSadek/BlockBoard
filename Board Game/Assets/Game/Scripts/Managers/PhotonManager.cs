@@ -19,6 +19,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public static string PlayerReadyKey = "ReadyState";
     public static string PlayerBetKey = "BetAmount";
+    public static string PlayerMaxBetKey = "MaxBetAmount";
+
     private PhotonView view;
 
     public void Awake()
@@ -171,10 +173,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         return PhotonNetwork.IsMasterClient;
     }
-    public void UpdateRoomBet(int betValue)
+    public void UpdateRoomBet(int betValue, int maxValue)
     {
         ExitGames.Client.Photon.Hashtable data = new ExitGames.Client.Photon.Hashtable();
+        
         data[PlayerBetKey] = betValue;
+        data[PlayerMaxBetKey] = maxValue;
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(data);
     }

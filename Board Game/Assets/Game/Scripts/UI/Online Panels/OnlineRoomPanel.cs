@@ -47,12 +47,14 @@ public class OnlineRoomPanel : Panel
         PhotonManager.Instance.OnPlayersNumberChange -= RefreshUI;
         PhotonManager.Instance.OnPlayersPropertiesUpdated -= RefreshUI;
         PhotonManager.Instance.OnRoomInfoUpdated -= OnRoomInfoUpdated;
-
     }
 
     public override void RefreshUI()
     {
         base.RefreshUI();
+
+        int maxBet = Manager.GetManager<ProfileManager>().GetPlayerProfile().Credit;
+        BetSlider.maxValue = maxBet;
 
         OnBetChanged(BetSlider.value);
 
@@ -294,7 +296,7 @@ public class OnlineRoomPanel : Panel
     }
     private void OnChangeBetPressed()
     {
-        PhotonManager.Instance.UpdateRoomBet((int)BetSlider.value);
+        PhotonManager.Instance.UpdateRoomBet((int)BetSlider.value, (int)BetSlider.maxValue);
     }
     private void OnBetChanged(float value)
     {
@@ -306,7 +308,10 @@ public class OnlineRoomPanel : Panel
         if (data.ContainsKey(PhotonManager.PlayerBetKey)) 
         { 
             int newBetAmount = ((int)data[PhotonManager.PlayerBetKey]);
+            int maxBetAmount = ((int)data[PhotonManager.PlayerMaxBetKey]);
+
             BetSlider.value = newBetAmount;
+            BetSlider.maxValue = maxBetAmount;
         }
     }
 }

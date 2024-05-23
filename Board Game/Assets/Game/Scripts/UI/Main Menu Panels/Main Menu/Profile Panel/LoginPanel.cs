@@ -51,7 +51,7 @@ public class LoginPanel : Panel
 
         if (state)
         {
-            Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+            Panel.GetPanel<UserInfoPanel>().Show();
         }
         else
         {
@@ -75,13 +75,13 @@ public class LoginPanel : Panel
     public void OnResetPasswordPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<ResetPasswordPanel>();
+        Panel.GetPanel<ResetPasswordPanel>().Show();
     }
 
     public void OnCancelPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<ProfileNoLoginPanel>();
+        Panel.GetPanel<ProfileNoLoginPanel>().Show();
     }
 
     public void OnEmailChanged(string value)

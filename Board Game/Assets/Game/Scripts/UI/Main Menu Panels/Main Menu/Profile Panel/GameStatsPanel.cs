@@ -44,6 +44,6 @@ public class GameStatsPanel : Panel
     public void OnBackPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+        Panel.GetPanel<UserInfoPanel>().Show();
     }
 }

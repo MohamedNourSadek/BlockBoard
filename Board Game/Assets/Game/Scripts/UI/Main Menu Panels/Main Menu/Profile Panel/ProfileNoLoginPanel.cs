@@ -21,16 +21,16 @@ public class ProfileNoLoginPanel : Panel
     public void OnLoginPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<LoginPanel>();
+        Panel.GetPanel<LoginPanel>().Show();
     }
     public void OnSignUpPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<SignUpPanel>();
+        Panel.GetPanel<SignUpPanel>().Show();
     }
     public void OnBackPressed()
     {
-        Panel.GetPanel<ProfilePanel>().Hide();   
+        Hide();
         Panel.GetPanel<MainMenuPanel>().Show();
     }
 }

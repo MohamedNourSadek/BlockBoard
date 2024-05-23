@@ -34,7 +34,40 @@ public class ModeSelectionPanel : Panel
     }
     private void OnOnlinePressed()
     {
+        Hide();
 
+        var isLoggedIn = Manager.GetManager<PlayfabManager>().IsLoggedIn;
+
+        if(isLoggedIn)
+        {
+            GetPanel<WaitingPanel>().Show(null, false);
+            var playfabManager = Manager.GetManager<PlayfabManager>();
+            playfabManager.DataReceivedCallback += OnDataRecieved;
+            playfabManager.GetUserData();
+        }
+        else
+        {
+            Hide();
+            GetPanel<ProfileNoLoginPanel>().Show();
+        }
+    }
+    private void OnDataRecieved(bool success, object data)
+    {
+        var playfabManager = Manager.GetManager<PlayfabManager>();
+        playfabManager.DataReceivedCallback -= OnDataRecieved;
+
+        if (success)
+        {
+            GetPanel<WaitingPanel>().Hide();
+            Debug.Log("Showing Online rooms");
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show("Error", message: "Failed to get user data", ButtonTypes.Ok, ButtonTypes.None,
+                () => {
+                    Panel.GetPanel<MainMenuPanel>().Show();
+                });
+        }
     }
     private void OnOfflinePressed()
     {

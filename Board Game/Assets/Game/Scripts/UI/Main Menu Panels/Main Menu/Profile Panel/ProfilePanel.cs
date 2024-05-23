@@ -8,10 +8,10 @@ public class ProfilePanel : Panel
     {
         base.Show();
 
-        if(Manager.GetManager<PlayfabManager>().IsLoggedIn)
-            Show<UserInfoPanel>();
-        else 
-            Show<ProfileNoLoginPanel>();
+        if (Manager.GetManager<PlayfabManager>().IsLoggedIn)
+            Panel.GetPanel<UserInfoPanel>().Show();
+        else
+            Panel.GetPanel<ProfileNoLoginPanel>().Show();
     }
 
 }

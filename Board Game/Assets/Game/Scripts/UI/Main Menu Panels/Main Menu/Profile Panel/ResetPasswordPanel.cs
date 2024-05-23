@@ -53,7 +53,7 @@ public class ResetPasswordPanel : Panel
     public void OnCancelPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<LoginPanel>();
+        Panel.GetPanel<LoginPanel>().Show();
     }
     public void OnEmailChanged(string value)
     {

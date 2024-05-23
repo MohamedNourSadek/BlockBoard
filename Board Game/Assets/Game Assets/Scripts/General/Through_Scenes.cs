@@ -7,6 +7,6 @@ public class Through_Scenes : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        DebugManager.Instance.Log(this.gameObject.name);
+        Debug.Log(this.gameObject.name);
     }
 }

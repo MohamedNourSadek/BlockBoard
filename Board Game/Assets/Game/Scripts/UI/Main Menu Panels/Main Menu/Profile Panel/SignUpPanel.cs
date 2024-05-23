@@ -54,7 +54,7 @@ public class SignUpPanel : Panel
 
         if (state)
         {
-            Panel.GetPanel<ProfilePanel>().Show<UserInfoPanel>();
+            Panel.GetPanel<UserInfoPanel>().Show();
         }
         else
         {
@@ -76,7 +76,7 @@ public class SignUpPanel : Panel
     private void OnBackPressed()
     {
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<ProfileNoLoginPanel>();
+        Panel.GetPanel<ProfileNoLoginPanel>().Show();
     }
     private void OnUsernameChanged(string value)
     {

@@ -668,11 +668,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         Cross_Scene_Data.players.Add(master_Info, masterPlayer.ActorNumber);
         if (master_Info.IsPlayerReady)
         {
-            Player1_Banner_Highlight.SetActive(true); DebugManager.Instance.Log("Master is ready");
+            Player1_Banner_Highlight.SetActive(true); Debug.Log("Master is ready");
         }
         else
         {
-            Player1_Banner_Highlight.SetActive(false); DebugManager.Instance.Log("Master is not ready");
+            Player1_Banner_Highlight.SetActive(false); Debug.Log("Master is not ready");
         }
         Player1_Text.text = master_Info.PlayerName;
         if (Guests.Count > 0)

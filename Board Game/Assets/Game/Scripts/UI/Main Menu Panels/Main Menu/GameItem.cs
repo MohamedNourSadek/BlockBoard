@@ -41,13 +41,13 @@ public class GameItem : MonoBehaviour
         }
         else
         {
-            DebugManager.Instance.Log("Missing Implementation of tutorial open");
+            Debug.Log("Missing Implementation of tutorial open");
             OnOpenTutorialNo();
         }
     }
     public void OnOpenTutorialYes()
     {
-        DebugManager.Instance.Log("Missing Implementation of tutorial open");
+        Debug.Log("Missing Implementation of tutorial open");
         Manager.GetManager<TutorialsManager>().SetTutorialState(GameType, true);
     }
     public void OnOpenTutorialNo()

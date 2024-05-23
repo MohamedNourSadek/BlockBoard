@@ -53,11 +53,11 @@ public class UserInfoPanel : Panel
     {
         Manager.GetManager<PlayfabManager>().Logout();
         Hide();
-        Panel.GetPanel<ProfilePanel>().Show<LoginPanel>();
+        Panel.GetPanel<LoginPanel>().Show();
     }
     private void OnBackPressed()
     {
-        Panel.GetPanel<ProfilePanel>().Hide();
+        Hide();
         Panel.GetPanel<MainMenuPanel>().Show();
     }
     private void OnChessPressed()

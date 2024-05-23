@@ -12,7 +12,9 @@ public class PlayerRoomItem : Panel
     public void SetPlayerInfo(Photon.Realtime.Player playerInfo)
     {
         PlayerName.text = playerInfo.NickName;
-        PlayerHighlight.gameObject.SetActive(false);
+        bool isReady = (((string)playerInfo.CustomProperties[PhotonManager.PlayerReadyKey]) == "true");
+        
+        PlayerHighlight.gameObject.SetActive(isReady);
     }
 
 }

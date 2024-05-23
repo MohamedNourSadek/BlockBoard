@@ -2,6 +2,7 @@ using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class OnlineRoomPanel : Panel
 
     public Slider BetSlider;
     public TMP_Text BetText;
+    public TMP_Text ReadyButtonText;
 
     public PlayerRoomItem PlayerRoomItemPrefab;
     public Transform PlayerListContent;
@@ -33,6 +35,7 @@ public class OnlineRoomPanel : Panel
         BetSlider.onValueChanged.AddListener(OnBetChanged);
 
         PhotonManager.Instance.OnPlayersNumberChange += RefreshUI;
+        PhotonManager.Instance.OnPlayersPropertiesUpdated += RefreshUI;
     }
 
     public override void RefreshUI()
@@ -51,6 +54,8 @@ public class OnlineRoomPanel : Panel
             var playerItem = Instantiate(PlayerRoomItemPrefab, PlayerListContent);
             playerItem.SetPlayerInfo(player);
         }
+
+        SetReadyButtonUi(PhotonManager.Instance.GetReadyState());
 
         /*
         Cross_Scene_Data.players.Clear();
@@ -254,12 +259,20 @@ public class OnlineRoomPanel : Panel
 
     private void OnReadyPressed()
     {
+        bool readyState = PhotonManager.Instance.SetMyReadyState();
+        SetReadyButtonUi(readyState);
+    }
+
+    private void SetReadyButtonUi(bool state)
+    {
+        ReadyButtonText.text = state ? "Unready" : "Ready";
     }
 
     private void OnLeavePressed()
     {
         Hide();
         Panel.GetPanel<OnlineModesPanel>().Show();
+        PhotonManager.Instance.LeaveRoom();
     }
 
     private void OnStartPressed()

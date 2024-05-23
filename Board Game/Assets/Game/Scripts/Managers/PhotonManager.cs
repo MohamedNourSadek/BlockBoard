@@ -14,8 +14,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public UnityAction OnPhotonFullyConnected;
     public UnityAction<bool, object> OnRoomJoinCallback;
     public UnityAction OnPlayersNumberChange;
+    public UnityAction OnPlayersPropertiesUpdated;
 
     public static string PlayerReadyKey = "ReadyState";
+    private PhotonView view;
 
     public void Awake()
     {
@@ -23,6 +25,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Instance = this;
         else
             Destroy(gameObject);
+
+        view = GetComponent<PhotonView>();  
     }
 
     public void ConnectToPhoton()
@@ -135,8 +139,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             });
         }
     }
+    public bool SetMyReadyState()
+    {
+        bool isReady = GetReadyState();
 
+        bool newReadyState = !isReady;
 
+        ExitGames.Client.Photon.Hashtable hs = new ExitGames.Client.Photon.Hashtable();
+        hs[PlayerReadyKey] = newReadyState ? "true" : "false";
+        PhotonNetwork.SetPlayerCustomProperties(hs);
+
+        return newReadyState;
+    }
+    public bool GetReadyState()
+    {
+        return (((string)PhotonNetwork.LocalPlayer.CustomProperties[PlayerReadyKey]) == "true");
+    }
+    public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+        OnPlayersPropertiesUpdated?.Invoke();
+    }
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();

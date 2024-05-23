@@ -32,6 +32,7 @@ public class ModeSelectionPanel : Panel
         Hide();
         Panel.GetPanel<MainMenuPanel>().Show();
     }
+
     private void OnOnlinePressed()
     {
         Hide();
@@ -56,18 +57,16 @@ public class ModeSelectionPanel : Panel
         var playfabManager = Manager.GetManager<PlayfabManager>();
         playfabManager.DataReceivedCallback -= OnDataRecieved;
 
-        if (success)
-        {
-            GetPanel<WaitingPanel>().Hide();
-            Panel.GetPanel<OnlineModesPanel>().Show();
-        }
-        else
-        {
-            Panel.GetPanel<MessagePanel>().Show("Error", message: "Failed to get user data", ButtonTypes.Ok, ButtonTypes.None,
-                () => {
-                    Panel.GetPanel<MainMenuPanel>().Show();
-                });
-        }
+        PhotonManager.Instance.OnPhotonFullyConnected += OnPhotonFullyConnected;
+        PhotonManager.Instance.ConnectToPhoton();
+    }
+
+    private void OnPhotonFullyConnected()
+    {
+        PhotonManager.Instance.OnPhotonFullyConnected -= OnPhotonFullyConnected;
+
+        GetPanel<WaitingPanel>().Hide();
+        GetPanel<OnlineModesPanel>().Show();
     }
     private void OnOfflinePressed()
     {

@@ -11,6 +11,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     public static PhotonManager Instance;
 
+    public UnityAction OnPhotonFullyConnected;
     public UnityAction<bool, object> OnRoomJoinCallback;
     public UnityAction OnPlayersNumberChange;
 
@@ -75,6 +76,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             UpdateLeadBoard(GameType.Poker);
             */
         }
+
+        OnPhotonFullyConnected?.Invoke();
     }
     public void JoinRoom(string roomName)
     {
@@ -108,7 +111,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         RoomOptions roomOp = new RoomOptions();
 
         byte maxplayers = 2;
-        
+
         if (Manager.GameManager.CurrentGame == GameType.Poker)
             maxplayers = 4;
 
@@ -120,8 +123,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Cross_Scene_Data.UseNewMaxScore = false;
         Cross_Scene_Data.PlayingPublic = true;
 
-        PhotonNetwork.JoinRandomOrCreateRoom(null, maxplayers, MatchmakingMode.FillRoom, null, null, null, roomOp, null);
+        bool join = PhotonNetwork.JoinRandomOrCreateRoom(null, maxplayers, MatchmakingMode.FillRoom, null, null, null, roomOp, null);
+
+        if (!join)
+        {
+            Panel.GetPanel<WaitingPanel>().Hide();
+
+            Panel.GetPanel<MessagePanel>().Show("Error", "Error Trying to find a lobby", ButtonTypes.Ok, ButtonTypes.None, () =>
+            {
+                Panel.GetPanel<ModeSelectionPanel>().Show();
+            });
+        }
     }
+
 
     public override void OnConnectedToMaster()
     {

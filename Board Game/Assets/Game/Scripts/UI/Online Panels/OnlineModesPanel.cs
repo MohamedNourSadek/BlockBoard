@@ -32,7 +32,8 @@ public class OnlineModesPanel : Panel
     }
     private void OnHostPrivatePressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<HostLobbyPanel>().Show();
     }
     private void OnJoinPrivatePressed()
     {

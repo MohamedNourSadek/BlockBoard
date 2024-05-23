@@ -59,7 +59,7 @@ public class ModeSelectionPanel : Panel
         if (success)
         {
             GetPanel<WaitingPanel>().Hide();
-            Debug.Log("Showing Online rooms");
+            Panel.GetPanel<OnlineModesPanel>().Show();
         }
         else
         {

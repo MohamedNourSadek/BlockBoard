@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,16 +12,38 @@ public class InputCorrectionManager : Manager
         {
             case InputType.Email:
                 return GetEmailCorrection(input);
-                break;
             case InputType.Username:
                 return GetUsernameCorrection(input);
-                break;
             case InputType.Password:
                 return GetPasswordCorrection(input);
-                break;
+            case InputType.RoomName:
+                return GetRoomNameCorrection(input);
             default:
                 return new InputCorrection { IsInputCorrect = true, CorrectionMessage = "" };
         }
+    }
+
+    private static InputCorrection GetRoomNameCorrection(string input)
+    {
+        InputCorrection correction = new InputCorrection();
+
+        if (input.Length >= 4)
+        {
+            correction.CorrectionMessage = "";
+            correction.IsInputCorrect = true;
+        }
+        else if (input.Length == 0)
+        {
+            correction.CorrectionMessage = "";
+            correction.IsInputCorrect = false;
+        }
+        else
+        {
+            correction.CorrectionMessage = "Your room name should be 4 letters or more";
+            correction.IsInputCorrect = false;
+        }
+
+        return correction;
     }
 
     public static InputCorrection GetEmailCorrection(string email)
@@ -102,5 +125,6 @@ public enum InputType
 {
     Email,
     Username,
-    Password
+    Password,
+    RoomName
 }

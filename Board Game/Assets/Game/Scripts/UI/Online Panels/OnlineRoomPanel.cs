@@ -37,6 +37,13 @@ public class OnlineRoomPanel : Panel
         PhotonManager.Instance.OnPlayersNumberChange += RefreshUI;
         PhotonManager.Instance.OnPlayersPropertiesUpdated += RefreshUI;
     }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        PhotonManager.Instance.OnPlayersNumberChange -= RefreshUI;
+        PhotonManager.Instance.OnPlayersPropertiesUpdated -= RefreshUI;
+    }
 
     public override void RefreshUI()
     {
@@ -56,6 +63,10 @@ public class OnlineRoomPanel : Panel
         }
 
         SetReadyButtonUi(PhotonManager.Instance.GetReadyState());
+
+        bool isMaster = PhotonManager.Instance.IsMaster();
+        StartButton.gameObject.SetActive(isMaster);
+        StartButton.interactable = PhotonManager.Instance.AreAllPlayersReady();
 
         /*
         Cross_Scene_Data.players.Clear();
@@ -262,29 +273,25 @@ public class OnlineRoomPanel : Panel
         bool readyState = PhotonManager.Instance.SetMyReadyState();
         SetReadyButtonUi(readyState);
     }
-
     private void SetReadyButtonUi(bool state)
     {
         ReadyButtonText.text = state ? "Unready" : "Ready";
     }
-
+ 
     private void OnLeavePressed()
     {
         Hide();
         Panel.GetPanel<OnlineModesPanel>().Show();
         PhotonManager.Instance.LeaveRoom();
     }
-
     private void OnStartPressed()
     {
 
     }
-
     private void OnChangeBetPressed()
     {
 
     }
-
     private void OnBetChanged(float value)
     {
         BetText.text = value.ToString();

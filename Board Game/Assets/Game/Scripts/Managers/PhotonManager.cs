@@ -155,6 +155,25 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         return (((string)PhotonNetwork.LocalPlayer.CustomProperties[PlayerReadyKey]) == "true");
     }
+    public bool AreAllPlayersReady()
+    {
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            if (((string)player.CustomProperties[PlayerReadyKey]) != "true")
+                return false;
+        }
+
+        return true;
+    }
+    public bool IsMaster()
+    {
+        return PhotonNetwork.IsMasterClient;
+    }
+    
+    
+    
+    
+    
     public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);

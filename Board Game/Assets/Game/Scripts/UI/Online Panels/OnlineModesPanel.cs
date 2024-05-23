@@ -38,7 +38,10 @@ public class OnlineModesPanel : Panel
 
     private void OnPlayPublicPressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<WaitingPanel>().Show(null, false);
+        PhotonManager.Instance.OnRoomJoinCallback += OnRoomJoinCallback;
+        PhotonManager.Instance.JoinPublic();
     }
     private void OnHostPrivatePressed()
     {
@@ -60,4 +63,24 @@ public class OnlineModesPanel : Panel
         Panel.GetPanel<ModeSelectionPanel>().Show();
         Manager.GameManager.GameMode = GameMode.None;
     }
+
+    private void OnRoomJoinCallback(bool state, object result)
+    {
+        PhotonManager.Instance.OnRoomJoinCallback -= OnRoomJoinCallback;
+        Panel.GetPanel<WaitingPanel>().Hide();
+
+        if (state)
+        {
+            Hide();
+            Panel.GetPanel<OnlineRoomPanel>().Show();
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show("Error", ((string)result), ButtonTypes.Ok, ButtonTypes.None, () =>
+            {
+                Show();
+            });
+        }
+    }
+
 }

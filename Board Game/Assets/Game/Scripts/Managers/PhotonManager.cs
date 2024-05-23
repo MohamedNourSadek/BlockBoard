@@ -103,7 +103,25 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
+    public void JoinPublic()
+    {
+        RoomOptions roomOp = new RoomOptions();
 
+        byte maxplayers = 2;
+        
+        if (Manager.GameManager.CurrentGame == GameType.Poker)
+            maxplayers = 4;
+
+        roomOp.MaxPlayers = maxplayers;
+        roomOp.IsVisible = true;
+        roomOp.IsOpen = true;
+
+        Cross_Scene_Data.where = WhereTo.Muliplayer;
+        Cross_Scene_Data.UseNewMaxScore = false;
+        Cross_Scene_Data.PlayingPublic = true;
+
+        PhotonNetwork.JoinRandomOrCreateRoom(null, maxplayers, MatchmakingMode.FillRoom, null, null, null, roomOp, null);
+    }
 
     public override void OnConnectedToMaster()
     {

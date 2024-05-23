@@ -29,7 +29,12 @@ public class OnlineModesPanel : Panel
     public override void Show()
     {
         base.Show();
+
+        Manager.GameManager.GameMode = GameMode.Online;
+
         PhotonManager.Instance.SetPhotonOnlineSettings();
+        TitleText.text = Manager.GameManager.CurrentGame.ToString() + " Online";
+
     }
 
     private void OnPlayPublicPressed()
@@ -54,5 +59,6 @@ public class OnlineModesPanel : Panel
     {
         Hide();
         Panel.GetPanel<ModeSelectionPanel>().Show();
+        Manager.GameManager.GameMode = GameMode.None;
     }
 }

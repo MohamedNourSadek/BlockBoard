@@ -24,6 +24,8 @@ public class OfflineRoomPanel : Panel
     {
         base.RefreshUI();
 
+        Manager.GameManager.GameMode = GameMode.Offline;
+
         GameTile.text = "Offline " + Manager.GameManager.CurrentGame.ToString();
         
         foreach(GameType game in GameSettings.Keys)

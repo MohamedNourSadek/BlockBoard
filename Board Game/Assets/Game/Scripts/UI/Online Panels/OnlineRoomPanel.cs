@@ -31,6 +31,8 @@ public class OnlineRoomPanel : Panel
         StartButton.onClick.AddListener(OnStartPressed);
         ChangeBetButton.onClick.AddListener(OnChangeBetPressed);
         BetSlider.onValueChanged.AddListener(OnBetChanged);
+
+        PhotonManager.Instance.OnPlayersNumberChange += RefreshUI;
     }
 
     public override void RefreshUI()

@@ -12,7 +12,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public static PhotonManager Instance;
 
     public UnityAction<bool, object> OnRoomJoinCallback;
-    public UnityAction OnRoomLeft;
+    public UnityAction OnPlayersNumberChange;
 
     public static string PlayerReadyKey = "ReadyState";
 
@@ -78,10 +78,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public void JoinRoom(string roomName)
     {
+        Debug.Log(PhotonNetwork.GameVersion);
+
         PhotonNetwork.JoinRoom(roomName);
     }
     public void CreateRoom(string roomName)
     {
+        Debug.Log(PhotonNetwork.GameVersion);
+
         RoomOptions roomOp = new RoomOptions();
         
         roomOp.IsVisible = false;
@@ -120,5 +124,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         OnRoomJoinCallback?.Invoke(false, message);
+    }
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        OnPlayersNumberChange?.Invoke();
+    }
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        OnPlayersNumberChange?.Invoke();
     }
 }

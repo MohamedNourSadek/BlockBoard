@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +36,11 @@ public class JoinLobbyPanel : Panel
 
     private void OnJoinPressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<WaitingPanel>().Show(null, false);
+
+        PhotonManager.Instance.OnRoomJoinCallback += OnRoomJoinCallback;
+        PhotonManager.Instance.JoinRoom(RoomInput.text);
     }
     
     private void OnRoomInputChanged(string roomName)
@@ -45,4 +50,24 @@ public class JoinLobbyPanel : Panel
         RoomErrorText.text = roomNameCorrection.CorrectionMessage;
         JoinButton.interactable = roomNameCorrection.IsInputCorrect;
     }
+
+    private void OnRoomJoinCallback(bool state, object result)
+    {
+        PhotonManager.Instance.OnRoomJoinCallback -= OnRoomJoinCallback;
+        Panel.GetPanel<WaitingPanel>().Hide();
+
+        if (state)
+        {
+            Hide();
+            Panel.GetPanel<OnlineRoomPanel>().Show();
+        }
+        else
+        {
+            Panel.GetPanel<MessagePanel>().Show("Error", ((string)result), ButtonTypes.Ok, ButtonTypes.None, () =>
+            {
+                Show();
+            });
+        }
+    }
+
 }

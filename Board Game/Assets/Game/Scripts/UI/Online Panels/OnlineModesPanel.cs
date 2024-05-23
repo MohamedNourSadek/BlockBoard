@@ -43,7 +43,8 @@ public class OnlineModesPanel : Panel
     }
     private void OnJoinPrivatePressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<JoinLobbyPanel>().Show();
     }
     private void OnLeaderboardPressed()
     {

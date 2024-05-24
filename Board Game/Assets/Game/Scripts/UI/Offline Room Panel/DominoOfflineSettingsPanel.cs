@@ -16,22 +16,12 @@ public class DominoOfflineSettingsPanel : Panel
         base.Awake();
 
         WinScoreSlider.onValueChanged.AddListener(OnWinScoreChanged);
-        WinScoreSlider.value = GetWinScore();
+        WinScoreSlider.value = Manager.GameManager.DominoSettings.DominoWinScore;
     }
 
-    private float GetWinScore()
-    {
-        float winScore = SaveManager.GetFloat(SaveManager.DominoDefaultScoreKey);
-
-        if (winScore == 0f)
-            return 100f;
-        else
-            return winScore;
-    }
     private void SetWinScore(float value)
     {
-        SaveManager.SetFloat(SaveManager.DominoDefaultScoreKey, value);
-        Cross_Scene_Data.DominoWinScore = value;
+        Manager.GameManager.DominoSettings.DominoWinScore = (int)(value);
         WinScoreText.text = value.ToString();
     }
     public void OnWinScoreChanged(float value)

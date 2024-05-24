@@ -33,15 +33,15 @@ public class Organizer : MonoBehaviourPunCallbacks
 
         if (Manager.GameManager.GameMode == GameMode.Offline)
         {
-            ChangeMaxScore((int)Cross_Scene_Data.DominoWinScore);
+            ChangeMaxScore(Manager.GameManager.DominoSettings.DominoWinScore);
         }
         else
         {
             view = GetComponent<PhotonView>();
 
-            if (PhotonNetwork.IsMasterClient && Cross_Scene_Data.UseNewMaxScore)
+            if (PhotonNetwork.IsMasterClient)
             {
-                view.RPC("ChangeMaxScore", RpcTarget.AllBuffered, (int)Cross_Scene_Data.DominoWinScore);
+                view.RPC("ChangeMaxScore", RpcTarget.AllBuffered, Manager.GameManager.DominoSettings.DominoWinScore);
             }
         }
 
@@ -76,7 +76,7 @@ public class Organizer : MonoBehaviourPunCallbacks
         Data_Result = result;
         BetAmount = Int32.Parse(PhotonNetwork.CurrentRoom.CustomProperties[PhotonManager.PlayerBetKey].ToString());
 
-        if (!Cross_Scene_Data.In_Domino_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Domino))
         {
             Handle_Data(Data_Result);
         }
@@ -102,7 +102,7 @@ public class Organizer : MonoBehaviourPunCallbacks
         int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
         int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
 
-        int CurrentGame = (!Cross_Scene_Data.In_Domino_Game) ? 1 : 0;
+        int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Domino)) ? 1 : 0;
 
         Game_Stats mystats = Cross_Scene_Data.mystats[0];
         int Current_Credit;
@@ -127,7 +127,7 @@ public class Organizer : MonoBehaviourPunCallbacks
             Current_Credit += BetAmount;
         }
 
-        if (!Cross_Scene_Data.In_Domino_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Domino))
         {
             int Past_Avg = Int32.Parse(result.Data[mystats.Avg_Op_Key].Value);
             int AllGames_TotalSkill = (Past_Avg * mystats.Games_Played) + Opponent_Total_Skill;
@@ -162,8 +162,6 @@ public class Organizer : MonoBehaviourPunCallbacks
         };
 
         PlayFabClientAPI.UpdateUserData(request, OnDataSent, OnSendError);
-
-        Cross_Scene_Data.In_Domino_Game = true;
     }
     private void OnDataSent(UpdateUserDataResult result)
     {
@@ -249,28 +247,29 @@ public class Organizer : MonoBehaviourPunCallbacks
     {
         player1.Game_Is_On = false;
 
+
         if (Round_Winner == Winner.Master)
         {
-            Cross_Scene_Data.Current_Master_score += player1.Calculate_Score(player1.Guest_Cards);
-            Cross_Scene_Data.Master_Won_LastRound = true;
+            Manager.GameManager.CurrentScore[0] = player1.Calculate_Score(player1.Guest_Cards);
+            Manager.GameManager.MasterWonLastGame = true;
         }
         else if (Round_Winner == Winner.Guest)
         {
-            Cross_Scene_Data.Current_Guest_score += player1.Calculate_Score(player1.Master_Cards);
-            Cross_Scene_Data.Master_Won_LastRound = false;
+            Manager.GameManager.CurrentScore[1] = player1.Calculate_Score(player1.Master_Cards);
+            Manager.GameManager.MasterWonLastGame = false;
         }
 
         Winner MatchWinner = Winner.Draw;
 
-        if (Cross_Scene_Data.Current_Master_score >= MaxScore)
+        if (Manager.GameManager.CurrentScore[0] >= MaxScore)
             MatchWinner = Winner.Master;
-        else if (Cross_Scene_Data.Current_Guest_score >= MaxScore)
+        else if (Manager.GameManager.CurrentScore[1] >= MaxScore)
             MatchWinner = Winner.Guest;
         else
             MatchWinner = Winner.NoWinner;
 
-        player1.MyScore.text = master_client ? Cross_Scene_Data.Current_Master_score.ToString() : Cross_Scene_Data.Current_Guest_score.ToString();
-        player1.OtherScore.text = master_client ? Cross_Scene_Data.Current_Guest_score.ToString() : Cross_Scene_Data.Current_Master_score.ToString();
+        player1.MyScore.text = master_client ? Manager.GameManager.CurrentScore[0].ToString() : Manager.GameManager.CurrentScore[1].ToString();
+        player1.OtherScore.text = master_client ? Manager.GameManager.CurrentScore[1].ToString() : Manager.GameManager.CurrentScore[0].ToString();
 
         string Message = "";
 
@@ -314,21 +313,19 @@ public class Organizer : MonoBehaviourPunCallbacks
             return;
         }
 
-        if (!(Manager.GameManager.GameMode == GameMode.Offline) && Cross_Scene_Data.In_Domino_Game )
+        if (!(Manager.GameManager.GameMode == GameMode.Offline) && (Manager.GameManager.CurrentGame == GameType.Domino))
         {
             if(!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);
-
-            Cross_Scene_Data.In_Domino_Game = false;
         }
 
         General_UI_Manager.EndGame_Message.text = Message;
         General_UI_Manager.EndGame_Menu.SetActive(true);
 
         General_UI_Manager.Game_UI.SetActive(false);
-        Cross_Scene_Data.Current_Master_score = 0;
-        Cross_Scene_Data.Current_Guest_score = 0;
-        Cross_Scene_Data.Master_Won_LastRound = true;
+        Manager.GameManager.CurrentScore[0] = 0;
+        Manager.GameManager.CurrentScore[1] = 0;
+        Manager.GameManager.MasterWonLastGame = true;
     }
     void UpdateMaster_Client()
     {
@@ -354,15 +351,15 @@ public class Organizer : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         PhotonNetwork.LeaveRoom();
-        Cross_Scene_Data.Current_Master_score = 200;
+        Manager.GameManager.CurrentScore[0] = 200;
         UpdateMaster_Client();
 
         my_WinState = MyWin_State.Lost;
         End_Round(Winner.Master,false,true);
 
-        Cross_Scene_Data.Current_Guest_score = 0;
-        Cross_Scene_Data.Current_Master_score = 0;
-        Cross_Scene_Data.Master_Won_LastRound = true;
+        Manager.GameManager.CurrentScore[0] = 0;
+        Manager.GameManager.CurrentScore[1] = 0;
+        Manager.GameManager.MasterWonLastGame = true;
     }
     private void Update()
     {

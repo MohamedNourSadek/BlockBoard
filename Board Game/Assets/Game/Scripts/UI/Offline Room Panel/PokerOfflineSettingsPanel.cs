@@ -15,22 +15,12 @@ public class PokerOfflineSettingsPanel : Panel
         base.Awake();
 
         BetAmountSlider.onValueChanged.AddListener(OnBetAmountChanged);
-        BetAmountSlider.value = GetBetScore();
+        BetAmountSlider.value = Manager.GameManager.PokerSettings.PokerBetAmount;
     }
 
-    private float GetBetScore()
-    {
-        float betAmount = SaveManager.GetFloat(SaveManager.DominoDefaultScoreKey);
-
-        if (betAmount == 0f)
-            return 100f;
-        else
-            return betAmount;
-    }
     private void SetBetAmount(float value)
     {
-        SaveManager.SetFloat(SaveManager.DominoDefaultScoreKey, value);
-        Cross_Scene_Data.BetAmount = value;
+        Manager.GameManager.PokerSettings.PokerBetAmount = (int)(value);    
         BetAmountText.text = value.ToString();
     }
     public void OnBetAmountChanged(float value)

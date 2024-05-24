@@ -85,15 +85,15 @@ public class Player : MonoBehaviour
         
         UpdateMaster_Client();
 
-        MyScore.text = master_client ? Cross_Scene_Data.Current_Master_score.ToString() : Cross_Scene_Data.Current_Guest_score.ToString();
-        OtherScore.text = master_client ? Cross_Scene_Data.Current_Guest_score.ToString() : Cross_Scene_Data.Current_Master_score.ToString();
+        MyScore.text = Manager.GameManager.CurrentScore[0].ToString();
+        OtherScore.text = Manager.GameManager.CurrentScore[1].ToString();
 
         Timer = Max_Time;
         
         if(!(Manager.GameManager.GameMode == GameMode.Offline))
             view = GetComponent<PhotonView>();
 
-        if (Cross_Scene_Data.Master_Won_LastRound)
+        if (Manager.GameManager.MasterWonLastGame)
             Master_Turn = false;
         else
             Master_Turn = true;

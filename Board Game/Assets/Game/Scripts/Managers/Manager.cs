@@ -9,7 +9,8 @@ public class Manager : SerializedMonoBehaviour
     public static Dictionary<Type, Manager> Managers = new Dictionary<Type, Manager>();
     
     public static GameManager GameManager;
-    
+    public static SettingsManager SettingsManager;
+
     public virtual void Awake()
     {
         if (!Managers.ContainsKey(GetType()))
@@ -24,7 +25,6 @@ public class Manager : SerializedMonoBehaviour
         if(Managers.ContainsKey(GetType()))
             Managers.Remove(GetType());
     }
-
     public static T GetManager<T>() where T : Manager
     {
         Type type = typeof(T);

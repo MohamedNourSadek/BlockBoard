@@ -95,7 +95,7 @@ public class Camera_Controller : MonoBehaviour
             First_Touch = true;
 
             //Reset Camera
-            if (Cross_Scene_Data.Camera_Snap)
+            if (Manager.SettingsManager.CameraSnap)
             {
                 this.transform.rotation = Quaternion.Lerp(this.transform.rotation, InitialRotation, BackTo_Origin_Speed * Time.deltaTime);
                 Added_Rotation_X = Mathf.Lerp(Added_Rotation_X, 0f, BackTo_Origin_Speed * Time.deltaTime);
@@ -142,7 +142,7 @@ public class Camera_Controller : MonoBehaviour
         }
         else
         {
-            if (Cross_Scene_Data.Camera_Snap)
+            if (Manager.SettingsManager.CameraSnap)
             {
                 transform.position = Vector3.Lerp(transform.position, InitialPosition, Time.deltaTime * BackTo_Origin_Position_Speed);
             }

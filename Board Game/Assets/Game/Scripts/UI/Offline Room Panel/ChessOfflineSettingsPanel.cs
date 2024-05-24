@@ -22,54 +22,26 @@ public class ChessOfflineSettingsPanel : Panel
         TimeBonusSlider.onValueChanged.AddListener(OnTimeBonusChange);
         DifficultySlider.onValueChanged.AddListener(OnDifficultyChange);
 
-        DifficultySlider.value = GetDifficulty();
-        TimeBonusSlider.value = GetTimeBonus();
-        TimeSlider.value = GetTime();
+        DifficultySlider.value = Manager.GameManager.ChessSettings.ChessDifficulty;
+        TimeBonusSlider.value = Manager.GameManager.ChessSettings.ChessBonusTime;
+        TimeSlider.value = Manager.GameManager.ChessSettings.ChessTime;
     }
-
 
     private void SetDifficulty(float value)
     {
-        SaveManager.SetFloat(SaveManager.ChessDefaultDifficultyKey, value);
-        Cross_Scene_Data.chess_difficulty = value;
+        Manager.GameManager.ChessSettings.ChessDifficulty = (int)value;
         DifficultyText.text = value.ToString();
     }
     private void SetTime(float value)
     {
-        SaveManager.SetFloat(SaveManager.ChessDefaultTimeKey, value);
-        Cross_Scene_Data.chess_Time = value;
+        Manager.GameManager.ChessSettings.ChessTime = (int)value;
         TimeText.text = value.ToString();
     }
     private void SetTimeBonus(float value)
     {
-        SaveManager.SetFloat(SaveManager.ChessDefaultBonusKey, value);
-        Cross_Scene_Data.chess_bonus = value;
+        Manager.GameManager.ChessSettings.ChessBonusTime = (int)value;
         TimeBonusText.text = value.ToString();
     }
-    private float GetDifficulty()
-    {
-        float diff = SaveManager.GetFloat(SaveManager.ChessDefaultDifficultyKey);
-
-        if (diff == 0)
-            return 100f;
-        else
-            return diff;
-    }
-    private float GetTime()
-    {
-        float time = SaveManager.GetFloat(SaveManager.ChessDefaultTimeKey);
-
-        if (time == 0f)
-            return 10f;
-        else
-            return time;
-    }
-    private float GetTimeBonus()
-    {
-        float bonus = SaveManager.GetFloat(SaveManager.ChessDefaultBonusKey);
-        return bonus;
-    }
-
 
     private void OnTimeChange(float value)
     {

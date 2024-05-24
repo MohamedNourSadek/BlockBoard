@@ -13,7 +13,7 @@ public class MatchSettings : MonoBehaviour
     private void Awake()
     {
         MaxScore.value = GetMaxScore();
-        Cross_Scene_Data.DominoWinScore = GetMaxScore();
+        Manager.GameManager.DominoSettings.DominoWinScore = GetMaxScore();
 
         maxScore_text.text = GetMaxScore().ToString();
         MaxScore.onValueChanged.AddListener(OnMaxScore_Change);
@@ -24,16 +24,16 @@ public class MatchSettings : MonoBehaviour
     {
         SetMaxScore(value);
         maxScore_text.text = value.ToString();
-        Cross_Scene_Data.DominoWinScore = value;
+        Manager.GameManager.DominoSettings.DominoWinScore = (int)value;
     }
-    public static float GetMaxScore()
+    public static int GetMaxScore()
     {
         float MaxScore = PlayerPrefs.GetFloat(MaxScore_string);
 
         if (MaxScore == 0f)
-            return 100f;
+            return 100;
         else
-            return MaxScore;
+            return (int)MaxScore;
     }
     void SetMaxScore(float Value)
     {

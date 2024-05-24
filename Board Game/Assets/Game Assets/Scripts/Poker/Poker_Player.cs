@@ -832,12 +832,10 @@ public class Poker_Player : MonoBehaviour
         End_Round_Pannel.SetActive(true);
         float Timer = NextRound_Delay;
 
-        if (Cross_Scene_Data.In_Poker_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
+        if ((Manager.GameManager.CurrentGame == GameType.Poker) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (!(organizer.my_WinState == MyWin_State.Lost))
                 organizer.Handle_Data(organizer.Data_Result);
-
-            Cross_Scene_Data.In_Poker_Game = false;
         }
 
 

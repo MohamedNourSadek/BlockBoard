@@ -45,7 +45,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         {
             view = GetComponent<PhotonView>();
 
-            if (PhotonNetwork.IsMasterClient && Cross_Scene_Data.UseNewMaxScore)
+            if (PhotonNetwork.IsMasterClient)
             {
                 Change_Bet(BetAmount);
                 view.RPC("Change_Bet", RpcTarget.OthersBuffered, BetAmount);
@@ -53,7 +53,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         }
         else
         {
-            Change_Bet(Cross_Scene_Data.BetAmount);
+            Change_Bet(Manager.GameManager.PokerSettings.PokerBetAmount);
         }
 
         if (client == identity.master)
@@ -74,7 +74,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         Data_Result = result;
         BetAmount = Int32.Parse(PhotonNetwork.CurrentRoom.CustomProperties[PhotonManager.PlayerBetKey].ToString());
 
-        if (!Cross_Scene_Data.In_Poker_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Poker))
         {
             Handle_Data(Data_Result);
         }
@@ -94,7 +94,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         int Win = (my_WinState == MyWin_State.Won) ? 1 : 0;
         int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
         int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
-        int CurrentGame = (!Cross_Scene_Data.In_Poker_Game) ? 1 : 0;
+        int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Poker)) ? 1 : 0;
 
         Game_Stats mystats = Cross_Scene_Data.mystats[2];
         int Current_Credit;
@@ -116,7 +116,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         }
 
 
-        if (!Cross_Scene_Data.In_Poker_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Poker))
         {
             int Past_Avg = Int32.Parse(result.Data[mystats.Avg_Op_Key].Value);
             int AllGames_TotalSkill = (Past_Avg * mystats.Games_Played) + (Opponent_Total_Skill/Cross_Scene_Data.players.Count - 1);
@@ -150,8 +150,6 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         };
 
         PlayFabClientAPI.UpdateUserData(request, OnDataSent, OnSendError);
-
-        Cross_Scene_Data.In_Poker_Game = true;
     }
     private void OnDataSent(UpdateUserDataResult result)
     {
@@ -519,12 +517,10 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
             my_WinState = MyWin_State.Won;
 
-            if (Cross_Scene_Data.In_Poker_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
+            if ((Manager.GameManager.CurrentGame == GameType.Poker) && !(Manager.GameManager.GameMode == GameMode.Offline))
             {
                 if (!(my_WinState == MyWin_State.Lost))
                     Handle_Data(Data_Result);
-
-                Cross_Scene_Data.In_Poker_Game = false;
             }
         }
         else

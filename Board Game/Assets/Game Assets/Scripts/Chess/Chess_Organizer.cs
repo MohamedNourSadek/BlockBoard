@@ -25,14 +25,19 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         {
             view = GetComponent<PhotonView>();
 
-            if (PhotonNetwork.IsMasterClient && Cross_Scene_Data.UseNewMaxScore)
+            if (PhotonNetwork.IsMasterClient)
             {
-                view.RPC("ChangeTime_var", RpcTarget.AllBuffered, Cross_Scene_Data.chess_Time,Cross_Scene_Data.chess_bonus);
+                view.RPC("ChangeTime_var", 
+                    RpcTarget.AllBuffered, 
+                    Manager.GameManager.ChessSettings.ChessTime,
+                    Manager.GameManager.ChessSettings.ChessBonusTime);
             }
         }
         else
         {
-            ChangeTime_var(Cross_Scene_Data.chess_Time, Cross_Scene_Data.chess_bonus);
+            ChangeTime_var(
+                    Manager.GameManager.ChessSettings.ChessTime,
+                    Manager.GameManager.ChessSettings.ChessBonusTime);
         }
 
         UpdateMaster_Client();
@@ -62,7 +67,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         Data_Result = result;
         BetAmount = Int32.Parse(PhotonNetwork.CurrentRoom.CustomProperties[PhotonManager.PlayerBetKey].ToString());
 
-        if (!Cross_Scene_Data.In_Chess_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Chess))
         {
             Handle_Data(Data_Result);
         }
@@ -87,7 +92,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         int Win = (my_WinState == MyWin_State.Won) ? 1 : 0;
         int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
         int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
-        int CurrentGame = (!Cross_Scene_Data.In_Chess_Game) ? 1 : 0;
+        int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Chess)) ? 1 : 0;
 
         Game_Stats mystats = Cross_Scene_Data.mystats[1];
         int Current_Credit;
@@ -108,7 +113,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
             Current_Credit += BetAmount;
         }
 
-        if (!Cross_Scene_Data.In_Chess_Game)
+        if (!(Manager.GameManager.CurrentGame == GameType.Chess))
         {
             int Past_Avg = Int32.Parse(result.Data[mystats.Avg_Op_Key].Value);
             int AllGames_TotalSkill = (Past_Avg * mystats.Games_Played) + Opponent_Total_Skill;
@@ -143,8 +148,6 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         };
 
         PlayFabClientAPI.UpdateUserData(request, OnDataSent, OnSendError);
-
-        Cross_Scene_Data.In_Chess_Game = true;
     }
     private void OnDataSent(UpdateUserDataResult result)
     {
@@ -199,12 +202,10 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
         myplayer.GameIsOn = false;
 
-        if (Cross_Scene_Data.In_Chess_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
+        if ((Manager.GameManager.CurrentGame == GameType.Chess) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if (!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);
-
-            Cross_Scene_Data.In_Chess_Game = false;
         }
     }
 
@@ -224,12 +225,10 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
         my_WinState = MyWin_State.Won;
 
-        if (Cross_Scene_Data.In_Chess_Game && !(Manager.GameManager.GameMode == GameMode.Offline))
+        if ((Manager.GameManager.CurrentGame == GameType.Chess) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
             if(!(my_WinState == MyWin_State.Lost))
                 Handle_Data(Data_Result);
-
-            Cross_Scene_Data.In_Chess_Game = false;
         }
     }
 }

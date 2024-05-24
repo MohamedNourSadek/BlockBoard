@@ -6,18 +6,62 @@ using UnityEngine.Events;
 
 public class SettingsManager : Manager
 {
+    public float SfxVolume
+    {
+        set
+        {
+            SaveManager.SetFloat(SaveManager.SfxVolumeKey, value);
+        }
+        get
+        {
+            return SaveManager.GetFloat(SaveManager.SfxVolumeKey, 0.5f);
+        }
+    }
+    public float MusicVolume
+    {
+        set
+        {
+            SaveManager.SetFloat(SaveManager.MusicVolumeKey, value);
+        }
+        get
+        {
+            return SaveManager.GetFloat(SaveManager.MusicVolumeKey, 0.5f);
+        }
+    }
+    public bool CameraSnap
+    {
+        set
+        {
+            int stateInt = value ? 1 : 0;
+            SaveManager.SetInt(SaveManager.CameraSnappingKey, stateInt);
+            OnCameraSnapChanged?.Invoke(value);
+        }
+        get
+        {
+            return SaveManager.GetInt(SaveManager.CameraSnappingKey) == 0 ? false : true;
+        }
+    }
+
     public AudioMixer SfxMixer;
     public AudioMixer MusicMixer;
-    public bool CameraSnap;
 
     public UnityAction<bool> OnCameraSnapChanged;
 
+    public override void Awake()
+    {
+        if (SettingsManager == null)
+            SettingsManager = this;
+        else 
+            Destroy(gameObject);
+
+        base.Awake();
+    }
 
     public void Start()
     {
-        ChangeCameraSnap(GetSavedCameraSnap());
-        ChangeSfxVolume(GetSavedSfxVolume());
-        ChangeMusicVolume(GetSavedMusicVolume());
+        ChangeCameraSnap(CameraSnap);
+        ChangeSfxVolume(SfxVolume);
+        ChangeMusicVolume(MusicVolume);
     }
 
     public void ChangeSfxVolume(float volume)
@@ -39,16 +83,5 @@ public class SettingsManager : Manager
     }
 
 
-    public float GetSavedSfxVolume()
-    {
-        return SaveManager.GetFloat(SaveManager.SfxVolumeKey, 0.5f);
-    }
-    public float GetSavedMusicVolume()
-    {
-        return SaveManager.GetFloat(SaveManager.MusicVolumeKey, 0.5f);
-    }
-    public bool GetSavedCameraSnap()
-    {
-        return SaveManager.GetInt(SaveManager.CameraSnappingKey) == 0 ? false : true;
-    }
+    
 }

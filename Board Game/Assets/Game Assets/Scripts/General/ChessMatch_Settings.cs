@@ -18,19 +18,16 @@ public class ChessMatch_Settings : MonoBehaviour
 
     private void Awake()
     {
-        Time_slider.value = GetTime();
-        Cross_Scene_Data.chess_Time = GetTime();
-        time_text.text = GetTime().ToString();
+        Time_slider.value = Manager.GameManager.ChessSettings.ChessTime;
+        time_text.text = Manager.GameManager.ChessSettings.ChessTime.ToString();
         Time_slider.onValueChanged.AddListener(onTime_Change);
 
-        bonus_slider.value = GetBonus();
-        Cross_Scene_Data.chess_bonus = GetBonus();
-        bonus_text.text = GetBonus().ToString();
+        bonus_slider.value = Manager.GameManager.ChessSettings.ChessBonusTime;
+        bonus_text.text = Manager.GameManager.ChessSettings.ChessBonusTime.ToString();
         bonus_slider.onValueChanged.AddListener(onBonus_Change);
 
-        Difficulty.value = GetDiff();
-        Cross_Scene_Data.chess_difficulty = GetDiff();
-        Difficulty_text.text = GetDiff().ToString();
+        Difficulty.value = Manager.GameManager.ChessSettings.ChessDifficulty;
+        Difficulty_text.text = Manager.GameManager.ChessSettings.ChessDifficulty.ToString();
         Difficulty.onValueChanged.AddListener(on_Diff_change);
     }
      
@@ -39,17 +36,9 @@ public class ChessMatch_Settings : MonoBehaviour
     {
         SetTime(value);
         time_text.text = value.ToString();
-        Cross_Scene_Data.chess_Time = value;
+        Manager.GameManager.ChessSettings.ChessTime = (int)value;
     }
-    public float GetTime()
-    {
-        float time = PlayerPrefs.GetFloat(time_String);
-
-        if (time == 0f)
-            return 10f;
-        else
-            return time;
-    }
+    
     void SetTime(float Value)
     {
         PlayerPrefs.SetFloat(time_String, Value);
@@ -60,13 +49,9 @@ public class ChessMatch_Settings : MonoBehaviour
     {
         SetBonus(value);
         bonus_text.text = value.ToString();
-        Cross_Scene_Data.chess_bonus = value;
+        Manager.GameManager.ChessSettings.ChessBonusTime = (int)value;
     }
-    public float GetBonus()
-    {
-        float bonus = PlayerPrefs.GetFloat(bonus_String);
-            return bonus;
-    }
+
     void SetBonus(float Value)
     {
         PlayerPrefs.SetFloat(bonus_String, Value);
@@ -76,16 +61,9 @@ public class ChessMatch_Settings : MonoBehaviour
     {
         Set_Diff(value);
         Difficulty_text.text = value.ToString();
-        Cross_Scene_Data.chess_difficulty = value;
+        Manager.GameManager.ChessSettings.ChessDifficulty = (int)value;
     }
-    public float GetDiff()
-    {
-        float diff = PlayerPrefs.GetFloat(diff_string);
-        if (diff == 0)
-            return 100f;
-        else
-            return diff;
-    }
+
     void Set_Diff(float Value)
     {
         PlayerPrefs.SetFloat(diff_string, Value);

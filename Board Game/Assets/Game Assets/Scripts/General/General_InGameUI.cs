@@ -56,7 +56,7 @@ public class General_InGameUI : MonoBehaviour
         else
             Camera_Snap.image.sprite = Camera_Snap_On;
 
-        Cross_Scene_Data.Camera_Snap_Event.AddListener(OnCamera_Snap_Event);
+        Manager.SettingsManager.OnCameraSnapChanged += OnCamera_Snap_Event;
     }
 
 
@@ -95,13 +95,11 @@ public class General_InGameUI : MonoBehaviour
 
     public void leaveGame()
     {
-        Cross_Scene_Data.Current_Guest_score = 0;
-        Cross_Scene_Data.Current_Master_score = 0;
-        Cross_Scene_Data.UseNewMaxScore = false;
-        Cross_Scene_Data.In_Domino_Game = false;
-        Cross_Scene_Data.In_Chess_Game = false;
-        Cross_Scene_Data.In_Poker_Game = false;
+        Manager.GameManager.CurrentScore[0] = 0;
+        Manager.GameManager.CurrentScore[1] = 0;
 
+        Manager.GameManager.CurrentGame = GameType.None;
+        
         if ((Manager.GameManager.GameMode == GameMode.Offline))
         {
             SceneManager.LoadScene("Lobby_Scene");
@@ -177,9 +175,7 @@ public class General_InGameUI : MonoBehaviour
             SceneManager.LoadScene("Game");
         }
 
-        Cross_Scene_Data.In_Chess_Game = false;
-        Cross_Scene_Data.In_Domino_Game = false;
-        Cross_Scene_Data.In_Poker_Game = false;
+        Manager.GameManager.CurrentGame = GameType.None;
     }
 
 

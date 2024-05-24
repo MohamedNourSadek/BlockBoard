@@ -37,9 +37,9 @@ public class SettingsPanel : Panel
         if (SettingsManager == null)
             SettingsManager = Manager.GetManager<SettingsManager>();
         
-        SfxVolumeSlider.value = SettingsManager.GetSavedSfxVolume();
-        MusicVolumeSlider.value = SettingsManager.GetSavedMusicVolume();
-        CameraSnapToggle.isOn = SettingsManager.GetSavedCameraSnap();
+        SfxVolumeSlider.value = SettingsManager.SfxVolume;
+        MusicVolumeSlider.value = SettingsManager.MusicVolume;
+        CameraSnapToggle.isOn = SettingsManager.CameraSnap;
     }
     public void OnBackPressed()
     {

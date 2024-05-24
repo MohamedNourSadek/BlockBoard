@@ -69,9 +69,9 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     void Start()
     {
         Time.timeScale = 1f;
-        Cross_Scene_Data.Master_Won_LastRound = true;
-        Cross_Scene_Data.Current_Master_score = 0;
-        Cross_Scene_Data.Current_Guest_score = 0;
+        Manager.GameManager.MasterWonLastGame = true;
+        Manager.GameManager.CurrentScore[0] = 0;
+        Manager.GameManager.CurrentScore[1] = 0;
 
         join.onValueChanged.AddListener(OnJoin_Input_Change);
         create.onValueChanged.AddListener(OnHost_Input_Change);
@@ -94,7 +94,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         else if (Manager.GameManager.CurrentGame == GameType.Poker)
             Game = "Poker";
 
-        PhotonNetwork.GameVersion = Cross_Scene_Data.Game_Version + Game;
+        PhotonNetwork.GameVersion = Manager.GameManager.GameVersion + Game;
     }
     //Server Event Functions
     public override void OnConnectedToMaster()
@@ -166,13 +166,10 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     public void cancelConnection()
     {
         PhotonNetwork.Disconnect();
-        Cross_Scene_Data.where = WhereTo.Lobby;
         SelectPage();
     }
     public void ShowMultiplayer()
     {
-        Cross_Scene_Data.where = WhereTo.Muliplayer;
-
         Loading.SetActive(true);
         Lobby.SetActive(false);
         Connect_to_PhotonServer();
@@ -269,12 +266,10 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
 
     public void Show_GameSelection()
     {
-        Cross_Scene_Data.where = WhereTo.GameSelection;
         SelectPage();
     }
     public void Show_Domino_Lobby()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
         Manager.GameManager.CurrentGame = GameType.Domino;
 
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
@@ -291,7 +286,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     public void Show_Chess_Lobby()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
         Manager.GameManager.CurrentGame = GameType.Chess;
 
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
@@ -308,7 +302,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     public void Show_Poker_Lobby()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
         Manager.GameManager.CurrentGame = GameType.Poker;
 
         var tutorialManagers = Manager.GetManager<TutorialsManager>();
@@ -354,9 +347,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     public void Show_CreateRoom()
     {
-        Cross_Scene_Data.where = WhereTo.CreateRoom;
-        Cross_Scene_Data.PlayingPublic = false;
-
         SelectPage();
     }
     public void JoinPublic()
@@ -371,40 +361,31 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         roomOp.IsVisible = true;
         roomOp.IsOpen = true;
 
-        Cross_Scene_Data.where = WhereTo.Muliplayer;
-        Cross_Scene_Data.UseNewMaxScore = false;
-        Cross_Scene_Data.PlayingPublic = true;
 
         PhotonNetwork.JoinRandomOrCreateRoom(null, MaxPlayers, MatchmakingMode.FillRoom,null,null,null,roomOp,null);
     }
     public void Show_JoinRoom()
     {
-        Cross_Scene_Data.where = WhereTo.JoinRoom;
-        Cross_Scene_Data.PlayingPublic = false;
         SelectPage();
     }
     public void Back_To_Lobby()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
         SelectPage();
         ErrorLog.text = "";
     }
     public void Back_To_Multiplayer()
     {
-        Cross_Scene_Data.where = WhereTo.Muliplayer;
         SelectPage();
 
         ErrorLog.text = "";
     }
     public void LeaveRoom_ToCreate()
     {
-        Cross_Scene_Data.where = WhereTo.CreateRoom;
         PhotonNetwork.LeaveRoom();
         ErrorLog.text = "";
     }
     public void LeaveRoom_ToJoin()
     {
-        Cross_Scene_Data.where = WhereTo.JoinRoom;
         PhotonNetwork.LeaveRoom();
         ErrorLog.text = "";
     }
@@ -418,15 +399,11 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         if (Manager.GameManager.CurrentGame == GameType.Poker)
             roomOp.MaxPlayers = 4;
 
-        Cross_Scene_Data.UseNewMaxScore = true;
 
-
-        Cross_Scene_Data.where = WhereTo.CreateRoom;
         PhotonNetwork.CreateRoom(create.text, roomOp);
     }
     public void JoinRoom()
     {
-        Cross_Scene_Data.where = WhereTo.JoinRoom;
         PhotonNetwork.JoinRoom(join.text);
     }
     public void LeaveRoom()
@@ -550,8 +527,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
 
     public void vsAI()
     {
-        Cross_Scene_Data.where = WhereTo.AI;
-        Cross_Scene_Data.UseNewMaxScore = true;
         SelectPage();
     }
     public void Start_offline_game()
@@ -561,8 +536,6 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     public void Start_Game()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
-
         PhotonNetwork.CurrentRoom.IsOpen = false;
         view.RPC("Start_Game_Sync", RpcTarget.All);
     }
@@ -600,13 +573,10 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
             SelectPage();
         else
         {
-            bool In_OnlineMode = Cross_Scene_Data.where == WhereTo.CreateRoom ||
-                                Cross_Scene_Data.where == WhereTo.JoinRoom ||
-                                Cross_Scene_Data.where == WhereTo.Muliplayer;
+            bool In_OnlineMode = Manager.GameManager.GameMode == GameMode.Online;
 
             if (In_OnlineMode)
             {
-                Cross_Scene_Data.where = WhereTo.Lobby;
                 SelectPage();
             }
             else
@@ -799,23 +769,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
             {
                 Start_Button.interactable = true;
 
-                if (Cross_Scene_Data.PlayingPublic)
-                {
-                    loading_icon.SetActive(true);
-                    Room_Message_Text.text = "Starting";
-                    Start_Game();
-                    Cross_Scene_Data.where = WhereTo.Lobby;
-
-                }
-                else
-                {
-                    loading_icon.SetActive(true);
-
-                    if(PhotonNetwork.IsMasterClient)
-                        Room_Message_Text.text = "";
-                    else
-                        Room_Message_Text.text = "Waiting for the host to start";
-                }
+                Start_Game();
             }
             else
             {
@@ -833,10 +787,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     void Room_UI_Set(bool isMaster)
     {
-        if(isMaster && !Cross_Scene_Data.PlayingPublic)
-             Master_Buttons.SetActive(true);
-        else
-            Master_Buttons.SetActive(false);
+
     }
     IEnumerator Log_Temp_error(string message, float time)
     {
@@ -846,110 +797,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
     }
     public void SelectPage()
     {
-        if (Cross_Scene_Data.where == WhereTo.GameSelection)
-        {
-            Game_Selection_Menu.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            Leader_Boards.SetActive(false);
-            SupportScreen.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Loading.SetActive(false);
-            Lobby.SetActive(false);
-            Room.SetActive(false);
-            Multiplayer.SetActive(false);
-            Settings.SetActive(false);
-            Ai_Room.SetActive(false);
-            PlayTutorial.SetActive(false);
-        }
-        else if (Cross_Scene_Data.where == WhereTo.Lobby)
-        {
-            Lobby.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            SupportScreen.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Leader_Boards.SetActive(false);
-            Loading.SetActive(false);
-            Game_Selection_Menu.SetActive(false);
-            Room.SetActive(false);
-            Multiplayer.SetActive(false);
-            Settings.SetActive(false);
-            Ai_Room.SetActive(false);
-            PlayTutorial.SetActive(false);
-        }
-        else if (Cross_Scene_Data.where == WhereTo.CreateRoom)
-        {
-            Room_Creation.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            SupportScreen.SetActive(false);
-            Leader_Boards.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Loading.SetActive(false);
-            Lobby.SetActive(false);
-            Game_Selection_Menu.SetActive(false);
-            Room.SetActive(false);
-            Multiplayer.SetActive(false);
-            Settings.SetActive(false);
-            Ai_Room.SetActive(false);
-            PlayTutorial.SetActive(false);
-        }
-        else if (Cross_Scene_Data.where == WhereTo.JoinRoom)
-        {
-            Room_Join.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            SupportScreen.SetActive(false);
-            Leader_Boards.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Loading.SetActive(false);
-            Lobby.SetActive(false);
-            Game_Selection_Menu.SetActive(false);
-            Room.SetActive(false);
-            Multiplayer.SetActive(false);
-            Settings.SetActive(false);
-            PlayTutorial.SetActive(false);
-            Ai_Room.SetActive(false);
-        }
-        else if (Cross_Scene_Data.where == WhereTo.Muliplayer)
-        {
-            Multiplayer.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            SupportScreen.SetActive(false);
-            Leader_Boards.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Loading.SetActive(false);
-            Lobby.SetActive(false);
-            Game_Selection_Menu.SetActive(false);
-            Room.SetActive(false);
-            Settings.SetActive(false);
-            Room_Join.SetActive(false);
-            Room_Creation.SetActive(false);
-            PlayTutorial.SetActive(false);
-            Ai_Room.SetActive(false);
-
-            StartCoroutine(OnMultiplaye_Open());
-        }
-        else if (Cross_Scene_Data.where == WhereTo.AI)
-        {
-            Ai_Room.SetActive(true);
-
-            Payment_Page.SetActive(false);
-            SupportScreen.SetActive(false);
-            Leader_Boards.SetActive(false);
-            Authentication_Screen.SetActive(false);
-            Loading.SetActive(false);
-            Multiplayer.SetActive(false);
-            Lobby.SetActive(false);
-            Game_Selection_Menu.SetActive(false);
-            Room.SetActive(false);
-            Settings.SetActive(false);
-            Room_Join.SetActive(false);
-            PlayTutorial.SetActive(false);
-            Room_Creation.SetActive(false);
-        }
+        
     }
 }
 

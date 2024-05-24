@@ -16,6 +16,7 @@ public class SaveManager : Manager
     public static string ChessDefaultBonusKey = "ChessBonus";
     public static string ChessDefaultDifficultyKey = "ChessDifficulty";
     public static string DominoDefaultScoreKey = "DominoWinScore";
+    public static string PokerDefaultScoreKey = "PokerBet";
 
 
     public static void SetString(string key, string value)

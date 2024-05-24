@@ -14,7 +14,6 @@ public class Poker_MatchSettings : MonoBehaviour
     void Awake()
     {       
         Bet_slider.value = GetBet();
-        Cross_Scene_Data.BetAmount = GetBet();
         Bet_Text.text = GetBet().ToString();
         Bet_slider.onValueChanged.AddListener(On_BetChange);
     }
@@ -24,7 +23,6 @@ public class Poker_MatchSettings : MonoBehaviour
     {
         SetBet(value);
         Bet_Text.text = value.ToString();
-        Cross_Scene_Data.BetAmount = value;
     }
     public static float GetBet()
     {

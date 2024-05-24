@@ -106,8 +106,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (Manager.GameManager.CurrentGame == GameType.Poker)
             roomOp.MaxPlayers = 4;
 
-        Cross_Scene_Data.UseNewMaxScore = true;
-        
         PhotonNetwork.CreateRoom(roomName, roomOp);
     }
     public void LeaveRoom()
@@ -126,10 +124,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomOp.MaxPlayers = maxplayers;
         roomOp.IsVisible = true;
         roomOp.IsOpen = true;
-
-        Cross_Scene_Data.where = WhereTo.Muliplayer;
-        Cross_Scene_Data.UseNewMaxScore = false;
-        Cross_Scene_Data.PlayingPublic = true;
 
         bool join = PhotonNetwork.JoinRandomOrCreateRoom(null, maxplayers, MatchmakingMode.FillRoom, null, null, null, roomOp, null);
 
@@ -184,7 +178,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public void StartGame()
     {
-        Cross_Scene_Data.where = WhereTo.Lobby;
         PhotonNetwork.CurrentRoom.IsOpen = false;
         view.RPC("StartGameSync", RpcTarget.All);
     }

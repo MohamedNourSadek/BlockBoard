@@ -793,7 +793,7 @@ public class Chess_player : MonoBehaviour
             bool Easy = true;
 
 
-            if (AI > (1f - (Cross_Scene_Data.chess_difficulty / 100f)))
+            if (AI > (1f - (Manager.GameManager.ChessSettings.ChessDifficulty / 100f)))
             {
                 Easy = false;
             }

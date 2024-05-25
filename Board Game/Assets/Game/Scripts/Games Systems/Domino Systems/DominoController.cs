@@ -6,7 +6,8 @@ public class DominoController : MonoBehaviour
 {
     public static DominoController Instance;
 
-    private void Awake()
+
+    public DominoController()
     {
         Instance = this;
     }
@@ -14,7 +15,8 @@ public class DominoController : MonoBehaviour
 
     public void StartGame()
     {
-        gameObject.SetActive(true);
+        DominoGeometery.Instance.gameObject.SetActive(true);
         Panel.GetPanel<DominoPanel>().Show();
+        gameObject.SetActive(true);
     }
 }

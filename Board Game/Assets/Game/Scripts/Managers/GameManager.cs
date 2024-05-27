@@ -13,7 +13,10 @@ public class GameManager : Manager
     public PokerSettings PokerSettings = new PokerSettings();
 
     public int[] CurrentScore = new int[] { 0, 0, 0, 0 };
-    public bool MasterWonLastGame = false;  
+    public bool MasterWonLastGame = false;
+    
+    public Dictionary<Player_Info, int> players = new Dictionary<Player_Info, int>();
+    public List<Game_Stats> mystats = new List<Game_Stats>();
 
     public override void Awake()
     {
@@ -97,3 +100,5 @@ public enum  GameMode
 {
     None, Offline, Online   
 }
+
+public enum identity { master, Guest, Guest2, Guest3 }

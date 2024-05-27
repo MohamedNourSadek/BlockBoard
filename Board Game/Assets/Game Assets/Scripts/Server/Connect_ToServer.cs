@@ -611,7 +611,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         //Adding players data to local storage
         
         var players = PhotonNetwork.PlayerList;
-        Cross_Scene_Data.players.Clear();
+        Manager.GameManager.players.Clear();
         List<Photon.Realtime.Player> Guests = new List<Photon.Realtime.Player>();
         Photon.Realtime.Player masterPlayer = players[0];
         foreach (Photon.Realtime.Player player in players)
@@ -626,12 +626,12 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
             Identity = identity.master,
             PlayerName = masterPlayer.NickName,
 
-            Domino_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[0].Game_Skill_Key],
-            Chess_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[1].Game_Skill_Key],
-            Poker_Rating = (int)masterPlayer.CustomProperties[Cross_Scene_Data.mystats[2].Game_Skill_Key],
+            Domino_Rating = (int)masterPlayer.CustomProperties[Manager.GameManager.mystats[0].Game_Skill_Key],
+            Chess_Rating = (int)masterPlayer.CustomProperties[Manager.GameManager.mystats[1].Game_Skill_Key],
+            Poker_Rating = (int)masterPlayer.CustomProperties[Manager.GameManager.mystats[2].Game_Skill_Key],
             IsPlayerReady = (string)masterPlayer.CustomProperties[PhotonManager.PlayerReadyKey] == "true" ? true : false
         };
-        Cross_Scene_Data.players.Add(master_Info, masterPlayer.ActorNumber);
+        Manager.GameManager.players.Add(master_Info, masterPlayer.ActorNumber);
         if (master_Info.IsPlayerReady)
         {
             Player1_Banner_Highlight.SetActive(true); Debug.Log("Master is ready");
@@ -645,9 +645,9 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < Guests.Count; i++)
             {
-                int domino_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[0].Game_Skill_Key];
-                int chess_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[1].Game_Skill_Key];
-                int poker_rating = (int)Guests[i].CustomProperties[Cross_Scene_Data.mystats[2].Game_Skill_Key];
+                int domino_rating = (int)Guests[i].CustomProperties[Manager.GameManager.mystats[0].Game_Skill_Key];
+                int chess_rating = (int)Guests[i].CustomProperties[Manager.GameManager.mystats[1].Game_Skill_Key];
+                int poker_rating = (int)Guests[i].CustomProperties[Manager.GameManager.mystats[2].Game_Skill_Key];
                 bool isPlayerReady = (string)Guests[i].CustomProperties[PhotonManager.PlayerReadyKey] == "true" ? true : false;
 
                 Player_Info playerInfo = new Player_Info() 
@@ -660,7 +660,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
                     IsPlayerReady = isPlayerReady
                 };
 
-                Cross_Scene_Data.players.Add(playerInfo, Guests[i].ActorNumber);
+                Manager.GameManager.players.Add(playerInfo, Guests[i].ActorNumber);
 
                 if (i == 0)
                 {
@@ -759,7 +759,7 @@ public class Connect_ToServer : MonoBehaviourPunCallbacks
         {
             bool EveryOne_Is_Ready = true;
 
-            foreach (var player in Cross_Scene_Data.players)
+            foreach (var player in Manager.GameManager.players)
             {
                 if (!player.Key.IsPlayerReady)
                     EveryOne_Is_Ready = false;

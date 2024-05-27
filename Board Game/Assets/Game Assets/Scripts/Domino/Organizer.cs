@@ -84,7 +84,7 @@ public class Organizer : MonoBehaviourPunCallbacks
     void Handle_Data(GetUserDataResult result)
     {
         int Opponent_Total_Skill = 0;
-        foreach (var p in Cross_Scene_Data.players)
+        foreach (var p in Manager.GameManager.players)
         {
             if (master_client)
             {
@@ -104,7 +104,7 @@ public class Organizer : MonoBehaviourPunCallbacks
 
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Domino)) ? 1 : 0;
 
-        Game_Stats mystats = Cross_Scene_Data.mystats[0];
+        Game_Stats mystats = Manager.GameManager.mystats[0];
         int Current_Credit;
 
         mystats.Games_Played = Int32.Parse(result.Data[mystats.Games_Played_Key].Value) + CurrentGame;

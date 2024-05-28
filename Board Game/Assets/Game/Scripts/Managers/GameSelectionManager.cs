@@ -12,6 +12,7 @@ public class GameSelectionManager : Manager
     public void StartGame()
     {
         GameType gameType = Manager.GameManager.CurrentGame;
+        Time.timeScale = 1f;
 
         switch (gameType)
         {

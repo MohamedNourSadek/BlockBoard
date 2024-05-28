@@ -10,7 +10,6 @@ using UnityEngine.Events;
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     public static PhotonManager Instance;
-
     public UnityAction OnPhotonFullyConnected;
     public UnityAction<bool, object> OnRoomJoinCallback;
     public UnityAction OnPlayersNumberChange;
@@ -20,7 +19,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public static string PlayerReadyKey = "ReadyState";
     public static string PlayerBetKey = "BetAmount";
     public static string PlayerMaxBetKey = "MaxBetAmount";
-
+    
     private PhotonView view;
 
     public void Awake()

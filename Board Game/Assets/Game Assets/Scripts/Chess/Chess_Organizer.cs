@@ -60,7 +60,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
 
     GetUserDataResult Data_Result;
     int BetAmount = 0;
-    MyWin_State my_WinState = MyWin_State.Lost;
+    MyWinState my_WinState = MyWinState.Lost;
 
     private void OnDataRecieved(GetUserDataResult result)
     {
@@ -89,9 +89,9 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
             }
         }
 
-        int Win = (my_WinState == MyWin_State.Won) ? 1 : 0;
-        int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
-        int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
+        int Win = (my_WinState == MyWinState.Won) ? 1 : 0;
+        int Draw = (my_WinState == MyWinState.Draw) ? 1 : 0;
+        int Loss = (my_WinState == MyWinState.Lost) ? 1 : 0;
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Chess)) ? 1 : 0;
 
         Game_Stats mystats = Manager.GameManager.MyStats[1];
@@ -185,26 +185,26 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         {
             General_UI_Manager.EndGame_Message.text = message;
             General_UI_Manager.EndGame_Menu.SetActive(true);
-            my_WinState = MyWin_State.Draw;
+            my_WinState = MyWinState.Draw;
         }
         else if ((Master_Is_Winner && master_client) || (!Master_Is_Winner && !master_client))
         {
             General_UI_Manager.EndGame_Message.text = message + General_UI_Manager.WinText;
             General_UI_Manager.EndGame_Menu.SetActive(true);
-            my_WinState = MyWin_State.Won;
+            my_WinState = MyWinState.Won;
         }
         else
         {
             General_UI_Manager.EndGame_Message.text = message + General_UI_Manager.LoseText;
             General_UI_Manager.EndGame_Menu.SetActive(true);
-            my_WinState = MyWin_State.Lost;
+            my_WinState = MyWinState.Lost;
         }
 
         myplayer.GameIsOn = false;
 
         if ((Manager.GameManager.CurrentGame == GameType.Chess) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
-            if (!(my_WinState == MyWin_State.Lost))
+            if (!(my_WinState == MyWinState.Lost))
                 Handle_Data(Data_Result);
         }
     }
@@ -223,11 +223,11 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         General_UI_Manager.EndGame_Menu.SetActive(true);
         myplayer.GameIsOn = false;
 
-        my_WinState = MyWin_State.Won;
+        my_WinState = MyWinState.Won;
 
         if ((Manager.GameManager.CurrentGame == GameType.Chess) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
-            if(!(my_WinState == MyWin_State.Lost))
+            if(!(my_WinState == MyWinState.Lost))
                 Handle_Data(Data_Result);
         }
     }

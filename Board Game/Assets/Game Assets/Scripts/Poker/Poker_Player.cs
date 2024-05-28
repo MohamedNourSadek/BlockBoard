@@ -803,7 +803,7 @@ public class Poker_Player : MonoBehaviour
                 PlayerName = "AI has";
 
             if (winners[0] == organizer.client)
-                organizer.my_WinState = MyWin_State.Won;
+                organizer.my_WinState = MyWinState.Won;
 
             EndGame_Text.text = PlayerName + " Won " + Win_Method;
         }
@@ -816,7 +816,7 @@ public class Poker_Player : MonoBehaviour
                 Get_Player(winner).myChips += (Final_bet / winners.Count);
 
                 if (winner == organizer.client)
-                    organizer.my_WinState = MyWin_State.Won;
+                    organizer.my_WinState = MyWinState.Won;
             }
         }
         else if(winners.Count == 0)
@@ -826,7 +826,7 @@ public class Poker_Player : MonoBehaviour
             foreach (var player in Manager.GameManager.Players)
                 Get_Player(player.Key.Identity).myChips += (Final_bet / Manager.GameManager.Players.Count);
 
-            organizer.my_WinState = MyWin_State.Draw;
+            organizer.my_WinState = MyWinState.Draw;
         }
         
         End_Round_Pannel.SetActive(true);
@@ -834,7 +834,7 @@ public class Poker_Player : MonoBehaviour
 
         if ((Manager.GameManager.CurrentGame == GameType.Poker) && !(Manager.GameManager.GameMode == GameMode.Offline))
         {
-            if (!(organizer.my_WinState == MyWin_State.Lost))
+            if (!(organizer.my_WinState == MyWinState.Lost))
                 organizer.Handle_Data(organizer.Data_Result);
         }
 

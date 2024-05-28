@@ -8,68 +8,25 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 
-public enum Winner {Master, Guest, Draw, NoWinner}
-public enum MyWin_State { Won, Draw, Lost }
+
 
 public class Organizer : MonoBehaviourPunCallbacks
 {
-    [Header("Parameters")]
-    [SerializeField] int Player_Cards_Numbers = 7;
+    private GetUserDataResult Data_Result;
+    private int BetAmount = 0;
 
-    [Header("References")]
-    [SerializeField] General_InGameUI General_UI_Manager;
-    [SerializeField] public List<DominoTile> Cards = new List<DominoTile>();
-    [SerializeField] DominoPlayer player1;
-    [SerializeField] GameObject OutObjects;
-    [SerializeField] int MaxScore = 100;
-
-    PhotonView view;
-    bool master_client;
-
-    //Game Start
-    void Awake()
+    private void Awake()
     {
-        Time.timeScale = 1f;
-
-        if (Manager.GameManager.GameMode == GameMode.Offline)
-        {
-            ChangeMaxScore(Manager.GameManager.DominoSettings.DominoWinScore);
-        }
-        else
-        {
-            view = GetComponent<PhotonView>();
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                view.RPC("ChangeMaxScore", RpcTarget.AllBuffered, Manager.GameManager.DominoSettings.DominoWinScore);
-            }
-        }
-
-        UpdateMaster_Client();
-
-        if (master_client)
-        {
-            //Generate a random Seqence
-            string RandomSeq = Generate_Random(Cards.Count);
-            Shuffle_Hand(RandomSeq);
-            
-            if(!(Manager.GameManager.GameMode == GameMode.Offline))
-                view.RPC("Shuffle_Hand", RpcTarget.OthersBuffered, RandomSeq);
-        }
-
-        if(!(Manager.GameManager.GameMode == GameMode.Offline))
+        if (!(Manager.GameManager.GameMode == GameMode.Offline))
             Get_Player();
     }
-
 
     void Get_Player()
     {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataRecieved, OnRecieveError);
     }
 
-    GetUserDataResult Data_Result;
-    int BetAmount = 0;
-    MyWin_State my_WinState = MyWin_State.Lost;
+
 
     private void OnDataRecieved(GetUserDataResult result)
     {
@@ -86,7 +43,7 @@ public class Organizer : MonoBehaviourPunCallbacks
         int Opponent_Total_Skill = 0;
         foreach (var p in Manager.GameManager.Players)
         {
-            if (master_client)
+            if (GameManager.IsMasterClient)
             {
                 if (!(p.Key.Identity == identity.master))
                     Opponent_Total_Skill = p.Key.Domino_Rating;
@@ -98,9 +55,9 @@ public class Organizer : MonoBehaviourPunCallbacks
             }
         }
 
-        int Win = (my_WinState == MyWin_State.Won) ? 1 : 0;
-        int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
-        int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
+        int Win = (DominoController.Instance.myWinState == MyWinState.Won) ? 1 : 0;
+        int Draw = (DominoController.Instance.myWinState == MyWinState.Draw) ? 1 : 0;
+        int Loss = (DominoController.Instance.myWinState == MyWinState.Lost) ? 1 : 0;
 
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Domino)) ? 1 : 0;
 
@@ -180,189 +137,18 @@ public class Organizer : MonoBehaviourPunCallbacks
     }
 
 
-    [PunRPC] void ChangeMaxScore(int i)
-    {
-        MaxScore = i;
-    }
-    [PunRPC] void Shuffle_Hand(string RandomSquence_Strg)
-    {
-        //Shuffle and replace cards
-        var seq = RandomSquence_Strg.Split(',');
-        List<DominoTile> New_Cards = new List<DominoTile>();
-        for (int i = 0; i < seq.Length - 1; i++)
-            New_Cards.Add(Cards[System.Convert.ToInt32(seq[i])]);
-        Cards = New_Cards;
-        
-        //Send new cards to players
-        Send_Cards();
-    }
-    void Send_Cards()
-    {
-        for (int i = 0; i < Player_Cards_Numbers; i++)
-        {
-            player1.Master_Cards.Add(Cards[0]);
-            Cards.Remove(Cards[0]);
-        }
-        for (int i = 0; i < Player_Cards_Numbers; i++)
-        {
-            player1.Guest_Cards.Add(Cards[0]);
-            Cards.Remove(Cards[0]);
-        }
-
-        int increment = 0;
-        foreach (DominoTile t in Cards)
-        {
-            t.transform.position = OutObjects.transform.position + new Vector3(0.05f * increment, 0f, 0f);
-            increment++;
-        }
-
-        player1.ReOrganize_Cards_InHand();
-    }
-    string Generate_Random(int Length)
-    {
-        List<int> RandomSquence = new List<int>();
-        string RandomSquence_Strg = "";
-        for (int i = 0; i < Length; i++)
-        {
-            bool exists = true;
-            int num = 0;
-
-            while (exists)
-            {
-                num = UnityEngine.Random.Range(0, Length);
-                exists = RandomSquence.Exists(e => e.Equals(num));
-            }
-
-            RandomSquence.Add(num);
-        }
-
-        foreach (int i in RandomSquence)
-            RandomSquence_Strg += i.ToString() + ",";
-
-        return RandomSquence_Strg;
-    }
 
     //End game
-    public void End_Round(Winner Round_Winner, bool rematch, bool BySubmission)
-    {
-        player1.Game_Is_On = false;
-
-
-        if (Round_Winner == Winner.Master)
-        {
-            Manager.GameManager.CurrentScore[0] = player1.Calculate_Score(player1.Guest_Cards);
-            Manager.GameManager.MasterWonLastGame = true;
-        }
-        else if (Round_Winner == Winner.Guest)
-        {
-            Manager.GameManager.CurrentScore[1] = player1.Calculate_Score(player1.Master_Cards);
-            Manager.GameManager.MasterWonLastGame = false;
-        }
-
-        Winner MatchWinner = Winner.Draw;
-
-        if (Manager.GameManager.CurrentScore[0] >= MaxScore)
-            MatchWinner = Winner.Master;
-        else if (Manager.GameManager.CurrentScore[1] >= MaxScore)
-            MatchWinner = Winner.Guest;
-        else
-            MatchWinner = Winner.NoWinner;
-
-        player1.MyScore.text = master_client ? Manager.GameManager.CurrentScore[0].ToString() : Manager.GameManager.CurrentScore[1].ToString();
-        player1.OtherScore.text = master_client ? Manager.GameManager.CurrentScore[1].ToString() : Manager.GameManager.CurrentScore[0].ToString();
-
-        string Message = "";
-
-        if (BySubmission)
-        {
-            Message = General_UI_Manager.SubmissionText;
-        }
-
-
-        if ((MatchWinner == Winner.Master && master_client) || (MatchWinner == Winner.Guest && !master_client))
-        {
-            Message += General_UI_Manager.WinText;
-            my_WinState = MyWin_State.Won;
-        }
-        else if ((MatchWinner == Winner.Guest && master_client) || (MatchWinner == Winner.Master && !master_client))
-        {
-            Message += General_UI_Manager.LoseText;
-            my_WinState = MyWin_State.Lost;
-        }
-        else if (MatchWinner == Winner.NoWinner)
-        {
-            if ((Round_Winner == Winner.Master && master_client) || (Round_Winner == Winner.Guest && !master_client))
-            {
-                Message = "You've won this round!";
-
-            }
-            else if ((Round_Winner == Winner.Guest && master_client) || (Round_Winner == Winner.Master && !master_client))
-            {
-                Message = "You've Lost this round!";
-            }
-            else if (Round_Winner == Winner.Draw)
-            {
-                Message = "Draw!";
-            }
-
-            General_UI_Manager.EndRound_Message.text = Message;
-            General_UI_Manager.EndRound_Menu.SetActive(true);
-            player1.Game_Is_On = false;
-            StartCoroutine(NextRound());
-
-            return;
-        }
-
-        if (!(Manager.GameManager.GameMode == GameMode.Offline) && (Manager.GameManager.CurrentGame == GameType.Domino))
-        {
-            if(!(my_WinState == MyWin_State.Lost))
-                Handle_Data(Data_Result);
-        }
-
-        General_UI_Manager.EndGame_Message.text = Message;
-        General_UI_Manager.EndGame_Menu.SetActive(true);
-
-        General_UI_Manager.Game_UI.SetActive(false);
-        Manager.GameManager.CurrentScore[0] = 0;
-        Manager.GameManager.CurrentScore[1] = 0;
-        Manager.GameManager.MasterWonLastGame = true;
-    }
-    void UpdateMaster_Client()
-    {
-        if ((Manager.GameManager.GameMode == GameMode.Offline))
-        {
-            master_client = true;
-        }
-        else
-        {
-            if (PhotonNetwork.IsMasterClient)
-                master_client = true;
-            else
-                master_client = false;
-        }
-    }
-    IEnumerator NextRound()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-
-        if (master_client)
-            General_UI_Manager.Rematch();
-    }
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         PhotonNetwork.LeaveRoom();
         Manager.GameManager.CurrentScore[0] = 200;
-        UpdateMaster_Client();
 
-        my_WinState = MyWin_State.Lost;
-        End_Round(Winner.Master,false,true);
+        DominoController.Instance.myWinState = MyWinState.Lost;
+        DominoController.Instance.EndRound(Winner.Master,false,true);
 
         Manager.GameManager.CurrentScore[0] = 0;
         Manager.GameManager.CurrentScore[1] = 0;
         Manager.GameManager.MasterWonLastGame = true;
-    }
-    private void Update()
-    {
-        Debug.Log(MaxScore);
     }
 }

@@ -62,7 +62,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
 
     public GetUserDataResult Data_Result;
     int BetAmount = 0;
-    public MyWin_State my_WinState = MyWin_State.Lost;
+    public MyWinState my_WinState = MyWinState.Lost;
 
     void Get_Player()
     {
@@ -91,9 +91,9 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
             }
         }
 
-        int Win = (my_WinState == MyWin_State.Won) ? 1 : 0;
-        int Draw = (my_WinState == MyWin_State.Draw) ? 1 : 0;
-        int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
+        int Win = (my_WinState == MyWinState.Won) ? 1 : 0;
+        int Draw = (my_WinState == MyWinState.Draw) ? 1 : 0;
+        int Loss = (my_WinState == MyWinState.Lost) ? 1 : 0;
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Poker)) ? 1 : 0;
 
         Game_Stats mystats = Manager.GameManager.MyStats[2];
@@ -358,7 +358,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         //Send new cards to players
         StartCoroutine(Send_Cards(P1, P2));
 
-        my_WinState = MyWin_State.Lost;
+        my_WinState = MyWinState.Lost;
 
         if (!(Manager.GameManager.GameMode == GameMode.Offline))
             Get_Player();
@@ -515,11 +515,11 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
             EndGame_Text.text = "Everyone left, You win!";
             IsGame_Working = false;
 
-            my_WinState = MyWin_State.Won;
+            my_WinState = MyWinState.Won;
 
             if ((Manager.GameManager.CurrentGame == GameType.Poker) && !(Manager.GameManager.GameMode == GameMode.Offline))
             {
-                if (!(my_WinState == MyWin_State.Lost))
+                if (!(my_WinState == MyWinState.Lost))
                     Handle_Data(Data_Result);
             }
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 public enum GroundSide { Center, Left, Right }
 
@@ -22,8 +23,10 @@ public class DominoGeometery : MonoBehaviour
     [SerializeField] GameObject CenterPosition;
     [SerializeField] GameObject LeftPosition;
     [SerializeField] GameObject RightPosition;
+    [SerializeField] GameObject OutObjects;
 
     [Header("Other")]
+    [SerializeField] public List<DominoTile> DominoCards = new List<DominoTile>();
     [SerializeField] LayerMask Bounds;
 
     [NonSerialized] public DominoTile CenterCard;
@@ -68,6 +71,17 @@ public class DominoGeometery : MonoBehaviour
     {
         return GetTilePosition(false, groundSide, ShouldSwitchDirection(groundSide));
     }
+    public void OrganizeCardsOutside(List<DominoTile> cards)
+    {
+        int increment = 0;
+
+        foreach (DominoTile card in cards)
+        {
+            card.transform.position = OutObjects.transform.position + new Vector3(0.05f * increment, 0f, 0f);
+            increment++;
+        }
+    }
+
     #endregion
 
     #region Private Functions

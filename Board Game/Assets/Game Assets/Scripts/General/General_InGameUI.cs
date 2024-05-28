@@ -35,10 +35,12 @@ public class General_InGameUI : MonoBehaviour
     //internal 
     PhotonView view;
     List<string> Rules = new List<string>();
-
+    public static General_InGameUI Instance;
 
     private void Awake()
     {
+        Instance = this;
+
         if ((Manager.GameManager.GameMode == GameMode.Offline))
             Messages_Icon.SetActive(false);
         else

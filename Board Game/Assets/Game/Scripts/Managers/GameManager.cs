@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameManager : Manager
     
     public Dictionary<Player_Info, int> Players = new Dictionary<Player_Info, int>();
     public List<Game_Stats> MyStats = new List<Game_Stats>();
+    public static bool IsMasterClient => (Manager.GameManager.GameMode == GameMode.Offline) ? true : PhotonNetwork.IsMasterClient;
 
     public override void Awake()
     {
@@ -26,6 +28,16 @@ public class GameManager : Manager
             Destroy(gameObject);
 
         base.Awake();
+    }
+
+    public static List<T> CopyList<T>(List<T> list)
+    {
+        var newList = new List<T>();
+
+        foreach(var item in list)
+            newList.Add(item);
+
+        return newList;
     }
 }
 

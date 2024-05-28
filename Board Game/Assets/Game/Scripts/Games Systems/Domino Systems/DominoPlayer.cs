@@ -12,7 +12,6 @@ public class DominoPlayer : MonoBehaviour
     [SerializeField] GameObject OtherPlay_Tiles;
     [SerializeField] GameObject OutCards;
     [SerializeField] Camera_Controller camera_Controller;
-    [SerializeField] Organizer organizer;
     [SerializeField] Button Select_Right;
     [SerializeField] Button Select_Left;
     [SerializeField] Button Play_Center;
@@ -67,8 +66,8 @@ public class DominoPlayer : MonoBehaviour
     PhotonView view;
     [System.NonSerialized] public int Master_Selected_Card = 3;
     [System.NonSerialized] public int Guest_Selected_Card = 3;
-    [System.NonSerialized] public List<DominoTile> Master_Cards = new List<DominoTile>();
-    [System.NonSerialized] public List<DominoTile> Guest_Cards = new List<DominoTile>();
+    [System.NonSerialized] public List<DominoTile> MasterCards = new List<DominoTile>();
+    [System.NonSerialized] public List<DominoTile> GuestCards = new List<DominoTile>();
     [System.NonSerialized] public bool Game_Is_On = true;
 
 
@@ -165,7 +164,7 @@ public class DominoPlayer : MonoBehaviour
     [PunRPC] void Left(bool IsMaster)
     {
         int Selected_Card = (IsMaster) ? Master_Selected_Card : Guest_Selected_Card;
-        List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
+        List<DominoTile> cards = IsMaster ? MasterCards : GuestCards;
 
         CardSide card_side = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
         Play_Card(GroundSide.Left, card_side, IsMaster);
@@ -173,7 +172,7 @@ public class DominoPlayer : MonoBehaviour
     [PunRPC] void Right(bool IsMaster)
     {
         int Selected_Card = (IsMaster) ? Master_Selected_Card : Guest_Selected_Card;
-        List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
+        List<DominoTile> cards = IsMaster ? MasterCards : GuestCards;
 
         CardSide card_side = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
         Play_Card(GroundSide.Right, card_side, IsMaster);
@@ -181,25 +180,25 @@ public class DominoPlayer : MonoBehaviour
     void Play_Card(GroundSide ground_side, CardSide card_Side, bool IsMaster)
     {
         int Selected_Card = IsMaster ? Master_Selected_Card : Guest_Selected_Card;
-        List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
+        List<DominoTile> cards = IsMaster ? MasterCards : GuestCards;
 
         if (cards.Count > 0)
         {
             DominoGeometery.Instance.PlayCardOnGround(cards[Selected_Card], ground_side, card_Side);
             cards.Remove(cards[Selected_Card]);
         }
-        if (Master_Cards.Count == 0)
+        if (MasterCards.Count == 0)
         {
-            organizer.End_Round(Winner.Master, true,false);
+            DominoController.Instance.EndRound(Winner.Master, true,false);
             
             if(master_client)
                 text_comm.PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
             return;
         }
-        else if (Guest_Cards.Count == 0)
+        else if (GuestCards.Count == 0)
         {
-            organizer.End_Round(Winner.Guest, true,false);
+            DominoController.Instance.EndRound(Winner.Guest, true,false);
 
             if (!master_client)
                 text_comm.PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
@@ -215,7 +214,7 @@ public class DominoPlayer : MonoBehaviour
                 view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
         }
         Referesh_Selection_UI();
-        ReOrganize_Cards_InHand();
+        ReOrganizeCardsInHands();
     }
 
 
@@ -234,17 +233,17 @@ public class DominoPlayer : MonoBehaviour
         //Change Selected card
         if (IsMaster)
         {
-            if ((Master_Selected_Card >= 0) && (Master_Selected_Card <= (Master_Cards.Count - 1)))
+            if ((Master_Selected_Card >= 0) && (Master_Selected_Card <= (MasterCards.Count - 1)))
                 Master_Selected_Card += i;
         }
         else
         {
-            if ((Guest_Selected_Card >= 0) && (Guest_Selected_Card <= (Guest_Cards.Count - 1)))
+            if ((Guest_Selected_Card >= 0) && (Guest_Selected_Card <= (GuestCards.Count - 1)))
                 Guest_Selected_Card += i;
         }
 
         Referesh_Selection_UI();
-        ReOrganize_Cards_InHand();
+        ReOrganizeCardsInHands();
     }
     void Change_Selection_Directly(int Selected, bool IsMaster)
     {
@@ -254,7 +253,7 @@ public class DominoPlayer : MonoBehaviour
             view.RPC("Change_Selected_Directly", RpcTarget.AllBuffered, Selected, IsMaster);
 
         Referesh_Selection_UI();
-        ReOrganize_Cards_InHand();
+        ReOrganizeCardsInHands();
     }
     [PunRPC] void Change_Selected_Directly(int newSelected, bool IsMaster)
     {
@@ -273,19 +272,19 @@ public class DominoPlayer : MonoBehaviour
     public void Update_Slider_Card(float f)
     {
         Slider_Adding = f;
-        ReOrganize_Cards_InHand();
+        ReOrganizeCardsInHands();
     }
-    public void ReOrganize_Cards_InHand()
+    public void ReOrganizeCardsInHands()
     {
         if (master_client)
         {
-            Re_Organize(Master_Cards, Master_Selected_Card,0f, false, Z_Depth);
-            Re_Organize(Guest_Cards, Guest_Selected_Card, GuestVertical, true, Guest_Z_Depth);
+            Re_Organize(MasterCards, Master_Selected_Card,0f, false, Z_Depth);
+            Re_Organize(GuestCards, Guest_Selected_Card, GuestVertical, true, Guest_Z_Depth);
         }
         else
         {
-            Re_Organize(Guest_Cards, Guest_Selected_Card, 0f, false, Z_Depth);
-            Re_Organize(Master_Cards, Master_Selected_Card, GuestVertical, true, Guest_Z_Depth);
+            Re_Organize(GuestCards, Guest_Selected_Card, 0f, false, Z_Depth);
+            Re_Organize(MasterCards, Master_Selected_Card, GuestVertical, true, Guest_Z_Depth);
         }
 
         Re_OrganizeExtra();
@@ -331,11 +330,11 @@ public class DominoPlayer : MonoBehaviour
     void Re_OrganizeExtra()
     {
         //Reposition cards in Hand
-        for (int i = 0; i <= organizer.Cards.Count - 1; i++)
+        for (int i = 0; i <= DominoController.Instance.GetTilesOutSide().Count - 1; i++)
         {
             //Fix Rotation to point to the camera
-            organizer.Cards[i].transform.rotation = Quaternion.Euler(180f,90f,0f);
-            organizer.Cards[i].transform.position = OutCards.transform.position + (Vector3.right * i * Spacing);
+            DominoController.Instance.GetTilesOutSide()[i].transform.rotation = Quaternion.Euler(180f,90f,0f);
+            DominoController.Instance.GetTilesOutSide()[i].transform.position = OutCards.transform.position + (Vector3.right * i * Spacing);
         }
 
         Refresh_PlayableSides(master_client);
@@ -348,7 +347,7 @@ public class DominoPlayer : MonoBehaviour
             Play_Center_obj.SetActive(false);
 
             int Selected_Card = IsMaster ? Master_Selected_Card : Guest_Selected_Card;
-            List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
+            List<DominoTile> cards = IsMaster ? MasterCards : GuestCards;
 
             bool leftAv = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Down);
             bool RightAv = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Down);
@@ -389,12 +388,12 @@ public class DominoPlayer : MonoBehaviour
         if (master_client)
         {
             Selected_Card = Master_Selected_Card;
-            cards = Master_Cards;
+            cards = MasterCards;
         }
         else if (!master_client)
         {
             Selected_Card = Guest_Selected_Card;
-            cards = Guest_Cards;
+            cards = GuestCards;
         }
 
 
@@ -428,9 +427,9 @@ public class DominoPlayer : MonoBehaviour
 
         if (Master)
         {
-            if (Master_Cards.Count > 0)
+            if (MasterCards.Count > 0)
             {
-                foreach (DominoTile card in Master_Cards)
+                foreach (DominoTile card in MasterCards)
                 {
                     bool RightSide = (DominoGeometery.Instance.RightAvailable == card.Up) || (DominoGeometery.Instance.RightAvailable == card.Down);
                     bool LeftSide = (DominoGeometery.Instance.LeftAvailable == card.Up) || (DominoGeometery.Instance.LeftAvailable == card.Down);
@@ -446,9 +445,9 @@ public class DominoPlayer : MonoBehaviour
         }
         else
         {
-            if (Guest_Cards.Count > 0)
+            if (GuestCards.Count > 0)
             {
-                foreach (DominoTile card in Guest_Cards)
+                foreach (DominoTile card in GuestCards)
                 {
                     bool RightSide = (DominoGeometery.Instance.RightAvailable == card.Up) || (DominoGeometery.Instance.RightAvailable == card.Down);
                     bool LeftSide = (DominoGeometery.Instance.LeftAvailable == card.Up) || (DominoGeometery.Instance.LeftAvailable == card.Down);
@@ -469,13 +468,13 @@ public class DominoPlayer : MonoBehaviour
     {
         if (Master_Selected_Card < 0)
             Master_Selected_Card = 0;
-        else if (Master_Selected_Card > (Master_Cards.Count - 1))
-            Master_Selected_Card = Master_Cards.Count - 1;
+        else if (Master_Selected_Card > (MasterCards.Count - 1))
+            Master_Selected_Card = MasterCards.Count - 1;
 
         if (Guest_Selected_Card < 0)
             Guest_Selected_Card = 0;
-        else if (Guest_Selected_Card > (Guest_Cards.Count - 1))
-            Guest_Selected_Card = Guest_Cards.Count - 1;
+        else if (Guest_Selected_Card > (GuestCards.Count - 1))
+            Guest_Selected_Card = GuestCards.Count - 1;
     }
 
 
@@ -500,11 +499,11 @@ public class DominoPlayer : MonoBehaviour
             text_comm.PlayText("Your Turn!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
 
-        if ((Stuck(true) && Stuck(false)) && organizer.Cards.Count == 0)
+        if ((Stuck(true) && Stuck(false)) && DominoController.Instance.GetTilesOutSide().Count == 0)
         {
-            organizer.End_Round(Winner.Draw, true,false);
+            DominoController.Instance.EndRound(Winner.Draw, true,false);
         }
-        else if (Master_Turn && Stuck(true) && organizer.Cards.Count == 0)
+        else if (Master_Turn && Stuck(true) && DominoController.Instance.GetTilesOutSide().Count == 0)
         {
             if ((Manager.GameManager.GameMode == GameMode.Offline))
             {
@@ -520,7 +519,7 @@ public class DominoPlayer : MonoBehaviour
             text_comm.PlayText("Pass, No Cards!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
         }
-        else if (!Master_Turn && Stuck(false) && organizer.Cards.Count == 0)
+        else if (!Master_Turn && Stuck(false) && DominoController.Instance.GetTilesOutSide().Count == 0)
         {
             if ((Manager.GameManager.GameMode == GameMode.Offline))
             {
@@ -543,7 +542,7 @@ public class DominoPlayer : MonoBehaviour
                 if (Master_Client && Stuck(true) && DominoGeometery.Instance.CenterCard)
                 {
 
-                    if (organizer.Cards.Count > 0)
+                    if (DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
                         BorrwoingANim.Play(borrowing_Anim.name);
                         BorrowingTimer.gameObject.SetActive(true);
@@ -552,7 +551,7 @@ public class DominoPlayer : MonoBehaviour
                     float BorrowMaxtime = Borrow_MaxTime;
                     BorrowingTimer.value = BorrowMaxtime;
 
-                    while (Stuck(true) && organizer.Cards.Count > 0)
+                    while (Stuck(true) && DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
                         yield return null;
                         
@@ -591,13 +590,13 @@ public class DominoPlayer : MonoBehaviour
                             view.RPC("Borrow", RpcTarget.OthersBuffered, true);
                         }
 
-                        ReOrganize_Cards_InHand();
+                        ReOrganizeCardsInHands();
                     }
                     
                     BorrwoingANim.Play(borrowingOut_Anim.name);
                     BorrowingTimer.gameObject.SetActive(false);
 
-                    if (Stuck(true) && organizer.Cards.Count == 0)
+                    if (Stuck(true) && DominoController.Instance.GetTilesOutSide().Count == 0)
                     {
                         if (!(Manager.GameManager.GameMode == GameMode.Offline))
                             view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
@@ -623,7 +622,7 @@ public class DominoPlayer : MonoBehaviour
 
                 if (!Master_Client && Stuck(false) && DominoGeometery.Instance.CenterCard)
                 {
-                    if (organizer.Cards.Count > 0 && !(Manager.GameManager.GameMode == GameMode.Offline))
+                    if (DominoController.Instance.GetTilesOutSide().Count > 0 && !(Manager.GameManager.GameMode == GameMode.Offline))
                     {
                         BorrwoingANim.Play(borrowing_Anim.name);
                         BorrowingTimer.gameObject.SetActive(true);
@@ -632,7 +631,7 @@ public class DominoPlayer : MonoBehaviour
                     float BorrowMaxtime = Borrow_MaxTime;
                     BorrowingTimer.value = BorrowMaxtime;
 
-                    while (Stuck(false) && organizer.Cards.Count > 0)
+                    while (Stuck(false) && DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
                         Borrowing = true;
 
@@ -673,7 +672,7 @@ public class DominoPlayer : MonoBehaviour
                             view.RPC("Borrow", RpcTarget.OthersBuffered, false);
                         }
 
-                        ReOrganize_Cards_InHand();
+                        ReOrganizeCardsInHands();
                     }
 
                     if (!(Manager.GameManager.GameMode == GameMode.Offline))
@@ -682,7 +681,7 @@ public class DominoPlayer : MonoBehaviour
                         BorrowingTimer.gameObject.SetActive(false);
                     }
 
-                    if (Stuck(false) && organizer.Cards.Count == 0)
+                    if (Stuck(false) && DominoController.Instance.GetTilesOutSide().Count == 0)
                     {
                         if (!(Manager.GameManager.GameMode == GameMode.Offline))
                             view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
@@ -707,27 +706,29 @@ public class DominoPlayer : MonoBehaviour
         if (!yourTurn && (Manager.GameManager.GameMode == GameMode.Offline))
             StartCoroutine(Ai_Play());
 
-        ReOrganize_Cards_InHand();
+        ReOrganizeCardsInHands();
     }
     bool Borrowing = false;
     [PunRPC] void Borrow(bool Master)
     {
         if(Master)
         {
-            Master_Cards.Add(organizer.Cards[0]);
+            MasterCards.Add(DominoController.Instance.GetTilesOutSide()[0]);
         }
         else
         {
-            Guest_Cards.Add(organizer.Cards[0]);
+            GuestCards.Add(DominoController.Instance.GetTilesOutSide()[0]);
         }
 
         bool yourTurn = Master_Turn && master_client || !Master_Turn && !master_client;
 
         if (yourTurn)
             text_comm.PlayText("Borrowing!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
-        
-        organizer.Cards.Remove(organizer.Cards[0]);
-        ReOrganize_Cards_InHand();
+
+        var tilesOutside = DominoController.Instance.GetTilesOutSide();
+
+        tilesOutside.Remove(tilesOutside[0]);
+        ReOrganizeCardsInHands();
         Referesh_Selection_UI();
     }
     public int Calculate_Score(List<DominoTile> cards)
@@ -824,17 +825,17 @@ public class DominoPlayer : MonoBehaviour
 
                         if(master_client)
                         {
-                            if(Master_Cards.Contains(t))
+                            if(MasterCards.Contains(t))
                             {
-                                int Selected = Master_Cards.IndexOf(t);
+                                int Selected = MasterCards.IndexOf(t);
                                 Change_Selection_Directly(Selected, true);
                             }
                         }
                         else
                         {
-                            if (Guest_Cards.Contains(t))
+                            if (GuestCards.Contains(t))
                             {
-                                int Selected = Guest_Cards.IndexOf(t);
+                                int Selected = GuestCards.IndexOf(t);
                                 Change_Selection_Directly(Selected, false);
                             }
                         }
@@ -859,7 +860,7 @@ public class DominoPlayer : MonoBehaviour
         }
 
         if (Input.GetKeyDown("x"))
-            ReOrganize_Cards_InHand();
+            ReOrganizeCardsInHands();
     }
 
     [PunRPC] void Remove_AnExtraTile(int i)
@@ -938,12 +939,12 @@ public class DominoPlayer : MonoBehaviour
             }
             else
             {
-                for (int i = 0; i <= Guest_Cards.Count - 1; i++)
+                for (int i = 0; i <= GuestCards.Count - 1; i++)
                 {
                     Guest_Selected_Card = i;
 
                     int Selected_Card = Guest_Selected_Card;
-                    List<DominoTile> cards = Guest_Cards;
+                    List<DominoTile> cards = GuestCards;
 
                     bool leftAv = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Down);
                     bool RightAv = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Down);

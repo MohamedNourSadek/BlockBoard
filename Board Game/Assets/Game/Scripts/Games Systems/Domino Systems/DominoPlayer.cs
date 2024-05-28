@@ -12,7 +12,6 @@ public class DominoPlayer : MonoBehaviour
     [SerializeField] GameObject OtherPlay_Tiles;
     [SerializeField] GameObject OutCards;
     [SerializeField] Camera_Controller camera_Controller;
-    [SerializeField] DominoGround ground;
     [SerializeField] Organizer organizer;
     [SerializeField] Button Select_Right;
     [SerializeField] Button Select_Left;
@@ -168,7 +167,7 @@ public class DominoPlayer : MonoBehaviour
         int Selected_Card = (IsMaster) ? Master_Selected_Card : Guest_Selected_Card;
         List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
 
-        CardSide card_side = (ground.LeftAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
+        CardSide card_side = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
         Play_Card(GroundSide.Left, card_side, IsMaster);
     }
     [PunRPC] void Right(bool IsMaster)
@@ -176,7 +175,7 @@ public class DominoPlayer : MonoBehaviour
         int Selected_Card = (IsMaster) ? Master_Selected_Card : Guest_Selected_Card;
         List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
 
-        CardSide card_side = (ground.RightAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
+        CardSide card_side = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) ? CardSide.Up : CardSide.Down;
         Play_Card(GroundSide.Right, card_side, IsMaster);
     }
     void Play_Card(GroundSide ground_side, CardSide card_Side, bool IsMaster)
@@ -186,7 +185,7 @@ public class DominoPlayer : MonoBehaviour
 
         if (cards.Count > 0)
         {
-            ground.PlayCardOnGround(cards[Selected_Card], ground_side, card_Side);
+            DominoGeometery.Instance.PlayCardOnGround(cards[Selected_Card], ground_side, card_Side);
             cards.Remove(cards[Selected_Card]);
         }
         if (Master_Cards.Count == 0)
@@ -343,7 +342,7 @@ public class DominoPlayer : MonoBehaviour
     }
     void Refresh_PlayableSides(bool IsMaster)
     {
-        if (ground.CenterCard)
+        if (DominoGeometery.Instance.CenterCard)
         {
             Play_Center.interactable = false;
             Play_Center_obj.SetActive(false);
@@ -351,13 +350,13 @@ public class DominoPlayer : MonoBehaviour
             int Selected_Card = IsMaster ? Master_Selected_Card : Guest_Selected_Card;
             List<DominoTile> cards = IsMaster ? Master_Cards : Guest_Cards;
 
-            bool leftAv = (ground.LeftAvailable == cards[Selected_Card].Up) || (ground.LeftAvailable == cards[Selected_Card].Down);
-            bool RightAv = (ground.RightAvailable == cards[Selected_Card].Up) || (ground.RightAvailable == cards[Selected_Card].Down);
+            bool leftAv = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Down);
+            bool RightAv = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Down);
             
             Play_Left_obj.SetActive(leftAv);
-            Play_Left_obj.transform.position = ground.GetNextPosition(GroundSide.Left);
+            Play_Left_obj.transform.position = DominoGeometery.Instance.GetNextTilePosition(GroundSide.Left);
             Play_Right_obj.SetActive(RightAv);
-            Play_Right_obj.transform.position = ground.GetNextPosition(GroundSide.Right);
+            Play_Right_obj.transform.position = DominoGeometery.Instance.GetNextTilePosition(GroundSide.Right);
 
             Play_Right.interactable = RightAv;
             Play_Left.interactable = leftAv;
@@ -433,8 +432,8 @@ public class DominoPlayer : MonoBehaviour
             {
                 foreach (DominoTile card in Master_Cards)
                 {
-                    bool RightSide = (ground.RightAvailable == card.Up) || (ground.RightAvailable == card.Down);
-                    bool LeftSide = (ground.LeftAvailable == card.Up) || (ground.LeftAvailable == card.Down);
+                    bool RightSide = (DominoGeometery.Instance.RightAvailable == card.Up) || (DominoGeometery.Instance.RightAvailable == card.Down);
+                    bool LeftSide = (DominoGeometery.Instance.LeftAvailable == card.Up) || (DominoGeometery.Instance.LeftAvailable == card.Down);
 
                     if(RightSide || LeftSide)
                         Stuck = false;
@@ -451,8 +450,8 @@ public class DominoPlayer : MonoBehaviour
             {
                 foreach (DominoTile card in Guest_Cards)
                 {
-                    bool RightSide = (ground.RightAvailable == card.Up) || (ground.RightAvailable == card.Down);
-                    bool LeftSide = (ground.LeftAvailable == card.Up) || (ground.LeftAvailable == card.Down);
+                    bool RightSide = (DominoGeometery.Instance.RightAvailable == card.Up) || (DominoGeometery.Instance.RightAvailable == card.Down);
+                    bool LeftSide = (DominoGeometery.Instance.LeftAvailable == card.Up) || (DominoGeometery.Instance.LeftAvailable == card.Down);
 
                     if (RightSide || LeftSide)
                         Stuck = false;
@@ -541,7 +540,7 @@ public class DominoPlayer : MonoBehaviour
             {
                 bool Master_Client = (Manager.GameManager.GameMode == GameMode.Offline) ? true : master_client;
 
-                if (Master_Client && Stuck(true) && ground.CenterCard)
+                if (Master_Client && Stuck(true) && DominoGeometery.Instance.CenterCard)
                 {
 
                     if (organizer.Cards.Count > 0)
@@ -622,7 +621,7 @@ public class DominoPlayer : MonoBehaviour
             {
                 bool Master_Client = (Manager.GameManager.GameMode == GameMode.Offline) ? false : master_client;
 
-                if (!Master_Client && Stuck(false) && ground.CenterCard)
+                if (!Master_Client && Stuck(false) && DominoGeometery.Instance.CenterCard)
                 {
                     if (organizer.Cards.Count > 0 && !(Manager.GameManager.GameMode == GameMode.Offline))
                     {
@@ -933,7 +932,7 @@ public class DominoPlayer : MonoBehaviour
         //Play Code
         if (!Master_Turn)
         {
-            if (!ground.CenterCard)
+            if (!DominoGeometery.Instance.CenterCard)
             {
                 Play_Trigger((int)GroundSide.Center);
             }
@@ -946,8 +945,8 @@ public class DominoPlayer : MonoBehaviour
                     int Selected_Card = Guest_Selected_Card;
                     List<DominoTile> cards = Guest_Cards;
 
-                    bool leftAv = (ground.LeftAvailable == cards[Selected_Card].Up) || (ground.LeftAvailable == cards[Selected_Card].Down);
-                    bool RightAv = (ground.RightAvailable == cards[Selected_Card].Up) || (ground.RightAvailable == cards[Selected_Card].Down);
+                    bool leftAv = (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.LeftAvailable == cards[Selected_Card].Down);
+                    bool RightAv = (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Up) || (DominoGeometery.Instance.RightAvailable == cards[Selected_Card].Down);
 
                     if (leftAv)
                     {

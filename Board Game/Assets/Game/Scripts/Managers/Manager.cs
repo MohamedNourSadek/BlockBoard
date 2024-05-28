@@ -17,6 +17,10 @@ public class Manager : SerializedMonoBehaviour
         {
             Managers.Add(GetType(), this);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 

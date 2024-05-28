@@ -69,7 +69,7 @@ public class Messages_Manager : MonoBehaviour
 
         int i = 1;
 
-        foreach(var player in Manager.GameManager.players)
+        foreach(var player in Manager.GameManager.Players)
         {
             if(player.Value == player_actorNum)
                 PlayerName = "P" + i;

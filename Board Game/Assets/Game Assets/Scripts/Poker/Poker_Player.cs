@@ -793,7 +793,7 @@ public class Poker_Player : MonoBehaviour
                 }
                 else
                 {
-                    foreach (var player in Manager.GameManager.players)
+                    foreach (var player in Manager.GameManager.Players)
                         if (winners[0] == player.Key.Identity)
                             PlayerName = player.Key.PlayerName + " has";
                 }
@@ -823,8 +823,8 @@ public class Poker_Player : MonoBehaviour
         {
             EndGame_Text.text = "No Winner, all bets back";
 
-            foreach (var player in Manager.GameManager.players)
-                Get_Player(player.Key.Identity).myChips += (Final_bet / Manager.GameManager.players.Count);
+            foreach (var player in Manager.GameManager.Players)
+                Get_Player(player.Key.Identity).myChips += (Final_bet / Manager.GameManager.Players.Count);
 
             organizer.my_WinState = MyWin_State.Draw;
         }

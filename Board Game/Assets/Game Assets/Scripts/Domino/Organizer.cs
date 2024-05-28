@@ -18,8 +18,8 @@ public class Organizer : MonoBehaviourPunCallbacks
 
     [Header("References")]
     [SerializeField] General_InGameUI General_UI_Manager;
-    [SerializeField] public List<Tile> Cards = new List<Tile>();
-    [SerializeField] Player player1;
+    [SerializeField] public List<DominoTile> Cards = new List<DominoTile>();
+    [SerializeField] DominoPlayer player1;
     [SerializeField] GameObject OutObjects;
     [SerializeField] int MaxScore = 100;
 
@@ -84,7 +84,7 @@ public class Organizer : MonoBehaviourPunCallbacks
     void Handle_Data(GetUserDataResult result)
     {
         int Opponent_Total_Skill = 0;
-        foreach (var p in Manager.GameManager.players)
+        foreach (var p in Manager.GameManager.Players)
         {
             if (master_client)
             {
@@ -104,7 +104,7 @@ public class Organizer : MonoBehaviourPunCallbacks
 
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Domino)) ? 1 : 0;
 
-        Game_Stats mystats = Manager.GameManager.mystats[0];
+        Game_Stats mystats = Manager.GameManager.MyStats[0];
         int Current_Credit;
 
         mystats.Games_Played = Int32.Parse(result.Data[mystats.Games_Played_Key].Value) + CurrentGame;
@@ -188,7 +188,7 @@ public class Organizer : MonoBehaviourPunCallbacks
     {
         //Shuffle and replace cards
         var seq = RandomSquence_Strg.Split(',');
-        List<Tile> New_Cards = new List<Tile>();
+        List<DominoTile> New_Cards = new List<DominoTile>();
         for (int i = 0; i < seq.Length - 1; i++)
             New_Cards.Add(Cards[System.Convert.ToInt32(seq[i])]);
         Cards = New_Cards;
@@ -210,7 +210,7 @@ public class Organizer : MonoBehaviourPunCallbacks
         }
 
         int increment = 0;
-        foreach (Tile t in Cards)
+        foreach (DominoTile t in Cards)
         {
             t.transform.position = OutObjects.transform.position + new Vector3(0.05f * increment, 0f, 0f);
             increment++;

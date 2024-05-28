@@ -75,7 +75,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
     void Handle_Data(GetUserDataResult result)
     {
         int Opponent_Total_Skill = 0;
-        foreach (var p in Manager.GameManager.players)
+        foreach (var p in Manager.GameManager.Players)
         {
             if (master_client)
             {
@@ -94,7 +94,7 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Chess)) ? 1 : 0;
 
-        Game_Stats mystats = Manager.GameManager.mystats[1];
+        Game_Stats mystats = Manager.GameManager.MyStats[1];
         int Current_Credit;
 
         mystats.Games_Played = Int32.Parse(result.Data[mystats.Games_Played_Key].Value) + CurrentGame;

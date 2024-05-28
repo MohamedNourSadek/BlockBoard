@@ -83,7 +83,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
     {
         int Opponent_Total_Skill = 0;
 
-        foreach (var p in Manager.GameManager.players)
+        foreach (var p in Manager.GameManager.Players)
         {
             if (!(client == p.Key.Identity))
             {
@@ -96,7 +96,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         int Loss = (my_WinState == MyWin_State.Lost) ? 1 : 0;
         int CurrentGame = (!(Manager.GameManager.CurrentGame == GameType.Poker)) ? 1 : 0;
 
-        Game_Stats mystats = Manager.GameManager.mystats[2];
+        Game_Stats mystats = Manager.GameManager.MyStats[2];
         int Current_Credit;
 
         mystats.Games_Played = Int32.Parse(result.Data[mystats.Games_Played_Key].Value) + CurrentGame;
@@ -119,7 +119,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         if (!(Manager.GameManager.CurrentGame == GameType.Poker))
         {
             int Past_Avg = Int32.Parse(result.Data[mystats.Avg_Op_Key].Value);
-            int AllGames_TotalSkill = (Past_Avg * mystats.Games_Played) + (Opponent_Total_Skill/ Manager.GameManager.players.Count - 1);
+            int AllGames_TotalSkill = (Past_Avg * mystats.Games_Played) + (Opponent_Total_Skill/ Manager.GameManager.Players.Count - 1);
             mystats.Avg_Op = AllGames_TotalSkill / (mystats.Games_Played);
         }
 
@@ -186,8 +186,8 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    RandomPlayer_ind = UnityEngine.Random.Range(0, Manager.GameManager.players.Count);
-                    RandomPlayer2_ind = UnityEngine.Random.Range(0, Manager.GameManager.players.Count);
+                    RandomPlayer_ind = UnityEngine.Random.Range(0, Manager.GameManager.Players.Count);
+                    RandomPlayer2_ind = UnityEngine.Random.Range(0, Manager.GameManager.Players.Count);
                 }
             }
 
@@ -248,7 +248,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
                     p.MyName_Obj.SetActive(false);
             }
 
-            foreach (var p in Manager.GameManager.players)
+            foreach (var p in Manager.GameManager.Players)
             {
                 player.PlayersInRound.Add((int)p.Key.Identity);
 
@@ -307,7 +307,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
                 client = identity.master;
             else
             {
-                foreach (var player in Manager.GameManager.players)
+                foreach (var player in Manager.GameManager.Players)
                 {
                     if(player.Value == PhotonNetwork.LocalPlayer.ActorNumber)
                     {
@@ -401,7 +401,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         }
         else
         {
-            foreach (var p in Manager.GameManager.players)
+            foreach (var p in Manager.GameManager.Players)
             {
                 if ((identity)P1 == p.Key.Identity)
                     Player1_Name = p.Key.PlayerName;
@@ -503,7 +503,7 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             foreach (var p in player.Global_players)
-                foreach (var a_player in Manager.GameManager.players)
+                foreach (var a_player in Manager.GameManager.Players)
                     if (p.player_role == a_player.Key.Identity)
                     {
                         p.myChips += player.Final_bet;

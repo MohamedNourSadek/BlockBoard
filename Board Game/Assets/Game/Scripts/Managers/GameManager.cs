@@ -15,8 +15,8 @@ public class GameManager : Manager
     public int[] CurrentScore = new int[] { 0, 0, 0, 0 };
     public bool MasterWonLastGame = false;
     
-    public Dictionary<Player_Info, int> players = new Dictionary<Player_Info, int>();
-    public List<Game_Stats> mystats = new List<Game_Stats>();
+    public Dictionary<Player_Info, int> Players = new Dictionary<Player_Info, int>();
+    public List<Game_Stats> MyStats = new List<Game_Stats>();
 
     public override void Awake()
     {

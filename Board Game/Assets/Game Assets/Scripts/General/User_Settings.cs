@@ -375,7 +375,7 @@ public class User_Settings : MonoBehaviour
         Logging_In = false;
         Logged_IN = true;
 
-        Manager.GameManager.mystats = Games_Stats;
+        Manager.GameManager.MyStats = Games_Stats;
 
         Connect_ToServer.SelectPage();
 

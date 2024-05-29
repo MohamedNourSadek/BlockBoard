@@ -39,6 +39,17 @@ public class GameManager : Manager
 
         return newList;
     }
+
+    public void PauseGame()
+    {
+        if(GameMode == GameMode.Offline)
+            Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
 }
 
 public class DominoSettings

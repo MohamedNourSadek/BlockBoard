@@ -31,6 +31,7 @@ public class DominoController : MonoBehaviour
     }
     #endregion
 
+
     #region Public Functions
     public void StartGame()
     {
@@ -76,18 +77,18 @@ public class DominoController : MonoBehaviour
 
         if (bySubmission)
         {
-            Message = General_InGameUI.Instance.SubmissionText;
+            Message = GameGeneralPanel.Instance.SubmissionText;
         }
 
 
         if ((matchWinner == Winner.Master && GameManager.IsMasterClient) || (matchWinner == Winner.Guest && !GameManager.IsMasterClient))
         {
-            Message += General_InGameUI.Instance.WinText;
+            Message += GameGeneralPanel.Instance.WinText;
             myWinState = MyWinState.Won;
         }
         else if ((matchWinner == Winner.Guest && GameManager.IsMasterClient) || (matchWinner == Winner.Master && !GameManager.IsMasterClient))
         {
-            Message += General_InGameUI.Instance.LoseText;
+            Message += GameGeneralPanel.Instance.LoseText;
             myWinState = MyWinState.Lost;
         }
         else if (matchWinner == Winner.NoWinner)
@@ -119,10 +120,10 @@ public class DominoController : MonoBehaviour
                 //Handle_Data(Data_Result);
         }
 
-        General_InGameUI.Instance.EndGame_Message.text = Message;
-        General_InGameUI.Instance.EndGame_Menu.SetActive(true);
+        GameGeneralPanel.Instance.EndGame_Message.text = Message;
+        GameGeneralPanel.Instance.EndGame_Menu.SetActive(true);
 
-        General_InGameUI.Instance.Game_UI.SetActive(false);
+        GameGeneralPanel.Instance.Game_UI.SetActive(false);
         Manager.GameManager.CurrentScore[0] = 0;
         Manager.GameManager.CurrentScore[1] = 0;
         Manager.GameManager.MasterWonLastGame = true;
@@ -166,6 +167,7 @@ public class DominoController : MonoBehaviour
 
         Manager.GetManager<PlayfabManager>().SaveUserData();
     }
+
     private void DistributeCards()
     {
         for (int i = 0; i < CardsPerPlayer; i++)
@@ -213,7 +215,7 @@ public class DominoController : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
 
         if (GameManager.IsMasterClient)
-            General_InGameUI.Instance.Rematch();
+            GameGeneralPanel.Instance.Rematch();
     }
     #endregion
 

@@ -8,7 +8,7 @@ using PlayFab.ClientModels;
 
 public class Chess_Organizer : MonoBehaviourPunCallbacks
 {
-    [SerializeField] General_InGameUI General_UI_Manager;
+    [SerializeField] GameGeneralPanel General_UI_Manager;
     [SerializeField] Chess_player myplayer;
     [SerializeField] GameObject board;
     [SerializeField] Material BlackBoardMat;

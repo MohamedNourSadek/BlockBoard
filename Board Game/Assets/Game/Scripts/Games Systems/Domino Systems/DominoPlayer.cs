@@ -21,7 +21,6 @@ public class DominoPlayer : MonoBehaviour
     [SerializeField] GameObject Play_Left_obj;
     [SerializeField] GameObject Play_Right_obj;
     [SerializeField] GameObject Play_Tools;
-    [SerializeField] Text TurnText;
     [SerializeField] public Text MyScore;
     [SerializeField] Slider time_slider;
     [SerializeField] public Text OtherScore;
@@ -36,10 +35,6 @@ public class DominoPlayer : MonoBehaviour
     [SerializeField] GameObject OtherCards_Position;
 
     [Header("Score and Turns")]
-    [SerializeField] string yourTurn_text = "Your Turn";
-    [SerializeField] Color yourturn_color = Color.green;
-    [SerializeField] string otherTurn_text = "Other Turn";
-    [SerializeField] Color otherTurn_color = Color.red;
     [SerializeField] Text_Comments_Generator text_comm;
     [SerializeField] float text_Speed;
     [SerializeField] float text_initialScale;
@@ -607,13 +602,11 @@ public class DominoPlayer : MonoBehaviour
 
                 if (master_client)
                 {
-                    TurnText.text = yourTurn_text;
-                    TurnText.color = yourturn_color;
+                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.MyTurn);
                 }
                 else
                 {
-                    TurnText.text = otherTurn_text;
-                    TurnText.color = otherTurn_color;
+                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.OpponentTurn);
                 }
             }
             else
@@ -692,13 +685,11 @@ public class DominoPlayer : MonoBehaviour
 
                 if (!master_client)
                 {
-                    TurnText.text = yourTurn_text;
-                    TurnText.color = yourturn_color;
+                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.MyTurn);
                 }
                 else
                 {
-                    TurnText.text = otherTurn_text;
-                    TurnText.color = otherTurn_color;
+                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.OpponentTurn);
                 }
             }
         }

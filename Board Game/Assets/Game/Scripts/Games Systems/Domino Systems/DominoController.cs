@@ -44,16 +44,16 @@ public class DominoController : MonoBehaviour
     }
     public void EndRound(Winner roundWinner, bool rematch, bool bySubmission)
     {
-        DominoPlayer.Instance.Game_Is_On = false;
+        DominoPlayer.Instance.GameIsOn = false;
 
         if (roundWinner == Winner.Master)
         {
-            Manager.GameManager.CurrentScore[0] = DominoPlayer.Instance.Calculate_Score(DominoPlayer.Instance.GuestCards);
+            Manager.GameManager.CurrentScore[0] = DominoPlayer.Instance.CalculateScore(DominoPlayer.Instance.GuestCards);
             Manager.GameManager.MasterWonLastGame = true;
         }
         else if (roundWinner == Winner.Guest)
         {
-            Manager.GameManager.CurrentScore[1] = DominoPlayer.Instance.Calculate_Score(DominoPlayer.Instance.MasterCards);
+            Manager.GameManager.CurrentScore[1] = DominoPlayer.Instance.CalculateScore(DominoPlayer.Instance.MasterCards);
             Manager.GameManager.MasterWonLastGame = false;
         }
 
@@ -103,11 +103,10 @@ public class DominoController : MonoBehaviour
                 Message = "Draw!";
             }
 
-            General_InGameUI.Instance.EndRound_Message.text = Message;
-            General_InGameUI.Instance.EndRound_Menu.SetActive(true);
-            DominoPlayer.Instance.Game_Is_On = false;
-            StartCoroutine(NextRound());
+            Panel.GetPanel<PopUpPanel>().ShowPopUp(Message);
 
+            DominoPlayer.Instance.GameIsOn = false;
+            StartCoroutine(NextRound());
             return;
         }
 

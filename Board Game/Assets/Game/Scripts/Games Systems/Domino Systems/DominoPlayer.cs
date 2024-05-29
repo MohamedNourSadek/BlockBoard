@@ -68,7 +68,7 @@ public class DominoPlayer : MonoBehaviour
     [System.NonSerialized] public int Guest_Selected_Card = 3;
     [System.NonSerialized] public List<DominoTile> MasterCards = new List<DominoTile>();
     [System.NonSerialized] public List<DominoTile> GuestCards = new List<DominoTile>();
-    [System.NonSerialized] public bool Game_Is_On = true;
+    [System.NonSerialized] public bool GameIsOn = true;
 
 
     float Slider_Adding;
@@ -363,19 +363,19 @@ public class DominoPlayer : MonoBehaviour
 
         if (Master_Turn)
         {
-            Play_Center.gameObject.SetActive(master_client && !Played_Locally &&Game_Is_On);
-            Play_Left.gameObject.SetActive(master_client && !Played_Locally &&Game_Is_On);
-            Play_Right.gameObject.SetActive(master_client && !Played_Locally && Game_Is_On);
+            Play_Center.gameObject.SetActive(master_client && !Played_Locally &&GameIsOn);
+            Play_Left.gameObject.SetActive(master_client && !Played_Locally &&GameIsOn);
+            Play_Right.gameObject.SetActive(master_client && !Played_Locally && GameIsOn);
 
-            Play_Tools.SetActive(master_client && !Played_Locally && Game_Is_On);
+            Play_Tools.SetActive(master_client && !Played_Locally && GameIsOn);
         }
         else
         {
-            Play_Center.gameObject.SetActive(!master_client && !Played_Locally && Game_Is_On);
-            Play_Left.gameObject.SetActive(!master_client && !Played_Locally && Game_Is_On);
-            Play_Right.gameObject.SetActive(!master_client && !Played_Locally && Game_Is_On);
+            Play_Center.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
+            Play_Left.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
+            Play_Right.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
 
-            Play_Tools.SetActive(!master_client && !Played_Locally && Game_Is_On);
+            Play_Tools.SetActive(!master_client && !Played_Locally && GameIsOn);
         }
     }
     void Referesh_Selection_UI()
@@ -559,7 +559,7 @@ public class DominoPlayer : MonoBehaviour
 
                         while (Borrowing && BorrowMaxtime >= 0f)
                         {
-                            if(!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && Game_Is_On)
+                            if(!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && GameIsOn)
                                 BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
 
                             BorrowingTimer.value = BorrowMaxtime;
@@ -644,7 +644,7 @@ public class DominoPlayer : MonoBehaviour
                         {
                             while (Borrowing && BorrowMaxtime >= 0f)
                             {
-                                if (!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && Game_Is_On)
+                                if (!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && GameIsOn)
                                     BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
 
                                 BorrowingTimer.value = BorrowMaxtime;
@@ -731,7 +731,7 @@ public class DominoPlayer : MonoBehaviour
         ReOrganizeCardsInHands();
         Referesh_Selection_UI();
     }
-    public int Calculate_Score(List<DominoTile> cards)
+    public int CalculateScore(List<DominoTile> cards)
     {
         int Score = 0;
 
@@ -892,7 +892,7 @@ public class DominoPlayer : MonoBehaviour
         }
         else
         {
-            if (Game_Is_On)
+            if (GameIsOn)
             {
                 Timer -= Time.fixedDeltaTime;
                 time_slider.value = (Timer / Max_Time);

@@ -8,25 +8,40 @@ public class Game_DependantObject : MonoBehaviour
     [SerializeField] GameObject ChessObject;
     [SerializeField] GameObject PokerObject;
 
-    private void OnEnable()
+    private void Start()
     {
         if (Manager.GameManager.CurrentGame == GameType.Domino)
         {
-            DominoObject.SetActive(true);
-            ChessObject.SetActive(false);
-            PokerObject.SetActive(false);
+            if(DominoObject)
+                DominoObject.SetActive(true);
+
+            if(ChessObject)
+                ChessObject.SetActive(false);
+            
+            if(PokerObject) 
+                PokerObject.SetActive(false);
         }
         else if (Manager.GameManager.CurrentGame == GameType.Chess)
         {
-            ChessObject.SetActive(true);
-            DominoObject.SetActive(false);
-            PokerObject.SetActive(false);
+            if(DominoObject)
+                DominoObject.SetActive(false);
+            
+            if(ChessObject)
+                ChessObject.SetActive(true);
+            
+            if(PokerObject)
+                PokerObject.SetActive(false);
         }
         else if (Manager.GameManager.CurrentGame == GameType.Poker)
         {
-            PokerObject.SetActive(true);
-            ChessObject.SetActive(false);
-            DominoObject.SetActive(false);
+            if(DominoObject)
+                DominoObject.SetActive(false);
+            
+            if(ChessObject)
+                ChessObject.SetActive(false);
+            
+            if(PokerObject)
+                PokerObject.SetActive(true);
         }
     }
 }

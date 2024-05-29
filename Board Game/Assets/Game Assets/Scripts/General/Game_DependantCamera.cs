@@ -12,12 +12,7 @@ public class Game_DependantCamera : MonoBehaviour
     [SerializeField] float Poker_POV;
 
 
-    private void Awake()
-    {
-        OnEnable();
-    }
-
-    private void OnEnable()
+    private void Start()
     {
         if (Manager.GameManager.CurrentGame == GameType.Domino)
         {

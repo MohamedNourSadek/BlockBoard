@@ -1,4 +1,5 @@
 using Photon.Pun;
+using PlayFab.ClientModels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,8 @@ public class DominoController : MonoBehaviour
 
         if (GameManager.IsMasterClient)
             StartDominoGame();
+
+        AssumeLostUntilFinishGame();
     }
     public List<DominoTile> GetTilesOutSide()
     {
@@ -145,6 +148,24 @@ public class DominoController : MonoBehaviour
         Panel.GetPanel<DominoPanel>().Show();
         gameObject.SetActive(true);
     }
+    private void AssumeLostUntilFinishGame()
+    {
+        int win = (myWinState == MyWinState.Won) ? 1 : 0;
+        int draw = (myWinState == MyWinState.Draw) ? 1 : 0;
+        int loss = (myWinState == MyWinState.Lost) ? 1 : 0;
+
+        var gameType = Manager.GameManager.CurrentGame;
+
+        var profileData = Manager.GetManager<ProfileManager>().GetPlayerProfile();
+
+        profileData.GamesPlayed[gameType]++;
+        profileData.GamesWon[gameType] += win;
+        profileData.GamesDraw[gameType] += draw;
+        profileData.GamesLost[gameType] += loss;
+        profileData.Skill[gameType] = User_Settings.Compute_Skill(profileData.GamesWon[gameType], profileData.GamesLost[gameType], 0);
+
+        Manager.GetManager<PlayfabManager>().SaveUserData();
+    }
     private void DistributeCards()
     {
         for (int i = 0; i < CardsPerPlayer; i++)
@@ -213,5 +234,4 @@ public class DominoController : MonoBehaviour
         DistributeCards();
     }
     #endregion
-
 }

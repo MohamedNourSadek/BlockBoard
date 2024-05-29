@@ -37,7 +37,7 @@ public class General_InGameUI : MonoBehaviour
     List<string> Rules = new List<string>();
     public static General_InGameUI Instance;
 
-    private void Awake()
+    private void Start()
     {
         Instance = this;
 

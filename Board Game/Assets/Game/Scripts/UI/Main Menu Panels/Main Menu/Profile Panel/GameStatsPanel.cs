@@ -38,7 +38,6 @@ public class GameStatsPanel : Panel
         SkillLevel.text = profile.Skill[gameType].ToString();
         GamesPlayed.text = profile.GamesPlayed[gameType].ToString();
         Stats.text = "(" + profile.GamesWon[gameType].ToString() + ", " + profile.GamesDraw[gameType] + ", " + profile.GamesLost[gameType] + ")";
-        AvgOpponentSkill.text = profile.AvgOpponentSkill[gameType].ToString();
     }
 
     public void OnBackPressed()

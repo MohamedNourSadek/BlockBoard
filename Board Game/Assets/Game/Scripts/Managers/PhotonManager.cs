@@ -68,7 +68,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 data.Add(type.ToString() + "_GamesWon", profile.GamesWon[type]);
                 data.Add(type.ToString() + "_GamesLost" , profile.GamesLost[type]);
                 data.Add(type.ToString() + "_GamesDraw" , profile.GamesDraw[type]);
-                data.Add(type.ToString() + "_AvgOp", profile.AvgOpponentSkill[type]);
             }
 
             data.Add(PlayerReadyKey, "false");

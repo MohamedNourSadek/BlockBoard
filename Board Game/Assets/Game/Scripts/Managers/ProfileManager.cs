@@ -18,7 +18,6 @@ public class ProfileManager : Manager
     public void SetPlayerProfile(PlayerProfile profile)
     {
         PlayerProfile = profile;
-
         OnProfileDataReceived?.Invoke();
     }
 }
@@ -34,5 +33,4 @@ public class PlayerProfile
     public Dictionary<GameType, int> GamesWon;
     public Dictionary<GameType, int> GamesDraw;
     public Dictionary<GameType, int> GamesLost;
-    public Dictionary<GameType, int> AvgOpponentSkill;
 }

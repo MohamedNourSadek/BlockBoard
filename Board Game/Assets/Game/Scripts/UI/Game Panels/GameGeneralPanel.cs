@@ -43,7 +43,7 @@ public class GameGeneralPanel : MonoBehaviour
             view = GetComponent<PhotonView>();
 
         if(Manager.GetManager<SettingsManager>().CameraSnap)
-            Camera_Snap.image.sprite = Camera_Snap_Off;
+            Camera_Snap.image.sprite = Camera_Snap_Off; 
         else
             Camera_Snap.image.sprite = Camera_Snap_On;
 

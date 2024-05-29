@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Manager
 {
@@ -49,6 +50,16 @@ public class GameManager : Manager
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
 

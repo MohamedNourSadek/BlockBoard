@@ -22,7 +22,7 @@ public class GameNormalPanel : Panel
         base.Awake();
 
         TutorialButton.onClick.AddListener(OnTutorialPressed);
-        SettingsButton.onClick.AddListener(OnSettingsPressed);
+        SettingsButton.onClick.AddListener(OnPausePressed);
         MessagesButton.onClick.AddListener(OnMessagesPressed);
         GameViewButton.onClick.AddListener(OnGameViewPressed);
 
@@ -51,9 +51,10 @@ public class GameNormalPanel : Panel
         throw new NotImplementedException();
     }
 
-    private void OnSettingsPressed()
+    private void OnPausePressed()
     {
-        throw new NotImplementedException();
+        Hide();
+        Panel.GetPanel<PausePanel>().Show();
     }
 
     private void OnTutorialPressed()

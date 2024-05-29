@@ -44,6 +44,10 @@ public class SettingsPanel : Panel
     public void OnBackPressed()
     {
         Hide();
-        Panel.GetPanel<MainMenuPanel>().Show(); 
+
+        if (Panel.GetPanel<MainMenuPanel>())
+            Panel.GetPanel<MainMenuPanel>().Show();
+        else
+            Panel.GetPanel<PausePanel>().OnBackFromSettingsPressed();
     }
 }

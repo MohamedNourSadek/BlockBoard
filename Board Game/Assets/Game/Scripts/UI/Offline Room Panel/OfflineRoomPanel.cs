@@ -44,7 +44,6 @@ public class OfflineRoomPanel : Panel
     public void OnStartPressed()
     {
         Manager.GameManager.GameMode = GameMode.Offline;
-        SceneManager.LoadScene("Game");
     }
     public void OnBackPressed()
     {

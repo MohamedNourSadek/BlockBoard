@@ -145,6 +145,7 @@ public class DominoController : MonoBehaviour
     }
     private void TurnDominoSystemsOn()
     {
+        this.gameObject.gameObject.SetActive(true);
         DominoGeometery.Instance.gameObject.SetActive(true);
         Panel.GetPanel<DominoPanel>().Show();
         gameObject.SetActive(true);
@@ -159,13 +160,16 @@ public class DominoController : MonoBehaviour
 
         var profileData = Manager.GetManager<ProfileManager>().GetPlayerProfile();
 
-        profileData.GamesPlayed[gameType]++;
-        profileData.GamesWon[gameType] += win;
-        profileData.GamesDraw[gameType] += draw;
-        profileData.GamesLost[gameType] += loss;
-        profileData.Skill[gameType] = User_Settings.Compute_Skill(profileData.GamesWon[gameType], profileData.GamesLost[gameType], 0);
-
-        Manager.GetManager<PlayfabManager>().SaveUserData();
+        if(profileData != null)
+        {
+            profileData.GamesPlayed[gameType]++;
+            profileData.GamesWon[gameType] += win;
+            profileData.GamesDraw[gameType] += draw;
+            profileData.GamesLost[gameType] += loss;
+            profileData.Skill[gameType] = User_Settings.Compute_Skill(profileData.GamesWon[gameType], profileData.GamesLost[gameType], 0);
+            
+            Manager.GetManager<PlayfabManager>().SaveUserData();
+        }
     }
 
     private void DistributeCards()

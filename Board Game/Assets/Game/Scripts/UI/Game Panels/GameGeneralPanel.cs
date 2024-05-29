@@ -13,10 +13,6 @@ public class GameGeneralPanel : MonoBehaviour
     [SerializeField] public GameObject Game_UI;
     [SerializeField] GameObject Messages_Icon;
     [SerializeField] GameObject Tutorial_menu;
-    [SerializeField] Text ruleHeader;
-    [SerializeField] Text ruleText;
-    [SerializeField] Button LeftSlider;
-    [SerializeField] Button RightSlider;
     [SerializeField] public GameObject EndGame_Menu;
     [SerializeField] public GameObject EndRound_Menu;
     [SerializeField] public Text EndGame_Message;
@@ -53,8 +49,7 @@ public class GameGeneralPanel : MonoBehaviour
 
     public void Toggle_Camera_Snapp()
     {
-        var settingsManager = Manager.GetManager<SettingsManager>();
-        settingsManager.ChangeCameraSnap(!settingsManager.CameraSnap);
+
     }
 
 

@@ -12,30 +12,20 @@ public class DominoPlayer : MonoBehaviour
     [SerializeField] GameObject OtherPlay_Tiles;
     [SerializeField] GameObject OutCards;
     [SerializeField] Camera_Controller camera_Controller;
-    [SerializeField] Button Select_Right;
-    [SerializeField] Button Select_Left;
-    [SerializeField] Button Play_Center;
-    [SerializeField] Button Play_Left;
-    [SerializeField] Button Play_Right;
     [SerializeField] GameObject Play_Center_obj;
     [SerializeField] GameObject Play_Left_obj;
     [SerializeField] GameObject Play_Right_obj;
     [SerializeField] GameObject Play_Tools;
-    [SerializeField] public Text MyScore;
-    [SerializeField] Slider time_slider;
-    [SerializeField] public Text OtherScore;
     [SerializeField] Scrollbar scrollbar;
     [SerializeField] LayerMask tiles;
     [SerializeField] Animation BorrwoingANim;
     [SerializeField] AnimationClip borrowing_Anim;
     [SerializeField] AnimationClip borrowingOut_Anim;
     [SerializeField] List<GameObject> FakeExtraTiles = new List<GameObject>();
-    [SerializeField] Slider BorrowingTimer;
     [SerializeField] GameObject MyCards_Position;
     [SerializeField] GameObject OtherCards_Position;
 
     [Header("Score and Turns")]
-    [SerializeField] Text_Comments_Generator text_comm;
     [SerializeField] float text_Speed;
     [SerializeField] float text_initialScale;
     [SerializeField] Color text_initial_Color;
@@ -81,8 +71,7 @@ public class DominoPlayer : MonoBehaviour
         
         UpdateMaster_Client();
 
-        MyScore.text = Manager.GameManager.CurrentScore[0].ToString();
-        OtherScore.text = Manager.GameManager.CurrentScore[1].ToString();
+        Panel.GetPanel<DominoPanel>().SetPlayersScore(Manager.GameManager.CurrentScore[0], Manager.GameManager.CurrentScore[1]);
 
         Timer = Max_Time;
         
@@ -187,7 +176,7 @@ public class DominoPlayer : MonoBehaviour
             DominoController.Instance.EndRound(Winner.Master, true,false);
             
             if(master_client)
-                text_comm.PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                Panel.GetPanel<TextPopUpsPanel>().PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
             return;
         }
@@ -196,7 +185,7 @@ public class DominoPlayer : MonoBehaviour
             DominoController.Instance.EndRound(Winner.Guest, true,false);
 
             if (!master_client)
-                text_comm.PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                Panel.GetPanel<TextPopUpsPanel>().PlayText("Round Winner!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
             return;
         }
@@ -338,7 +327,6 @@ public class DominoPlayer : MonoBehaviour
     {
         if (DominoGeometery.Instance.CenterCard)
         {
-            Play_Center.interactable = false;
             Play_Center_obj.SetActive(false);
 
             int Selected_Card = IsMaster ? Master_Selected_Card : Guest_Selected_Card;
@@ -352,65 +340,30 @@ public class DominoPlayer : MonoBehaviour
             Play_Right_obj.SetActive(RightAv);
             Play_Right_obj.transform.position = DominoGeometery.Instance.GetNextTilePosition(GroundSide.Right);
 
-            Play_Right.interactable = RightAv;
-            Play_Left.interactable = leftAv;
         }
 
         if (Master_Turn)
         {
-            Play_Center.gameObject.SetActive(master_client && !Played_Locally &&GameIsOn);
-            Play_Left.gameObject.SetActive(master_client && !Played_Locally &&GameIsOn);
-            Play_Right.gameObject.SetActive(master_client && !Played_Locally && GameIsOn);
-
             Play_Tools.SetActive(master_client && !Played_Locally && GameIsOn);
         }
         else
         {
-            Play_Center.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
-            Play_Left.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
-            Play_Right.gameObject.SetActive(!master_client && !Played_Locally && GameIsOn);
-
             Play_Tools.SetActive(!master_client && !Played_Locally && GameIsOn);
         }
     }
     void Referesh_Selection_UI()
     {
-        int Selected_Card = 0;
         List<DominoTile> cards = new List<DominoTile>();
 
         Fix_Selected();
 
         if (master_client)
         {
-            Selected_Card = Master_Selected_Card;
             cards = MasterCards;
         }
         else if (!master_client)
         {
-            Selected_Card = Guest_Selected_Card;
             cards = GuestCards;
-        }
-
-
-        if (Selected_Card == 0)
-        {
-            Select_Left.interactable = false;
-            Select_Right.interactable = true;
-        }
-        else if (Selected_Card == (cards.Count - 1))
-        {
-            Select_Left.interactable = true;
-            Select_Right.interactable = false;
-        }
-        else if (cards.Count == 1)
-        {
-            Select_Left.interactable = false;
-            Select_Right.interactable = false;
-        }
-        else
-        {
-            Select_Left.interactable = true;
-            Select_Right.interactable = true;
         }
     }
 
@@ -486,12 +439,13 @@ public class DominoPlayer : MonoBehaviour
         is_3_yet = false;
         is_2_yet = false;
         is_1_yet = false;
-        time_slider.value = 1f;
+
+        Panel.GetPanel<DominoPanel>().SetTimer(1f);
 
         bool yourTurn = Master_Turn && master_client || !Master_Turn && !master_client;
 
         if (yourTurn && !Stuck(true) && !Stuck(false))
-            text_comm.PlayText("Your Turn!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+            Panel.GetPanel<TextPopUpsPanel>().PlayText("Your Turn!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
 
         if ((Stuck(true) && Stuck(false)) && DominoController.Instance.GetTilesOutSide().Count == 0)
@@ -511,7 +465,7 @@ public class DominoPlayer : MonoBehaviour
                     view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
             }
 
-            text_comm.PlayText("Pass, No Cards!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+            Panel.GetPanel<TextPopUpsPanel>().PlayText("Pass, No Cards!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
         }
         else if (!Master_Turn && Stuck(false) && DominoController.Instance.GetTilesOutSide().Count == 0)
@@ -526,7 +480,7 @@ public class DominoPlayer : MonoBehaviour
                     view.RPC("Switch_Turn_trigger", RpcTarget.AllBuffered);
             }
 
-            text_comm.PlayText("Pass, No Cards!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+            Panel.GetPanel<TextPopUpsPanel>().PlayText("Pass, No Cards!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
         }
         else
         {
@@ -540,11 +494,13 @@ public class DominoPlayer : MonoBehaviour
                     if (DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
                         BorrwoingANim.Play(borrowing_Anim.name);
-                        BorrowingTimer.gameObject.SetActive(true);
+                        
+                        Panel.GetPanel<DominoPanel>().ShowBorrowTimer(true);
                     }
                     
-                    float BorrowMaxtime = Borrow_MaxTime;
-                    BorrowingTimer.value = BorrowMaxtime;
+                    float borrowTimer = Borrow_MaxTime;
+                    Panel.GetPanel<DominoPanel>().SetBorrowTimer(1f);
+
 
                     while (Stuck(true) && DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
@@ -552,16 +508,16 @@ public class DominoPlayer : MonoBehaviour
                         
                         Borrowing = true;
 
-                        while (Borrowing && BorrowMaxtime >= 0f)
+                        while (Borrowing && borrowTimer >= 0f)
                         {
                             if(!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && GameIsOn)
-                                BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
+                                borrowTimer -= (Time.fixedDeltaTime*Time.timeScale);
 
-                            BorrowingTimer.value = BorrowMaxtime;
+                            Panel.GetPanel<DominoPanel>().SetBorrowTimer(borrowTimer/Borrow_MaxTime);
                             yield return new WaitForSecondsRealtime(Time.fixedDeltaTime); 
                         }
 
-                        if(BorrowMaxtime < 0f)
+                        if(borrowTimer < 0f)
                         {
                             if((Manager.GameManager.GameMode == GameMode.Offline))
                             {
@@ -589,7 +545,7 @@ public class DominoPlayer : MonoBehaviour
                     }
                     
                     BorrwoingANim.Play(borrowingOut_Anim.name);
-                    BorrowingTimer.gameObject.SetActive(false);
+                    Panel.GetPanel<DominoPanel>().ShowBorrowTimer(false);
 
                     if (Stuck(true) && DominoController.Instance.GetTilesOutSide().Count == 0)
                     {
@@ -618,11 +574,12 @@ public class DominoPlayer : MonoBehaviour
                     if (DominoController.Instance.GetTilesOutSide().Count > 0 && !(Manager.GameManager.GameMode == GameMode.Offline))
                     {
                         BorrwoingANim.Play(borrowing_Anim.name);
-                        BorrowingTimer.gameObject.SetActive(true);
+                        Panel.GetPanel<DominoPanel>().ShowBorrowTimer(true);
                     }
 
-                    float BorrowMaxtime = Borrow_MaxTime;
-                    BorrowingTimer.value = BorrowMaxtime;
+                    float borrowTimer = Borrow_MaxTime;
+                    Panel.GetPanel<DominoPanel>().SetBorrowTimer(1f);
+
 
                     while (Stuck(false) && DominoController.Instance.GetTilesOutSide().Count > 0)
                     {
@@ -635,16 +592,16 @@ public class DominoPlayer : MonoBehaviour
 
                         if (!(Manager.GameManager.GameMode == GameMode.Offline))
                         {
-                            while (Borrowing && BorrowMaxtime >= 0f)
+                            while (Borrowing && borrowTimer >= 0f)
                             {
                                 if (!(Manager.GameManager.GameMode == GameMode.Offline) || (Manager.GameManager.GameMode == GameMode.Offline) && GameIsOn)
-                                    BorrowMaxtime -= (Time.fixedDeltaTime*Time.timeScale);
+                                    borrowTimer -= (Time.fixedDeltaTime*Time.timeScale);
 
-                                BorrowingTimer.value = BorrowMaxtime;
+                                Panel.GetPanel<DominoPanel>().SetBorrowTimer(borrowTimer/Borrow_MaxTime);
                                 yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
                             }
 
-                            if (BorrowMaxtime < 0f)
+                            if (borrowTimer < 0f)
                             {
                                 yield return new WaitForSecondsRealtime(borrow_Delay);
                                 view.RPC("Remove_AnExtraTile", RpcTarget.All, 0);
@@ -671,7 +628,7 @@ public class DominoPlayer : MonoBehaviour
                     if (!(Manager.GameManager.GameMode == GameMode.Offline))
                     {
                         BorrwoingANim.Play(borrowingOut_Anim.name);
-                        BorrowingTimer.gameObject.SetActive(false);
+                        Panel.GetPanel<DominoPanel>().ShowBorrowTimer(false);
                     }
 
                     if (Stuck(false) && DominoController.Instance.GetTilesOutSide().Count == 0)
@@ -714,7 +671,7 @@ public class DominoPlayer : MonoBehaviour
         bool yourTurn = Master_Turn && master_client || !Master_Turn && !master_client;
 
         if (yourTurn)
-            text_comm.PlayText("Borrowing!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+            Panel.GetPanel<TextPopUpsPanel>().PlayText("Borrowing!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
         var tilesOutside = DominoController.Instance.GetTilesOutSide();
 
@@ -869,7 +826,7 @@ public class DominoPlayer : MonoBehaviour
             bool yourTurn = Master_Turn && master_client || !Master_Turn && !master_client;
 
             if (yourTurn)
-                text_comm.PlayText("Switching Round!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                Panel.GetPanel<TextPopUpsPanel>().PlayText("Switching Round!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
 
             Timer = Max_Time;
 
@@ -886,7 +843,10 @@ public class DominoPlayer : MonoBehaviour
             if (GameIsOn)
             {
                 Timer -= Time.fixedDeltaTime;
-                time_slider.value = (Timer / Max_Time);
+                
+                float timeRatioLeft= (Timer / Max_Time);
+
+                Panel.GetPanel<DominoPanel>().SetTimer(timeRatioLeft);
 
                 bool yourTurn = Master_Turn && master_client || !Master_Turn && !master_client;
 
@@ -895,22 +855,22 @@ public class DominoPlayer : MonoBehaviour
                     if (Timer <= 4 && !is_4_yet)
                     {
                         is_4_yet = true;
-                        text_comm.PlayText("Time!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("Time!", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
                     }
                     else if (Timer <= 3 && !is_3_yet)
                     {
                         is_3_yet = true;
-                        text_comm.PlayText("3", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("3", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
                     }
                     else if (Timer <= 2 && !is_2_yet)
                     {
                         is_2_yet = true;
-                        text_comm.PlayText("2", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("2", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
                     }
                     else if (Timer <= 1 && !is_1_yet)
                     {
                         is_1_yet = true;
-                        text_comm.PlayText("1", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("1", text_initial_Color, text_Speed, text_initialScale, text_final_Scale);
                     }
                 }
             }

@@ -13,7 +13,6 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
     [SerializeField] public List<Play_Card> cards = new List<Play_Card>();
     [SerializeField] Poker_Player player;
     [SerializeField] public List<Play_Card> Community_cards = new List<Play_Card>();
-    [SerializeField] Text_Comments_Generator text_comm;
     [SerializeField] public ButtonSound sounds;
     [SerializeField] GameObject EndGame_Menu;
     [SerializeField] Text EndGame_Text;
@@ -412,12 +411,12 @@ public class Poker_Organizer : MonoBehaviourPunCallbacks
         }
 
 
-        text_comm.PlayText("Small Bet from " + Player1_Name);
+        Panel.GetPanel<TextPopUpsPanel>().PlayText("Small Bet from " + Player1_Name);
         player.Get_Player((identity)player.PlayersInRound[P1]).Bet = 10;
         player.Get_Player((identity)player.PlayersInRound[P1]).Played = true;
         yield return new WaitForSeconds(Delay_To_SendCards * 5);
 
-        text_comm.PlayText("Big Bet from " + Player2_Name);
+        Panel.GetPanel<TextPopUpsPanel>().PlayText("Big Bet from " + Player2_Name);
         player.Get_Player((identity)player.PlayersInRound[P2]).Bet = 20;
         player.Get_Player((identity)player.PlayersInRound[P2]).Played = true;
         player.Current_bet = 20;

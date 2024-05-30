@@ -71,8 +71,10 @@ public class DominoController : MonoBehaviour
         else
             matchWinner = Winner.NoWinner;
 
-        DominoPlayer.Instance.MyScore.text = GameManager.IsMasterClient ? Manager.GameManager.CurrentScore[0].ToString() : Manager.GameManager.CurrentScore[1].ToString();
-        DominoPlayer.Instance.OtherScore.text = GameManager.IsMasterClient ? Manager.GameManager.CurrentScore[1].ToString() : Manager.GameManager.CurrentScore[0].ToString();
+        int myScore = GameManager.IsMasterClient ? Manager.GameManager.CurrentScore[0] : Manager.GameManager.CurrentScore[1];
+        int otherScore = GameManager.IsMasterClient ? Manager.GameManager.CurrentScore[1] : Manager.GameManager.CurrentScore[0];
+
+        Panel.GetPanel<DominoPanel>().SetPlayersScore(myScore, otherScore);
 
         string Message = "";
 

@@ -22,7 +22,6 @@ public class Chess_player : MonoBehaviour
     [SerializeField] Chess_Organizer organizer;
     [SerializeField] Text timer_text;
     [SerializeField] Text Guest_timer_text;
-    [SerializeField] Text_Comments_Generator text_comm;
     [SerializeField] Text TurnText;
     [SerializeField] GameObject chat_ui;
     [SerializeField] GameObject BlackQueen;
@@ -223,7 +222,7 @@ public class Chess_player : MonoBehaviour
                     if(Myturn())
                     {
                         if(bonus > 0)
-                            text_comm.PlayText("+ " + bonus + " Seconds");
+                            Panel.GetPanel<TextPopUpsPanel>().PlayText("+ " + bonus + " Seconds");
 
                         MyLogBook.Add_message("P1", ComputeMoveFEN(current, enemyPiece, newPosition), MyLogBook.myColor);
                     }
@@ -242,7 +241,7 @@ public class Chess_player : MonoBehaviour
                     view.RPC("Move_Piece", RpcTarget.AllBuffered, pieceName, newPosition, enemyPiece, true, promote, (int)promotionType);
 
                     if (bonus > 0)
-                        text_comm.PlayText("+ " + bonus + " Seconds");
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("+ " + bonus + " Seconds");
                 }
             }
 
@@ -272,7 +271,7 @@ public class Chess_player : MonoBehaviour
         if (Timer <= 0 || Guest_Timer <= 0)
         {
             if (Myturn())
-                text_comm.PlayText("Time Out!");
+                Panel.GetPanel<TextPopUpsPanel>().PlayText("Time Out!");
 
             HighLight_PossibleMoves(null, false);
             HighLight_PossibleMoves(null, true);
@@ -325,22 +324,22 @@ public class Chess_player : MonoBehaviour
                     if (Timer <= 4 && !is_4_yet)
                     {
                         is_4_yet = true;
-                        text_comm.PlayText("Time!");
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("Time!");
                     }
                     else if (Timer <= 3 && !is_3_yet)
                     {
                         is_3_yet = true;
-                        text_comm.PlayText("3");
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("3");
                     }
                     else if (Timer <= 2 && !is_2_yet)
                     {
                         is_2_yet = true;
-                        text_comm.PlayText("2");
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("2");
                     }
                     else if (Timer <= 1 && !is_1_yet)
                     {
                         is_1_yet = true;
-                        text_comm.PlayText("1");
+                        Panel.GetPanel<TextPopUpsPanel>().PlayText("1");
                     }
                 }
             }
@@ -547,7 +546,7 @@ public class Chess_player : MonoBehaviour
         //always reset king check, because a round can't switch without the king being unchecked
         if (IsAKingChecked(organizer.master_client))
         {
-            text_comm.PlayText("Your king is checked");
+            Panel.GetPanel<TextPopUpsPanel>().PlayText("Your king is checked");
             findMyKing(organizer.master_client).GetComponent<MeshRenderer>().material.SetFloat("_Check", 1f);
             findMyKing(organizer.master_client).GetComponent<ChessView>()._2DView_mesh.material.SetFloat("_Check", 1f);
         }
@@ -557,7 +556,7 @@ public class Chess_player : MonoBehaviour
             findMyKing(organizer.master_client).GetComponent<ChessView>()._2DView_mesh.material.SetFloat("_Check", 0f);
 
             if (Myturn())
-                text_comm.PlayText("Your Turn!");
+                Panel.GetPanel<TextPopUpsPanel>().PlayText("Your Turn!");
         }
 
         Update_TurnUI();

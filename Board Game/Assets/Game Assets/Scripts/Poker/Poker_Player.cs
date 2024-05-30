@@ -39,7 +39,6 @@ public class Poker_Player : MonoBehaviour
     [SerializeField] Slider BetSlider;
     [SerializeField] Poker_Organizer organizer;
     [SerializeField] Text Turn_Text;
-    [SerializeField] Text_Comments_Generator text_comm;
     [SerializeField] ButtonSound sounds;
     [SerializeField] Button Raise_Button;
     [SerializeField] Button Check_Button;
@@ -500,19 +499,19 @@ public class Poker_Player : MonoBehaviour
     {
         if ((identity)player == Global_players[0].player_role)
         {
-            text_comm.PlayText(text, new Vector2(0f, -350f));
+            Panel.GetPanel<TextPopUpsPanel>().PlayText(text, new Vector2(0f, -350f));
         }
         else if ((identity)player == Global_players[1].player_role)
         {
-            text_comm.PlayText(text, new Vector2(0f, 350f));
+            Panel.GetPanel<TextPopUpsPanel>().PlayText(text, new Vector2(0f, 350f));
         }
         else if ((identity)player == Global_players[2].player_role)
         {
-            text_comm.PlayText(text, new Vector2(650f, 0f));
+            Panel.GetPanel<TextPopUpsPanel>().PlayText(text, new Vector2(650f, 0f));
         }
         else if ((identity)player == Global_players[3].player_role)
         {
-            text_comm.PlayText(text, new Vector2(-650f, 0f));
+            Panel.GetPanel<TextPopUpsPanel>().PlayText(text, new Vector2(-650f, 0f));
         }
     }
 

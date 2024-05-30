@@ -13,9 +13,11 @@ public class DominoController : MonoBehaviour
     public static DominoController Instance;
 
     [Header("Parameters")]
-    [SerializeField] int CardsPerPlayer = 7;
-    
-    
+    [SerializeField] public int CardsPerPlayer = 7;
+    [SerializeField] public float TurnTime = 30f;
+    [SerializeField] public float BorrowTime = 15f;
+
+
     private List<DominoTile> tilesOutside = new List<DominoTile>();
     private PhotonView view;
     public MyWinState myWinState = MyWinState.Lost;
@@ -149,6 +151,7 @@ public class DominoController : MonoBehaviour
     {
         this.gameObject.gameObject.SetActive(true);
         DominoGeometery.Instance.gameObject.SetActive(true);
+        DominoPlayer.Instance.gameObject.SetActive(true);
         Panel.GetPanel<DominoPanel>().Show();
         gameObject.SetActive(true);
     }
@@ -189,7 +192,7 @@ public class DominoController : MonoBehaviour
         }
 
         DominoGeometery.Instance.OrganizeCardsOutside(tilesOutside);
-        DominoPlayer.Instance.ReOrganizeCardsInHands();
+        DominoPlayer.Instance.ReOrganizeAllCards();
     }
     private string GenerateRandomSequence(int count)
     {

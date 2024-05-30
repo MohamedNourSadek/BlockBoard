@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using static UnityEngine.Rendering.GPUSort;
 
-public enum GroundSide { Center, Left, Right }
+public enum GroundSide { Center, Left, Right, None }
 
 public class DominoGeometery : MonoBehaviour
 {
@@ -19,11 +21,30 @@ public class DominoGeometery : MonoBehaviour
     [SerializeField] Vector2 SwitchFixNoDouble;
     [SerializeField] float AnimationSpeed = 0.1f;
 
+    [Header("Hand Positioning Constants")]
+    [SerializeField] float Z_Depth;
+    [SerializeField] float Guest_Z_Depth;
+    [SerializeField] float Vertical;
+    [SerializeField] float Selected_Vertical = 0.05f;
+    [SerializeField] float Spacing;
+    [SerializeField] float GuestVertical;
+    [SerializeField] float Slider_Constant = 0.5f;
+    [SerializeField] Vector3 Extra_cards_Posititon;
+
     [Header("Ground Positioning Objects")]
     [SerializeField] GameObject CenterPosition;
     [SerializeField] GameObject LeftPosition;
     [SerializeField] GameObject RightPosition;
     [SerializeField] GameObject OutObjects;
+    [SerializeField] GameObject OtherPlay_Tiles;
+    [SerializeField] GameObject OutCards;
+    [SerializeField] GameObject Play_Tools;
+    [SerializeField] GameObject Play_Center_obj;
+    [SerializeField] GameObject Play_Left_obj;
+    [SerializeField] GameObject Play_Right_obj;
+    [SerializeField] GameObject MyCards_Position;
+    [SerializeField] GameObject OtherCards_Position;
+    [SerializeField] List<GameObject> FakeExtraTiles = new List<GameObject>();
 
     [Header("Other")]
     [SerializeField] public List<DominoTile> DominoCards = new List<DominoTile>();
@@ -81,10 +102,83 @@ public class DominoGeometery : MonoBehaviour
             increment++;
         }
     }
+    public void ReOrganize(List<DominoTile> tileSet, int selectedCards, float displacement, bool hide, float zDepth)
+    {
+        //Reposition cards in Hand
+        for (int i = 0; i <= tileSet.Count - 1; i++)
+        {
+            //Fix Rotation to point to the camera
+            tileSet[i].transform.position = MyCards_Position.transform.position;
 
+            tileSet[i].transform.LookAt(tileSet[i].transform.position + Vector3.up);
+            tileSet[i].transform.Rotate(new Vector3(90f, 90f, 90f));
+
+            if (hide)
+            {
+                tileSet[i].transform.Rotate(180f, 0f, 0f);
+            }
+
+            float addedPosition = 0f;
+
+            if ((i == selectedCards) && !hide)
+                addedPosition = Selected_Vertical;
+
+            Vector3 Up = -Vector3.right;
+            Vector3 Right = Vector3.forward;
+
+            //Position the cards
+            tileSet[i].transform.position += (Up * (Vertical + displacement + addedPosition))
+                + (Right * i * Spacing)
+                - (Right * (tileSet.Count / 2f) * Spacing); //Shift to center always
+        }
+    }
+    public void ReOrganizeExtras()
+    {
+        //Reposition cards in Hand
+        for (int i = 0; i <= DominoController.Instance.GetTilesOutSide().Count - 1; i++)
+        {
+            //Fix Rotation to point to the camera
+            DominoController.Instance.GetTilesOutSide()[i].transform.rotation = Quaternion.Euler(180f, 90f, 0f);
+            DominoController.Instance.GetTilesOutSide()[i].transform.position = OutCards.transform.position + (Vector3.right * i * Spacing);
+        }
+    }
+    public void RefreshPlayableSides(bool centerState, bool leftState, bool rightState)
+    {
+        Play_Center_obj.SetActive(centerState);
+
+        Play_Left_obj.SetActive(leftState);
+        Play_Left_obj.transform.position = GetNextTilePosition(GroundSide.Left);
+        Play_Right_obj.SetActive(rightState);
+        Play_Right_obj.transform.position = GetNextTilePosition(GroundSide.Right);
+        Play_Tools.gameObject.SetActive(DominoPlayer.Instance.IsMyTurn());
+    }
+    public GroundSide GetWhichSideHit(GameObject objectHit)
+    {
+        if (objectHit == Play_Center_obj)
+            return GroundSide.Center;
+        else if (objectHit == Play_Right_obj)
+            return GroundSide.Right;
+        else if (objectHit == Play_Left_obj)
+            return GroundSide.Left;
+        else 
+            return GroundSide.None;
+    }
+    public int GetFakeBorrowTilesIndex(GameObject objectHit)
+    {
+        return FakeExtraTiles.IndexOf(objectHit);
+    }
+    public GameObject GetFakeBorrowTile(int index)
+    {
+        return FakeExtraTiles[index];
+    }
+    public void RemoveFakeBorrowTile(GameObject tile)
+    {
+        FakeExtraTiles.Remove(tile);
+    }
     #endregion
 
     #region Private Functions
+
     private void SwitchDirections(GroundSide groundSide)
     {
         if (groundSide == GroundSide.Right)

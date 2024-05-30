@@ -3,6 +3,7 @@ using PlayFab.ClientModels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Winner { Master, Guest, Draw, NoWinner }
 public enum MyWinState { Won, Draw, Lost }
@@ -77,18 +78,18 @@ public class DominoController : MonoBehaviour
 
         if (bySubmission)
         {
-            Message = GameGeneralPanel.Instance.SubmissionText;
+            Message = "Other player left";
         }
 
 
         if ((matchWinner == Winner.Master && GameManager.IsMasterClient) || (matchWinner == Winner.Guest && !GameManager.IsMasterClient))
         {
-            Message += GameGeneralPanel.Instance.WinText;
+            Message += "You've won";
             myWinState = MyWinState.Won;
         }
         else if ((matchWinner == Winner.Guest && GameManager.IsMasterClient) || (matchWinner == Winner.Master && !GameManager.IsMasterClient))
         {
-            Message += GameGeneralPanel.Instance.LoseText;
+            Message += "You've Lost";
             myWinState = MyWinState.Lost;
         }
         else if (matchWinner == Winner.NoWinner)
@@ -120,10 +121,9 @@ public class DominoController : MonoBehaviour
                 //Handle_Data(Data_Result);
         }
 
-        GameGeneralPanel.Instance.EndGame_Message.text = Message;
-        GameGeneralPanel.Instance.EndGame_Menu.SetActive(true);
+        Panel.GetPanel<PopUpPanel>().ShowPopUp(Message);
+        Panel.GetPanel<GameNormalPanel>().Hide();
 
-        GameGeneralPanel.Instance.Game_UI.SetActive(false);
         Manager.GameManager.CurrentScore[0] = 0;
         Manager.GameManager.CurrentScore[1] = 0;
         Manager.GameManager.MasterWonLastGame = true;
@@ -214,12 +214,35 @@ public class DominoController : MonoBehaviour
 
         return randomSequenceString;
     }
+    public void leaveGame()
+    {
+        Manager.GameManager.CurrentScore[0] = 0;
+        Manager.GameManager.CurrentScore[1] = 0;
+
+        Manager.GameManager.CurrentGame = GameType.None;
+
+        if ((Manager.GameManager.GameMode == GameMode.Offline))
+        {
+            SceneManager.LoadScene("Lobby_Scene");
+        }
+        else
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LoadLevel("Lobby_Scene");
+        }
+    }
+
     private IEnumerator NextRound()
     {
         yield return new WaitForSecondsRealtime(2f);
 
         if (GameManager.IsMasterClient)
-            GameGeneralPanel.Instance.Rematch();
+        {
+            if ((Manager.GameManager.GameMode == GameMode.Offline))
+                Rematch();
+            else
+                view.RPC("Rematch", RpcTarget.AllBuffered);
+        }
     }
     #endregion
 
@@ -238,6 +261,19 @@ public class DominoController : MonoBehaviour
         tilesOutside = newCardsOrganization;
 
         DistributeCards();
+    }
+
+    [PunRPC]
+    private void Rematch()
+    {
+        if (Manager.GameManager.GameMode == GameMode.Offline)
+        {
+            SceneManager.LoadScene("Game");
+        }
+        else
+        {
+            PhotonNetwork.LoadLevel("Game");
+        }
     }
     #endregion
 }

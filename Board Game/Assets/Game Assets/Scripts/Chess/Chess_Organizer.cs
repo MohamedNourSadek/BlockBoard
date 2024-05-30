@@ -5,10 +5,10 @@ using Photon.Pun;
 using System;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEditor.VersionControl;
 
 public class Chess_Organizer : MonoBehaviourPunCallbacks
 {
-    [SerializeField] GameGeneralPanel General_UI_Manager;
     [SerializeField] Chess_player myplayer;
     [SerializeField] GameObject board;
     [SerializeField] Material BlackBoardMat;
@@ -183,20 +183,17 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
     {
         if(Draw)
         {
-            General_UI_Manager.EndGame_Message.text = message;
-            General_UI_Manager.EndGame_Menu.SetActive(true);
+            Panel.GetPanel<PopUpPanel>().ShowPopUp(message + " Draw!");
             my_WinState = MyWinState.Draw;
         }
         else if ((Master_Is_Winner && master_client) || (!Master_Is_Winner && !master_client))
         {
-            General_UI_Manager.EndGame_Message.text = message + General_UI_Manager.WinText;
-            General_UI_Manager.EndGame_Menu.SetActive(true);
+            Panel.GetPanel<PopUpPanel>().ShowPopUp(message + " you've Won!");
             my_WinState = MyWinState.Won;
         }
         else
         {
-            General_UI_Manager.EndGame_Message.text = message + General_UI_Manager.LoseText;
-            General_UI_Manager.EndGame_Menu.SetActive(true);
+            Panel.GetPanel<PopUpPanel>().ShowPopUp(message + " Lost!");
             my_WinState = MyWinState.Lost;
         }
 
@@ -219,8 +216,8 @@ public class Chess_Organizer : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
         UpdateMaster_Client();
 
-        General_UI_Manager.EndGame_Message.text = General_UI_Manager.SubmissionText + General_UI_Manager.WinText;
-        General_UI_Manager.EndGame_Menu.SetActive(true);
+        Panel.GetPanel<PopUpPanel>().ShowPopUp(" Other player left");
+
         myplayer.GameIsOn = false;
 
         my_WinState = MyWinState.Won;

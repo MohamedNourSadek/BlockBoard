@@ -602,11 +602,11 @@ public class DominoPlayer : MonoBehaviour
 
                 if (master_client)
                 {
-                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.MyTurn);
+                    Panel.GetPanel<GameNormalPanel>().SetTurnUi(Turn.MyTurn);
                 }
                 else
                 {
-                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.OpponentTurn);
+                    Panel.GetPanel<GameNormalPanel>().SetTurnUi(Turn.OpponentTurn);
                 }
             }
             else
@@ -685,11 +685,11 @@ public class DominoPlayer : MonoBehaviour
 
                 if (!master_client)
                 {
-                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.MyTurn);
+                    Panel.GetPanel<GameNormalPanel>().SetTurnUi(Turn.MyTurn);
                 }
                 else
                 {
-                    Panel.GetPanel<GameNormalPanel>().SetTurn(Turn.OpponentTurn);
+                    Panel.GetPanel<GameNormalPanel>().SetTurnUi(Turn.OpponentTurn);
                 }
             }
         }

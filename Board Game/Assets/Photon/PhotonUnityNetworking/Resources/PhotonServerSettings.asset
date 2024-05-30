@@ -67,6 +67,7 @@ MonoBehaviour:
   - Change_Bet_Constrains
   - StartGameSync
   - SendSequenceToClients
+  - Rematch
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

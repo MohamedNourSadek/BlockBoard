@@ -50,7 +50,9 @@ public class PausePanel : Panel
     }
     private void OnExitPressed()
     {
-        PhotonNetwork.LeaveRoom();
+        if(Manager.GameManager.GameMode == GameMode.Online)
+            PhotonNetwork.LeaveRoom();
+
         Manager.GameManager.LoadMenu();
     }
 }

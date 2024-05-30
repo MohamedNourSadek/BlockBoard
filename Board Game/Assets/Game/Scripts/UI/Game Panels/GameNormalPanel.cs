@@ -26,11 +26,17 @@ public class GameNormalPanel : Panel
 
         TutorialButton.onClick.AddListener(OnTutorialPressed);
         SettingsButton.onClick.AddListener(OnPausePressed);
-        MessagesButton.onClick.AddListener(OnMessagesPressed);
         GameViewButton.onClick.AddListener(OnGameViewPressed);
 
+        if(Manager.GameManager.GameMode == GameMode.Offline)
+            MessagesButton.gameObject.SetActive(false);
+        else
+            MessagesButton.onClick.AddListener(OnMessagesPressed);
     }
-
+    public void OnEnable()
+    {
+        RefreshUI();
+    }
     public override void RefreshUI()
     {
         base.RefreshUI();
@@ -38,8 +44,7 @@ public class GameNormalPanel : Panel
         var settingsManager = Manager.GetManager<SettingsManager>().CameraSnap;
         GameViewImage.sprite = settingsManager ? GameViewSpriteOn : GameViewSpriteOff;
     }
-
-    public void SetTurn(Turn turn)
+    public void SetTurnUi(Turn turn)
     {
         if(turn == Turn.MyTurn)
         {
@@ -52,6 +57,8 @@ public class GameNormalPanel : Panel
             GameTurnText.color = OpponentTurnColor;
         }
     }
+
+
     private void OnGameViewPressed()
     {
         var settingsManager = Manager.GetManager<SettingsManager>();
